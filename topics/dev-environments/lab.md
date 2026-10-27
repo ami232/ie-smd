@@ -188,7 +188,7 @@ We use two online services during the course. Create the accounts now, because t
 2. Enable **two-factor authentication** (*Settings → Password and authentication*). GitHub requires it to contribute code.
 3. Optionally, apply to the [GitHub Student Developer Pack](https://education.github.com/pack) with your IE email. It gives you free access to GitHub Copilot and other developer tools.
 
-**Azure for Students** is the cloud account for sessions 13 and 14. It gives you **USD 100 of credit for 12 months, with no credit card**. You verify that you are a student with your IE email.
+**Azure for Students** is the cloud account for sessions 13 and 14. It gives you **free credit for 12 months, with no credit card**. You verify that you are a student with your IE email.
 
 1. Go to [aka.ms/azure4students](https://aka.ms/azure4students) and select **Start free**.
 2. Sign in with a Microsoft account. You can use your IE email.
