@@ -1,7 +1,5 @@
 # Environments and reproducibility
 
-> Web version: <https://alberpro.com/ie-smd/topics/dev-environments/environments/>
-
 > ℹ️ **What you need first**
 >
 > Nothing. This is the first page of the course.

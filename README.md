@@ -1,8 +1,5 @@
 # Software Management & Development
 
-> The web version of this course, with search, is at <https://alberpro.com/ie-smd/>.
-> This repository is updated automatically from it.
-
 **IE University** · *Master in Financial Technology (MFT) · Term 1, 2026–27*
 
 In this course you build real software, from an empty laptop to an application running in the cloud. In fifteen sessions you will set up a professional development environment, write a Python backend with a database and a REST API, put a web frontend on top of it, test it, package it in containers, and deploy it to Microsoft Azure. Along the way you will learn the habits that make software teams work: version control, code review, reproducible environments, and small, frequent deliveries.

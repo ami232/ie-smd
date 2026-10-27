@@ -1,7 +1,5 @@
 # Development environments
 
-> Web version: <https://alberpro.com/ie-smd/topics/dev-environments/>
-
 Software never runs in a vacuum. Your Python script runs on an interpreter, which runs on an operating system, which runs on a particular kind of processor. The script also reads files, connects to a database and expects some settings to be there. When any of these pieces changes, the same code can behave differently or not run at all. This first session is about that whole stack, the **development environment**: what it is made of, why teams work so hard to make it identical for everyone, and which tools they use to do so (virtual machines, containers and the cloud).
 
 It is also the session where we get to know your machine. The rest of the course depends on it.

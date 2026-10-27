@@ -1,7 +1,5 @@
 # Lab 1: know your machine
 
-> Web version: <https://alberpro.com/ie-smd/topics/dev-environments/lab/>
-
 > ℹ️ **What you need first**
 >
 > Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](environments.md).
