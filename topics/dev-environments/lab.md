@@ -4,7 +4,7 @@
 >
 > Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](environments.md).
 
-In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the two accounts we need from session 5 onwards. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: in session 2 you use it to set up the course environment, so fill it in carefully.
+In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the GitHub account we need from session 5 onwards. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: in session 2 you use it to set up the course environment, so fill it in carefully.
 
 You don't install anything today. Every command below only *reads* information.
 
@@ -178,25 +178,12 @@ groups | tr ' ' '\n' | grep -x sudo
 ```
 
 
-## 5. Create your accounts
+## 5. Create your GitHub account
 
-We use two online services during the course. Create the accounts now, because they can take a while to verify.
-
-**GitHub** hosts your code from session 5 onwards and runs our automated pipelines in session 13. If you already have an account, use it.
+**GitHub** hosts your code from session 5 onwards and runs our automated pipelines in session 13. Create the account now, because verifying it can take a while. If you already have one, use it.
 
 1. Go to [github.com/signup](https://github.com/signup) and create an account. Choose a **professional username**: it appears in your repositories, and employers will see it on your CV.
 2. Enable **two-factor authentication** (*Settings → Password and authentication*). GitHub requires it to contribute code.
 3. Optionally, apply to the [GitHub Student Developer Pack](https://education.github.com/pack) with your IE email. It gives you free access to GitHub Copilot and other developer tools.
-
-**Azure for Students** is the cloud account for sessions 13 and 14. It gives you **free credit for 12 months, with no credit card**. You verify that you are a student with your IE email.
-
-1. Go to [aka.ms/azure4students](https://aka.ms/azure4students) and select **Start free**.
-2. Sign in with a Microsoft account. You can use your IE email.
-3. Verify your student status with your **IE email** and complete the form.
-4. When it finishes, open the [Azure portal](https://portal.azure.com), search for **Subscriptions** and check that you see one called **Azure for Students**.
-
-> ⚠️ **Don't create any resources yet**
->
-> Everything you create in Azure consumes your credit, even if you don't use it. We create resources together in session 13, and we also learn how to delete them. Until then, just check that the subscription exists.
 
 [← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)

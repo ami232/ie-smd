@@ -7,7 +7,7 @@ It is also the session where we get to know your machine. The rest of the course
 ## The thread of the session
 
 1. **[Environments and reproducibility](environments.md).** What an environment is, layer by layer, and why "it works on my machine" is one of the most expensive sentences in software. Then the three tools for making environments reproducible (host installation, virtual machines and containers) and where the cloud fits in. It ends with a map of what we will build during the course.
-2. **[Lab 1: know your machine](lab.md).** You open a terminal, find out exactly what your laptop is (operating system, processor architecture, memory, disk), create the accounts we need (GitHub and Azure for Students), and write it all down on a [machine card](machine_card.md). You need that card in session 2 to set up the course environment.
+2. **[Lab 1: know your machine](lab.md).** You open a terminal, find out exactly what your laptop is (operating system, processor architecture, memory, disk), create your GitHub account, and write it all down on a [machine card](machine_card.md). You need that card in session 2 to set up the course environment.
 
 ## Objectives
 

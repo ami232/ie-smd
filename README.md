@@ -53,8 +53,6 @@ We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cl
 | Managed relational database | Cloud SQL | Azure Database for PostgreSQL |
 | Secrets | Secret Manager | Container Apps secrets / Key Vault |
 
-You will use an **Azure for Students** account: it is free with your IE email, gives you credit for a year and needs no credit card. We activate it in session 1.
-
 ## Evaluation
 
 | Component | Weight |

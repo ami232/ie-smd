@@ -36,11 +36,10 @@ Write the version next to each tool you have, or "no". Check in the terminal wit
 - Python:
 - uv:
 
-## 5. Accounts [step 5]
+## 5. GitHub [step 5]
 
 - GitHub username:
 - GitHub two-factor authentication enabled (yes / no):
-- Azure for Students subscription visible in the portal (yes / no; if no, what went wrong):
 
 ## 6. Problems and questions
 
