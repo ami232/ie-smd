@@ -42,14 +42,6 @@ Write the version next to each tool you have, or "no". Check in the terminal wit
 - GitHub two-factor authentication enabled (yes / no):
 - Azure for Students subscription visible in the portal (yes / no; if no, what went wrong):
 
-## 6. Optional: inside a container [step 6]
-
-Only if you have Docker running.
-
-- `uname -m` inside the container:
-- Memory shown by `free -h` inside the container (*Mem:* total):
-- Is it the same as your laptop's memory? Why?
-
-## 7. Problems and questions
+## 6. Problems and questions
 
 - Anything that failed, looked different from the lab, or you want to ask:

@@ -199,34 +199,4 @@ We use two online services during the course. Create the accounts now, because t
 >
 > Everything you create in Azure consumes your credit, even if you don't use it. We create resources together in session 13, and we also learn how to delete them. Until then, just check that the subscription exists.
 
-## 6. Optional: a look inside a container
-
-If you already have **Docker Desktop** installed and running, you can see the ideas of [the concepts page](environments.md#containers) in action. If you don't have it, skip this step: we install Docker in session 2.
-
-```bash
-docker run --rm ubuntu:24.04 cat /etc/os-release
-```
-
-Docker downloads a small Ubuntu image (the first time only), starts a container from it, runs `cat /etc/os-release` inside and deletes the container when it finishes (`--rm`). Now compare the architecture and the memory inside the container with what you found on your laptop:
-
-```bash
-docker run --rm ubuntu:24.04 uname -m
-docker run --rm ubuntu:24.04 free -h
-```
-
-<details>
-<summary>✅ <b>What you should see</b></summary>
-
-The first command prints `PRETTY_NAME="Ubuntu 24.04.5 LTS"` (or a later 24.04.x), even if your laptop runs macOS or Windows: the container sees the files of the Ubuntu image, not those of your system.
-
-`uname -m` prints the **same architecture as your laptop** (`aarch64` on an Apple Silicon Mac, `x86_64` on most Windows PCs). The container shares the kernel, so it also shares the processor.
-
-`free -h` probably does **not** show your laptop's memory. On a Mac with 32 GB, for example, it shows about `7.7Gi`. This is the memory of the small Linux VM that Docker Desktop runs in the background (it is configurable in Docker Desktop's settings). The containers live inside that VM, exactly as described in [Environments and reproducibility](environments.md#containers).
-
-</details>
-
-## Checkpoint
-
-Before you leave, every section of your [machine card](machine_card.md) should be filled in (section 6 only if you have Docker). Keep the file; you'll need it in session 2.
-
 [← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)
