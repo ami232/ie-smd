@@ -4,7 +4,7 @@
 >
 > Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](environments.md).
 
-In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the two accounts we need from session 5 onwards. Write everything down on the "machine card" at the end of the lab: in session 2 you use it to set up the course environment, so fill it in carefully.
+In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the two accounts we need from session 5 onwards. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: in session 2 you use it to set up the course environment, so fill it in carefully.
 
 You don't install anything today. Every command below only *reads* information.
 
@@ -139,7 +139,7 @@ df -h ~
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-Something like `16 GB` of memory and a free-space figure. For the course you need **at least 8 GB of memory (16 GB is comfortable)** and **at least 20 GB of free disk**. If you have less, don't worry: write it down on your machine card. Session 2 has setup options for smaller machines.
+Something like `16 GB` of memory and a free-space figure. For the course you need **at least 8 GB of memory (16 GB is comfortable)** and **at least 20 GB of free disk**. If you have less, don't worry: write it down on your [machine card](machine_card.md). Session 2 has setup options for smaller machines.
 
 On Windows, if **Virtualization** says **Disabled**, write that down too: it can be turned on in the computer's firmware settings (BIOS/UEFI), and we will help you with that in session 2.
 
@@ -227,17 +227,6 @@ The first command prints `PRETTY_NAME="Ubuntu 24.04.5 LTS"` (or a later 24.04.x)
 
 ## Checkpoint
 
-Before you leave, you should have this "machine card" filled in. Keep it; you'll need it in session 2.
-
-| | Your answer |
-|---|---|
-| Operating system and version | |
-| Architecture (`arm64` / `x86_64`) | |
-| Memory (GB) | |
-| Free disk (GB) | |
-| Administrator rights / managed by employer | |
-| Windows only: virtualization enabled, WSL installed | |
-| GitHub username | |
-| Azure for Students subscription visible in the portal | yes / no |
+Before you leave, every section of your [machine card](machine_card.md) should be filled in (section 6 only if you have Docker). Keep the file; you'll need it in session 2.
 
 [← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)
