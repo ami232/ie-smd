@@ -24,7 +24,7 @@ Your **group project** follows the same path with an application of your own cho
 | # | Session | Material |
 |---|---------|----------|
 | 1 | [Development environments](topics/dev-environments/index.md) | notes · lab · slides |
-| 2 | Linux and the shell | *coming soon* |
+| 2 | [Linux and the shell](topics/linux-shell/index.md) | notes · setup guide · lab · slides |
 | 3 | Professional Python with uv | *coming soon* |
 | 4 | Code editors and developer productivity | *coming soon* |
 | 5 | Version control and collaboration with Git | *coming soon* |

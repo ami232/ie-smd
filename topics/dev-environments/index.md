@@ -23,14 +23,6 @@ By the end of the session you should be able to:
 
 You need no prior knowledge. Bring your laptop charged and make sure you know your password: you will need it to install software in the coming sessions.
 
-## How to study this session
-
-| Page | What you do | Time |
-|---|---|---|
-| [Environments and reproducibility](environments.md) | read, exercises | 50 min |
-| [Lab 1: know your machine](lab.md) | hands-on in your terminal | 45 min |
-| [Machine card](machine_card.md) | download and fill in during the lab | — |
-
 ## Class slides
 
 The slides are what we use in the classroom. They summarize the session, but these pages are the complete material.
