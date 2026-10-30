@@ -1,0 +1,1395 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/dev-environments/environments/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Environments and reproducibility - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#environments-and-reproducibility" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environments and reproducibility
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#it-works-on-my-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "It works on my machine"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-an-environment-is-made-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What an environment is made of
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#three-places-to-run-software-host-virtual-machine-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three places to run software: host, virtual machine, container
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Three places to run software: host, virtual machine, container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processor architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-your-laptop-to-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From your laptop to the cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-course-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The course map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-shell/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-shell/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Users, packages and the environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#it-works-on-my-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "It works on my machine"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-an-environment-is-made-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What an environment is made of
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#three-places-to-run-software-host-virtual-machine-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three places to run software: host, virtual machine, container
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Three places to run software: host, virtual machine, container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processor architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-your-laptop-to-the-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From your laptop to the cloud
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-course-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The course map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="environments-and-reproducibility">Environments and reproducibility<a class="headerlink" href="#environments-and-reproducibility" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p>Nothing. This is the first page of the course.</p>
+</div>
+<h2 id="it-works-on-my-machine">"It works on my machine"<a class="headerlink" href="#it-works-on-my-machine" title="Permanent link">&para;</a></h2>
+<p>Picture a small fintech team. Ana writes a Python script that reads the day's card transactions and flags suspicious ones. It works perfectly on her laptop. She sends it to Ben, who runs the overnight jobs, and on his machine it fails in four different ways in one afternoon:</p>
+<ol>
+<li>It crashes immediately: <code>ModuleNotFoundError: No module named 'pandas'</code>. Ana installed pandas months ago and forgot about it.</li>
+<li>Ben installs pandas, and the script crashes again with a syntax error on a line that uses <code>match</code>. Ana has Python 3.12; the server has Python 3.9, which doesn't know that keyword.</li>
+<li>Ben upgrades Python, and the script runs but cannot find <code>C:\Users\ana\Desktop\cards.csv</code>. That path exists only on Ana's Windows laptop; the server runs Linux.</li>
+<li>Ben fixes the path and the script finishes, but it flags almost nothing. Ana's laptop had an environment variable, <code>RISK_THRESHOLD=0.8</code>, set in her shell profile. On the server the script fell back to its default of <code>0.99</code>.</li>
+</ol>
+<p>None of these failures is a bug in the logic Ana wrote. They are all differences between <strong>her machine and Ben's</strong>. Each one took time to diagnose, and the last one is the most dangerous: the script <em>seemed</em> to work. In a real company, the fourth failure could let fraud through for weeks.</p>
+<p>This is why software teams care so much about environments. The code is only one part of what runs. The rest is everything around it, and it has to be the same, or at least known, everywhere the code runs: on each developer's laptop, on the test server and in production.</p>
+<h2 id="what-an-environment-is-made-of">What an environment is made of<a class="headerlink" href="#what-an-environment-is-made-of" title="Permanent link">&para;</a></h2>
+<p>We can describe everything around the code as a stack of layers. Each layer is built on the one below it, and each one can cause a failure like Ana's.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: development environment</p>
+<p>The <strong>environment</strong> of a program is everything, apart from its own source code, that determines how it runs. From the bottom up:</p>
+<ol>
+<li><strong>Hardware</strong>: above all, the processor <strong>architecture</strong> (<code>x86_64</code>, also called <code>amd64</code>, on most Windows PCs and servers; <code>arm64</code>, also called <code>aarch64</code>, on Apple Silicon Macs and many cloud servers).</li>
+<li><strong>Operating system</strong>: its <strong>kernel</strong> (the core that manages memory, processes and devices: Linux, Windows NT, Darwin on macOS) and its <strong>userland</strong> (the basic programs and libraries around the kernel).</li>
+<li><strong>System packages</strong>: programs and libraries installed on the OS (<code>git</code>, <code>curl</code>, a PostgreSQL client, the SSL libraries…).</li>
+<li><strong>Language runtime</strong>: the interpreter or compiler, with its version (Python 3.14, Node 22…).</li>
+<li><strong>Project dependencies</strong>: the third-party libraries the code imports, with their versions (<code>pandas 2.3</code>, <code>fastapi 0.120</code>…).</li>
+<li><strong>Configuration</strong>: environment variables, configuration files, secrets (passwords and API keys).</li>
+<li><strong>External services</strong>: everything the program talks to over the network: databases, other APIs, file storage.</li>
+</ol>
+</div>
+<p>In Ana's story, the failures came from layers 5 (pandas missing), 4 (Python version), 2 (Windows paths on Linux) and 6 (the threshold variable). The table below gives an example of a bug for every layer. Use it as a checklist when something "works on my machine":</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Typical "works on my machine" failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware</td>
+<td>A library ships compiled code only for <code>x86_64</code>, and installation fails on an <code>arm64</code> Mac</td>
+</tr>
+<tr>
+<td>Operating system</td>
+<td>Paths with <code>\</code> instead of <code>/</code>; file names that differ only in capitals (<code>Data.csv</code> and <code>data.csv</code> are the same file on macOS and Windows, but different files on Linux)</td>
+</tr>
+<tr>
+<td>System packages</td>
+<td>The code calls <code>git</code> or <code>psql</code>, and they aren't installed on the server</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>New syntax (<code>match</code>, <code>type</code> aliases) or new standard modules (<code>tomllib</code>) on an old Python</td>
+</tr>
+<tr>
+<td>Dependencies</td>
+<td>A different version of a library changes a default or removes a function</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>A variable set on one machine but not on another, as in Ana's story</td>
+</tr>
+<tr>
+<td>External services</td>
+<td>The test database has different data, or a different version, than production</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reproducibility">Reproducibility<a class="headerlink" href="#reproducibility" title="Permanent link">&para;</a></h2>
+<p>The remedy is to make environments <strong>reproducible</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: reproducible environment</p>
+<p>An environment is <strong>reproducible</strong> if anyone, on any supported machine, can rebuild it from written instructions or files and get the same result: the same versions of everything, the same configuration and therefore the same behaviour of the code.</p>
+</div>
+<p>The key words are <em>from files</em>. If the environment exists only as "what I happened to install on my laptop over two years", nobody can rebuild it, not even its owner after a hard-disk failure. The practical rule is that <strong>the environment should be described in files that live with the code</strong>, in the same repository.</p>
+<p>There are three levels of ambition, and professional teams usually combine all three:</p>
+<ol>
+<li><strong>Document it.</strong> A README that lists what to install and how. It is better than nothing, but people skip steps and instructions go out of date.</li>
+<li><strong>Automate it.</strong> Files that tools read to install exactly what is needed. In Python that is <code>pyproject.toml</code> with a <strong>lockfile</strong> (<code>uv.lock</code>), which pins the exact version of every dependency (session 3). The configuration goes into an <code>.env</code> file, which is not committed, and a template of it, which is (session 12).</li>
+<li><strong>Package it.</strong> Ship the environment itself together with the code: a <strong>virtual machine image</strong> or a <strong>container image</strong> that already contains the operating system, the runtime and the dependencies (sessions 11–14).</li>
+</ol>
+<p>Each level covers more layers of the stack. A README can't stop someone from installing the wrong Python. A lockfile fixes layer 5, and with a tool like uv also layer 4. A container image fixes layers 2 to 5 at once.</p>
+<h2 id="three-places-to-run-software-host-virtual-machine-container">Three places to run software: host, virtual machine, container<a class="headerlink" href="#three-places-to-run-software-host-virtual-machine-container" title="Permanent link">&para;</a></h2>
+<h3 id="on-the-host">On the host<a class="headerlink" href="#on-the-host" title="Permanent link">&para;</a></h3>
+<p>The simplest option is to install everything directly on your computer, the <strong>host</strong>. Python, PostgreSQL and the libraries go on the operating system you use every day. It is fast and nothing stands between the program and the machine. The price is that every project shares the same system. Project A needs PostgreSQL 15 and project B needs 17; one upgrade breaks the other. After a year, nobody knows exactly what is installed or why.</p>
+<h3 id="virtual-machines">Virtual machines<a class="headerlink" href="#virtual-machines" title="Permanent link">&para;</a></h3>
+<p>A <strong>virtual machine</strong> (VM) is a complete computer simulated in software. A program called a <strong>hypervisor</strong> (VirtualBox, UTM, VMware, Hyper-V, Parallels) divides the real hardware into virtual CPUs, memory and disks. On those, it boots a whole second operating system, the <strong>guest OS</strong>. You can run Ubuntu inside your Mac or Windows laptop, with its own kernel, its own users and its own installed software. If you break it, you delete it and create it again.</p>
+<p>VMs give strong <strong>isolation</strong>: each guest is a separate computer, and the guest can be a different OS from the host. The cost is weight. Each VM runs a full operating system, takes gigabytes of disk and a fixed slice of RAM, and takes tens of seconds to boot.</p>
+<h3 id="containers">Containers<a class="headerlink" href="#containers" title="Permanent link">&para;</a></h3>
+<p>A <strong>container</strong> isolates a program <em>without</em> simulating a computer. Every container on a machine shares the host's <strong>kernel</strong>. The kernel itself keeps containers apart. Each one gets its own view of the filesystem, its own processes and its own network (Linux <em>namespaces</em>), and limits on how much CPU and memory it can use (<em>cgroups</em>). Inside, the container only needs the program and its libraries, not a whole OS.</p>
+<p>A container starts from an <strong>image</strong>: a read-only package with the filesystem the program needs (for example, a minimal Ubuntu userland plus Python plus your code). From one image you can start as many containers as you want, and they will all be identical. The most common tool for building and running them is <strong>Docker</strong> (session 11).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: virtual machine and container</p>
+<ul>
+<li>A <strong>virtual machine</strong> emulates a complete computer. It runs its own operating system, kernel included, on virtual hardware provided by a hypervisor.</li>
+<li>A <strong>container</strong> is an isolated group of processes that shares the host's kernel. It sees only the files of its <strong>image</strong>, its own processes and its own network.</li>
+</ul>
+</div>
+<p>The difference has practical consequences:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Host</th>
+<th>Virtual machine</th>
+<th>Container</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is isolated</td>
+<td>nothing</td>
+<td>the whole computer</td>
+<td>processes, files, network</td>
+</tr>
+<tr>
+<td>Own kernel</td>
+<td>—</td>
+<td>yes</td>
+<td>no, shares the host's</td>
+</tr>
+<tr>
+<td>Start-up time</td>
+<td>—</td>
+<td>tens of seconds</td>
+<td>under a second</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>—</td>
+<td>gigabytes</td>
+<td>megabytes to a few hundred MB</td>
+</tr>
+<tr>
+<td>Runs a different OS</td>
+<td>—</td>
+<td>yes (Windows on a Mac, Linux on Windows…)</td>
+<td>only the same <em>kind</em> of kernel: Linux containers need a Linux kernel</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>your daily tools</td>
+<td>a full, separate workstation or server</td>
+<td>packaging and shipping one application</td>
+</tr>
+</tbody>
+</table>
+<p>That "Linux containers need a Linux kernel" line explains something that surprises many people. <strong>Docker Desktop on macOS and Windows runs a small Linux VM in the background</strong>, and your containers run inside it. On Windows, that VM is usually the one from <strong>WSL2</strong> (the Windows Subsystem for Linux). So on a laptop the two technologies are stacked: a VM that provides the Linux kernel, and containers on top. On a Linux server there is no VM in between, and containers run directly on the host kernel.</p>
+<h3 id="processor-architectures">Processor architectures<a class="headerlink" href="#processor-architectures" title="Permanent link">&para;</a></h3>
+<p>There is one layer that neither VMs nor containers make disappear: the processor. A program compiled for <code>x86_64</code> contains machine instructions that an <code>arm64</code> processor does not understand, and the other way round. Python code is portable, but many Python libraries (NumPy, the PostgreSQL driver, cryptography) include compiled parts, and they are published separately for each architecture.</p>
+<p>This matters in this course in two places:</p>
+<ul>
+<li><strong>Your laptop.</strong> Apple Silicon Macs (M1 to M5) are <code>arm64</code>. Most Windows laptops are <code>x86_64</code>, but Windows on ARM (Snapdragon processors) is becoming common. You will see these names in installers: choose the right one.</li>
+<li><strong>Shipping to the cloud.</strong> A container image built on an <code>arm64</code> Mac is, by default, an <code>arm64</code> image. Many cloud services expect <code>x86_64</code> (<code>linux/amd64</code>). If you push the wrong one, the deployment fails with an error like <code>exec format error</code>. In session 13 we will build images for the right <strong>platform</strong> explicitly.</li>
+</ul>
+<p>Emulation can run code for the other architecture (Rosetta 2 on Macs, QEMU in Docker), but it is slower and sometimes fragile. It is useful in an emergency, but not something to rely on.</p>
+<h2 id="from-your-laptop-to-the-cloud">From your laptop to the cloud<a class="headerlink" href="#from-your-laptop-to-the-cloud" title="Permanent link">&para;</a></h2>
+<p>Everything so far runs on a machine you own: your laptop, or a server in your company's data centre. This is called <strong>on-premises</strong> ("on-prem"): you own the hardware and you are responsible for every layer of the stack.</p>
+<p><strong>Cloud computing</strong> means renting those layers from a provider (Microsoft Azure, Amazon Web Services, Google Cloud) and paying for what you use. Different services take more or less of the stack off your hands:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>You manage</th>
+<th>The provider manages</th>
+<th>Example in Azure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On-premises</td>
+<td>everything</td>
+<td>nothing</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>IaaS</strong> (infrastructure as a service)</td>
+<td>OS, runtime, dependencies, app, data</td>
+<td>hardware, network, virtualization</td>
+<td>Azure Virtual Machines</td>
+</tr>
+<tr>
+<td><strong>PaaS / serverless containers</strong></td>
+<td>your container image (app + dependencies) and its configuration</td>
+<td>everything below, plus scaling</td>
+<td>Azure Container Apps</td>
+</tr>
+<tr>
+<td><strong>Managed services</strong></td>
+<td>your data and settings</td>
+<td>the whole service</td>
+<td>Azure Database for PostgreSQL, Azure Static Web Apps</td>
+</tr>
+<tr>
+<td><strong>SaaS</strong> (software as a service)</td>
+<td>only how you use it</td>
+<td>everything</td>
+<td>Microsoft 365, GitHub</td>
+</tr>
+</tbody>
+</table>
+<p>As you move down the table you control less, but you also have less to patch, monitor and keep running at 3 a.m. This is the main trade-off in the cloud. What is still yours is your code, its dependencies and its configuration. That is exactly the part a container packages. <strong>The container is the unit that travels from your laptop to the cloud unchanged</strong>, and that is why the course spends three sessions on it.</p>
+<p>The cloud has costs of its own. It is billed by usage, and a forgotten resource keeps billing. Your data lives in someone else's data centre, which matters for regulated industries like finance (where the data is stored, who can access it). And every service is a little different from its equivalent at another provider. We will meet all three issues in sessions 13 and 14.</p>
+<h2 id="the-course-map">The course map<a class="headerlink" href="#the-course-map" title="Permanent link">&para;</a></h2>
+<p>The whole course follows one application, <strong>ledger</strong>, through this stack:</p>
+<table>
+<thead>
+<tr>
+<th>Sessions</th>
+<th>Where it runs</th>
+<th>What you add</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>your laptop</td>
+<td>a known, reproducible working environment</td>
+</tr>
+<tr>
+<td>3–6</td>
+<td>your laptop, on the host</td>
+<td>a Python project with locked dependencies, under version control, well structured</td>
+</tr>
+<tr>
+<td>7–10</td>
+<td>your laptop, with PostgreSQL in a container</td>
+<td>a database, a REST API, tests and a web frontend</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td>your laptop, all in containers</td>
+<td>the three services in Docker Compose, configured from the environment</td>
+</tr>
+<tr>
+<td>13–14</td>
+<td>Azure</td>
+<td>the same images, running on managed cloud services</td>
+</tr>
+</tbody>
+</table>
+<p>The movement is from left to right in the table of the previous section, from on-premises toward managed services. At every step you will know exactly what is underneath, because you first ran it yourself.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>"A container is a lightweight VM."</strong> It looks like one from the inside, but it has no kernel of its own. This is why it starts in milliseconds, and also why it cannot run a different kind of operating system than the host.</li>
+<li><strong>"It runs in Docker, so it runs everywhere."</strong> Only on the same architecture, or under emulation. Check the platform of your images.</li>
+<li><strong>"I'll remember how I set it up."</strong> You won't, and your teammates can't read your memory. If it isn't in a file in the repository, it isn't reproducible.</li>
+<li><strong>Confusing <em>environment</em> and <em>configuration</em>.</strong> The configuration (layer 6) is one part of the environment. It is the part that <em>should</em> differ between your laptop and production (a different database, different keys). Everything else should be the same.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Key takeaways</p>
+<ul>
+<li>A program's <strong>environment</strong> is everything except its own code: hardware, operating system, system packages, runtime, dependencies, configuration and external services. A difference in any layer can break it.</li>
+<li>An environment is <strong>reproducible</strong> when it can be rebuilt from files that live with the code: documentation, then automation (lockfiles), then packaging (images).</li>
+<li>A <strong>VM</strong> emulates a whole computer with its own kernel. A <strong>container</strong> isolates processes but shares the host kernel, so it is far lighter. On Mac and Windows, Docker runs containers inside a small Linux VM.</li>
+<li>The processor <strong>architecture</strong> (<code>arm64</code> or <code>x86_64</code>) is part of the environment. Images must be built for the platform where they will run.</li>
+<li>The cloud models (IaaS, PaaS, managed services, SaaS) differ in <strong>which layers you manage</strong>. The container image is the part that is yours in every model, and the unit that travels from laptop to cloud.</li>
+</ul>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong>1.</strong> For each failure, name the layer of the environment that causes it: <em>(a)</em> <code>pip install</code> fails with "no matching distribution" on a new Mac but works on a colleague's Windows laptop; <em>(b)</em> the app connects to the test database instead of the production one; <em>(c)</em> <code>import tomllib</code> fails with <code>ModuleNotFoundError</code>; <em>(d)</em> the script works on the developer's Mac but cannot find <code>Config.yaml</code> on the Linux server, where the file is called <code>config.yaml</code>.</p>
+<details class="success">
+<summary>Solution</summary>
+<ul>
+<li><em>(a)</em> <strong>Hardware</strong> (architecture): the library has a compiled package for <code>x86_64</code> but not for <code>arm64</code>. If no version for your platform exists, pip has nothing to install.</li>
+<li><em>(b)</em> <strong>Configuration</strong>: the database address comes from a setting or environment variable that points to the wrong place. The services are fine; the configuration chooses the wrong one.</li>
+<li><em>(c)</em> <strong>Runtime</strong>: <code>tomllib</code> is part of the standard library only from Python 3.11. The code runs on an older Python.</li>
+<li><em>(d)</em> <strong>Operating system</strong>: macOS file systems are case-insensitive by default, so <code>Config.yaml</code> finds <code>config.yaml</code>. Linux is case-sensitive, so it doesn't.</li>
+</ul>
+</details>
+<p><strong>2.</strong> A colleague says: "Our app runs in Docker, so we don't need to pin library versions in <code>pyproject.toml</code>; the image already contains them." Is that right?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>Only half right. The image freezes the versions <em>that were installed when it was built</em>. But the image is rebuilt from the <code>Dockerfile</code> every time someone changes the code. If the dependencies aren't pinned, each rebuild can install newer versions, and two images built a week apart can behave differently. The lockfile makes the <strong>build</strong> reproducible; the image makes the <strong>result</strong> portable. You need both.</p>
+</details>
+<p><strong>3.</strong> You need to: <em>(a)</em> try a Linux command-line tool for an afternoon without installing anything on your Windows laptop; <em>(b)</em> run the same API in ten identical copies to handle more traffic; <em>(c)</em> test how your company's software installs on a fresh Windows 11 machine. For each case, would you choose a VM or a container? Why?</p>
+<details class="success">
+<summary>Solution</summary>
+<ul>
+<li><em>(a)</em> A <strong>container</strong>: <code>docker run -it ubuntu</code> gives you a disposable Linux shell in a second, and nothing remains when you exit. A VM would also work, but it is much heavier for an afternoon.</li>
+<li><em>(b)</em> <strong>Containers</strong>: starting ten copies from the same image is fast and cheap, and they are identical by construction. This is exactly what services like Azure Container Apps do.</li>
+<li><em>(c)</em> A <strong>VM</strong>: you need a complete Windows operating system, kernel included, in a clean state. A container shares the host's kernel, so it can't give you a fresh Windows.</li>
+</ul>
+</details>
+<p><strong>4.</strong> Ana builds a container image on her M3 MacBook and deploys it to a cloud service that runs <code>x86_64</code> servers. The deployment fails with <code>exec format error</code>. Explain what happened and how she can avoid it.</p>
+<details class="success">
+<summary>Solution</summary>
+<p>Her Mac is <code>arm64</code>, so by default Docker built an <code>arm64</code> image: the Python interpreter and every compiled library inside it contain ARM instructions. The cloud server's processor is <code>x86_64</code>, cannot execute them, and the kernel refuses with <code>exec format error</code>. She must build the image for the target platform, <code>linux/amd64</code> (with Docker, <code>docker build --platform linux/amd64 …</code>), or let the image be built by a CI service that runs on <code>x86_64</code>. We do both in session 13.</p>
+</details>
+<p><strong>5.</strong> A bank wants to run its new customer-facing API. Option A: buy servers for its own data centre. Option B: Azure Virtual Machines. Option C: Azure Container Apps. For each option, list two things the bank's team must still manage, and give one reason a bank might still choose option A.</p>
+<details class="success">
+<summary>Solution</summary>
+<ul>
+<li><strong>A, on-premises:</strong> everything, for example the physical hardware and its replacement, and the operating system updates (plus networking, power, physical security…).</li>
+<li><strong>B, IaaS:</strong> the operating system (patches, security updates) and the runtime and dependencies installed on it, plus scaling: deciding how many VMs to run.</li>
+<li><strong>C, serverless containers:</strong> the container image (the app, its dependencies, the base image's security updates) and its configuration and secrets. Scaling is configured, not managed by hand.</li>
+<li><strong>Why choose A:</strong> regulation or data-residency rules that require full control of where customer data lives and who can touch the hardware. Others are an existing investment in its own data centre, or predictable, constant loads, which can be cheaper on hardware it owns than on pay-per-use.</li>
+</ul>
+</details>
+<p><a class="md-button" href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Back to the session</a> <a class="md-button md-button--primary" href="../lab/">Next: Lab 1 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Development environments">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Development environments
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 1: know your machine">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 1: know your machine
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
