@@ -186,4 +186,6 @@ groups | tr ' ' '\n' | grep -x sudo
 2. Enable **two-factor authentication** (*Settings → Password and authentication*). GitHub requires it to contribute code.
 3. Optionally, apply to the [GitHub Student Developer Pack](https://education.github.com/pack) with your IE email. It gives you free access to GitHub Copilot and other developer tools.
 
+When you finish, upload your filled-in machine card to the **Session 1: Machine Card** assignment on Blackboard. Keep a copy: you need it in session 2.
+
 [← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)

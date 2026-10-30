@@ -14,6 +14,12 @@ In the shell, the same question is one line:
 grep ",restaurants," transactions.csv | cut -d, -f3 | sort | uniq -c | sort -rn
 ```
 
+```text
+   5 Rodilla
+   4 La Tagliatella
+   2 Five Guys
+```
+
 You can read the line from left to right. It keeps the restaurant rows, takes the third column (the merchant), sorts it, counts repeated values and sorts by the count. The line *is* the record of what you did. You can save it, share it, run it again next quarter, or run it on a server that has no screen at all. That is the reason the shell has survived fifty years of graphical interfaces: **commands are text, and text can be saved, repeated, combined and automated**.
 
 ## Terminal, shell and other words

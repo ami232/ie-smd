@@ -25,25 +25,26 @@ id
 ```
 
 ```text
-uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm),27(sudo),...
+uid=1000(ana) gid=1000(ana) groups=1000(ana),4(adm),27(sudo),...
 ```
 
-You are the user `ubuntu`, with number (*uid*) 1000, and you belong to several groups, including `sudo` (more on that below). There is also one special user, **root** (uid 0), the administrator, who can read, change and delete anything.
+You are the user `ana`, with number (*uid*) 1000, and you belong to several groups, including `sudo` (more on that below). There is also one special user, **root** (uid 0), the administrator, who can read, change and delete anything.
 
 Servers also have users that are not people. A database server runs as user `postgres`, a web server as `www-data`. If one of them is compromised, the attacker gets only that user's permissions, not the whole machine. You will see the same idea in session 11: well-built containers don't run as root.
 
 ### Reading permissions
 
-`ls -l` shows who owns each file and what everyone may do with it:
-
-```bash
-ls -l balance.sh /etc/passwd /etc/shadow
-```
+`ls -l` shows who owns each file and what everyone may do with it. Here is a ledger folder like the one from Lab 2, with an extra `private` folder, and two system files:
 
 ```text
--rwxr-xr-x 1 ubuntu ubuntu  252 Oct 27 12:12 balance.sh
--rw-r--r-- 1 root   root    888 Oct 24 14:12 /etc/passwd
--rw-r----- 1 root   shadow  502 Oct 24 14:12 /etc/shadow
+$ ls -l ~/smd/ledger
+drwxr-xr-x  2 ana  ana   4096 Oct 29 10:02 data
+-rwxr-xr-x  1 ana  ana    252 Oct 29 10:05 balance.sh
+-rw-r--r--  1 ana  ana    180 Oct 29 10:07 report.txt
+drwx------  2 ana  ana   4096 Oct 29 10:08 private
+$ ls -l /etc/passwd /etc/shadow
+-rw-r--r--  1 root root    888 Oct 24 14:12 /etc/passwd
+-rw-r-----  1 root shadow  502 Oct 24 14:12 /etc/shadow
 ```
 
 The first column has ten characters. The first says what the entry is (`-` a file, `d` a directory, `l` a link). The other nine are three groups of three, for three kinds of people:
@@ -59,7 +60,7 @@ In each group, `r` is permission to **read**, `w` to **write** and `x` to **exec
 
 On a folder the same letters mean slightly different things: `r` lets you list what is inside, `w` lets you create, rename and delete files in it, and `x` lets you enter it with `cd`. A folder with `drwx------` is private: nobody but its owner can even look inside.
 
-So `balance.sh` can be read, changed and run by `ubuntu`, and read and run by everyone else. `/etc/passwd` (the list of users) is readable by everybody but writable only by root. `/etc/shadow`, which contains the password hashes, cannot even be read by normal users:
+So `balance.sh` can be read, changed and run by `ana`, and read and run by everyone else. `report.txt` can be changed only by `ana`, and `private` is a folder nobody else can enter. `/etc/passwd` (the list of users) is readable by everybody but writable only by root. `/etc/shadow`, which contains the password hashes, cannot even be read by normal users:
 
 ```bash
 cat /etc/shadow
@@ -103,10 +104,14 @@ Giving a file away needs `sudo`, explained next: otherwise any user could hand f
 
 ### sudo
 
-Installing software or changing system configuration requires root. Instead of logging in as root, you run single commands with **`sudo`** (*superuser do*):
+Installing software or changing system configuration requires root. Instead of logging in as root, you run single commands with **`sudo`** (*superuser do*). Without it, installing fails because a normal user can't write to the system folders:
 
-```bash
-sudo apt install tree
+```text
+$ apt install tree
+E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+$ sudo apt install tree
+[sudo] password for ana:
 ```
 
 `sudo` asks for **your** password (not root's), checks that your user is allowed (on Ubuntu, membership of the `sudo` group; on macOS, of `admin`) and runs that one command as root. Every use is logged.
