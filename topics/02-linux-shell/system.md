@@ -12,7 +12,7 @@ When you run a program on a Unix system, three things decide what happens before
 2. **What is installed?** The program can only use the tools and libraries that are on the system, in the versions that are there.
 3. **What is its environment?** A set of named values, the environment variables, tells it where to find things and how to behave.
 
-These are layers 2, 3 and 6 of the environment stack from [session 1](../dev-environments/environments.md#what-an-environment-is-made-of). This page covers each one.
+These are layers 2, 3 and 6 of the environment stack from [session 1](../01-dev-environments/environments.md#what-an-environment-is-made-of). This page covers each one.
 
 ## Users, groups and permissions
 
@@ -132,7 +132,7 @@ With `apt`, `sudo apt update` refreshes the *list* of available packages and the
 
 Homebrew installs into its own folder (`/opt/homebrew` on Apple Silicon) and doesn't need `sudo`.
 
-Package managers solve the same problem at the system level that the lockfiles of session 3 solve for a project: known versions, installed in a repeatable way, from a trusted source. You can write down a list of packages and anyone can install exactly that list.
+Package managers solve the same problem at the system level that the lockfiles of [session 4](../04-dependencies-tools/dependencies.md) solve for a project: known versions, installed in a repeatable way, from a trusted source. You can write down a list of packages and anyone can install exactly that list.
 
 > ⚠️ **Install from trusted sources**
 >
@@ -169,7 +169,7 @@ unset LEDGER_FILE                            # remove it
 
 A variable set with `export` disappears when you close the terminal. To make it permanent, add the `export` line to your shell's startup file: `~/.zshrc` for zsh, `~/.bashrc` for bash. The shell reads that file every time it starts.
 
-This is how Ana's script in [session 1](../dev-environments/environments.md#it-works-on-my-machine) got its `RISK_THRESHOLD`: an `export` line in her `~/.zshrc` that nobody else had. Environment variables are the standard way to configure software, especially in containers and in the cloud. Session 12 shows how to manage them so that this can't happen to you.
+This is how Ana's script in [session 1](../01-dev-environments/environments.md#it-works-on-my-machine) got its `RISK_THRESHOLD`: an `export` line in her `~/.zshrc` that nobody else had. Environment variables are the standard way to configure software, especially in containers and in the cloud. Session 12 shows how to manage them so that this can't happen to you.
 
 ### PATH: how the shell finds commands
 

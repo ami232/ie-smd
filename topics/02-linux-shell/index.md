@@ -2,7 +2,7 @@
 
 Almost all the software you will deploy in your career runs on Linux. That includes the servers behind banking apps, the containers in this course and the machines that run Azure Container Apps. Almost all of it is set up and operated from a **shell**: a text interface where you type commands. Graphical interfaces come and go, but the shell is the same on your laptop, in a container and on a server on the other side of the world, and it is the only interface many of those machines have.
 
-This session gives you a working knowledge of both: how a Unix system is organized, and how to get things done in its shell. It is also the session where everybody sets up the course environment, using the [machine card](../dev-environments/machine_card.md) you filled in during session 1.
+This session gives you a working knowledge of both: how a Unix system is organized, and how to get things done in its shell. It is also the session where everybody sets up the course environment, using the [machine card](../01-dev-environments/machine_card.md) you filled in during session 1.
 
 ## The thread of the session
 
@@ -24,7 +24,7 @@ By the end of the session you should be able to:
 
 ## Before you start
 
-You need the terminal and the "machine card" from [Lab 1](../dev-environments/lab.md). The concepts of [environments and reproducibility](../dev-environments/environments.md) are useful, especially the difference between a VM and a container.
+You need the terminal and the "machine card" from [Lab 1](../01-dev-environments/lab.md). The concepts of [environments and reproducibility](../01-dev-environments/environments.md) are useful, especially the difference between a VM and a container.
 
 ## Class slides
 

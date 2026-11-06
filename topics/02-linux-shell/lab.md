@@ -141,7 +141,7 @@ grep ",restaurants," data/transactions.csv | awk -F, '{ total += $5 } END { prin
 
 `4255.10` for the net total, and `-320.09` for restaurants: 320.09 euros spent in three months.
 
-`printf "%.2f\n"` prints the number with two decimals. Without it, `awk` would print `4255.1`. In session 3 you will see that adding money with ordinary floating-point numbers can give results like `4255.099999999999`, and how Python avoids it.
+`printf "%.2f\n"` prints the number with two decimals. Without it, `awk` would print `4255.1`. In [session 4](../04-dependencies-tools/lab.md#3-money-is-not-a-float) you will see that adding money with ordinary floating-point numbers can give results like `4255.099999999999`, and how Python avoids it.
 
 </details>
 

@@ -23,10 +23,10 @@ Your **group project** follows the same path with an application of your own cho
 
 | # | Session | Material |
 |---|---------|----------|
-| 1 | [Development environments](topics/dev-environments/index.md) | notes · lab · slides |
-| 2 | [Linux and the shell](topics/linux-shell/index.md) | notes · setup guide · lab · slides |
-| 3 | Professional Python with uv | *coming soon* |
-| 4 | Code editors and developer productivity | *coming soon* |
+| 1 | [Development environments](topics/01-dev-environments/index.md) | notes · lab · slides |
+| 2 | [Linux and the shell](topics/02-linux-shell/index.md) | notes · setup guide · lab · slides |
+| 3 | [Python projects with uv](topics/03-python-uv/index.md) | notes · lab · slides |
+| 4 | [Dependencies and developer tools](topics/04-dependencies-tools/index.md) | notes · lab · slides |
 | 5 | Version control and collaboration with Git | *coming soon* |
 | 6 | Software design and project structure | *coming soon* |
 | 7 | Databases and persistence | *coming soon* |

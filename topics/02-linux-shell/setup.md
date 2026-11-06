@@ -2,9 +2,9 @@
 
 > ℹ️ **What you need first**
 >
-> Your "machine card" from [Lab 1](../dev-environments/lab.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
+> Your "machine card" from [Lab 1](../01-dev-environments/lab.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
 
-For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that [Lab 2](lab.md) needs, and then [Docker](#docker), which we use from session 7 onwards. Installing it now leaves time to fix any problem before then. There are several ways to get them, and the right one depends on your laptop: keep the [machine card](../dev-environments/machine_card.md) from Lab 1 at hand. Your instructor announces the setup for the class.
+For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that [Lab 2](lab.md) needs, and then [Docker](#docker), which we use from session 7 onwards. Installing it now leaves time to fix any problem before then. There are several ways to get them, and the right one depends on your laptop: keep the [machine card](../01-dev-environments/machine_card.md) from Lab 1 at hand. Your instructor announces the setup for the class.
 
 This page describes the three possible setups, which we call *tracks*. Follow the one announced in class, unless your instructor tells you individually to use another one.
 
@@ -41,7 +41,7 @@ On Windows, we work inside **WSL** (the Windows Subsystem for Linux): a real Ubu
 
 > 📘 **What WSL is**
 >
-> WSL lets Linux programs run on Windows **without dual booting and without managing a VM yourself**. Its current version, WSL 2, runs a real Linux kernel, built by Microsoft, inside a small, lightweight [virtual machine](../dev-environments/environments.md#virtual-machines) that Windows starts and stops for you in a second or two. On top of that kernel you install a *distribution* (we use Ubuntu), which brings the usual Linux userland: bash, `apt` and the standard tools.
+> WSL lets Linux programs run on Windows **without dual booting and without managing a VM yourself**. Its current version, WSL 2, runs a real Linux kernel, built by Microsoft, inside a small, lightweight [virtual machine](../01-dev-environments/environments.md#virtual-machines) that Windows starts and stops for you in a second or two. On top of that kernel you install a *distribution* (we use Ubuntu), which brings the usual Linux userland: bash, `apt` and the standard tools.
 >
 > Unlike a VM you create yourself, WSL is integrated with Windows. Ubuntu appears as a tab in Windows Terminal; the Windows disk is visible from Linux at `/mnt/c`; your Linux files are visible from the File Explorer under **Linux**; and Windows programs (such as VS Code) can work on Linux folders. Docker Desktop uses the same lightweight VM to run Linux containers, which is why it needs WSL.
 >
@@ -67,7 +67,7 @@ sudo apt update && sudo apt upgrade -y
 >
 > From now on, open the **Ubuntu** terminal for the course and keep your projects in your Linux home folder (`~`, which is `/home/<you>`), **not** in `/mnt/c/...`. Files on the Windows disk are much slower to access from Linux, and their permissions behave differently.
 
-If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware ([Lab 1, step 3](../dev-environments/lab.md#3-memory-disk-and-virtualization)). Ask your instructor.
+If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware ([Lab 1, step 3](../01-dev-environments/lab.md#3-memory-disk-and-virtualization)). Ask your instructor.
 
 
 **Linux**

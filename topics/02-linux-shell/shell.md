@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> A terminal open on a Unix shell: macOS Terminal, Linux, WSL on Windows or an Ubuntu container. [Lab 1](../dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
+> A terminal open on a Unix shell: macOS Terminal, Linux, WSL on Windows or an Ubuntu container. [Lab 1](../01-dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
 
 ## Why a text interface
 

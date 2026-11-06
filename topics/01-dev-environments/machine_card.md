@@ -2,7 +2,7 @@
 
 Fill in this card during [Lab 1](lab.md), and keep it: you need it in session 2 to set up the course environment.
 
-[Download the template (.md)](https://raw.githubusercontent.com/ami232/ie-smd/main/topics/dev-environments/machine_card.md)
+[Download the template (.md)](https://raw.githubusercontent.com/ami232/ie-smd/main/topics/01-dev-environments/machine_card.md)
 
 If the file opens in the browser instead of downloading, save it with *File → Save Page As* (or <kbd>Ctrl</kbd>+<kbd>S</kbd>, <kbd>Cmd</kbd>+<kbd>S</kbd> on a Mac) as `machine_card.md`. Open it in any text editor and write your answer after each colon. Copy the commands' output exactly as printed. The lab step that gives each answer is in brackets.
 
