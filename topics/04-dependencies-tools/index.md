@@ -13,7 +13,7 @@ The concepts of editors, language servers, debuggers, linters and formatters are
 
 By the end of the session you should be able to:
 
-- [ ] Open a project in VS Code from the terminal with `code .`, and on Windows, work on files inside WSL with the WSL extension.
+- [ ] Open a project in VS Code from the terminal with `code .`, on your laptop or inside your Linux VM.
 - [ ] Select the project's virtual environment as the Python interpreter, and explain what the editor uses it for.
 - [ ] Explain why amounts of money use `Decimal` and not `float`.
 - [ ] Tell direct dependencies from transitive ones, and version constraints from locked versions.

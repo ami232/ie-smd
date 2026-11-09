@@ -22,7 +22,7 @@ pwd
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-`pwd` prints the absolute path of the new folder: `/Users/<you>/smd/ledger` on macOS, `/home/<you>/smd/ledger` on Linux, WSL and the VM, `/workspaces/...` in a codespace (where the course repository already gives you a working folder; create `ledger` inside it).
+`pwd` prints the absolute path of the new folder: `/Users/<you>/smd/ledger` on macOS, `/home/<you>/smd/ledger` on Linux and in the VM (and in WSL), `/workspaces/...` in a codespace (where the course repository already gives you a working folder; create `ledger` inside it).
 
 `mkdir -p` created the three nested folders in one go. Run the same command again: `-p` doesn't complain when they already exist.
 
@@ -244,7 +244,7 @@ brew install tree
 ```
 
 
-**Ubuntu (WSL, VM, codespace)**
+**Ubuntu or Debian (VM, Linux, codespace, WSL)**
 
 ```bash
 sudo apt update

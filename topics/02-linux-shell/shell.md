@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> A terminal open on a Unix shell: macOS Terminal, Linux, WSL on Windows or an Ubuntu container. [Lab 1](../01-dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
+> A terminal open on a Unix shell: macOS Terminal, Linux, the terminal of your Linux VM, or an Ubuntu container. [Lab 1](../01-dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
 
 ## Why a text interface
 
@@ -222,7 +222,7 @@ Nobody remembers every option. These save a lot of time:
 
 **bash** is the standard shell on Linux and the one you will find on servers and in containers. **zsh** is the default on macOS. For everything in this course it behaves like bash. Both follow the same Unix conventions, and so does everything on this page.
 
-**PowerShell**, on Windows, is a different design. Its commands pass *objects* instead of text, and many names differ (`Get-ChildItem` is its `ls`, although it accepts `ls` as an alias). It is a good shell, but it is not what your servers and containers run. That is why, on Windows, we work inside **WSL**, a real Linux with bash ([Setting up the course environment](setup.md)).
+**PowerShell**, on Windows, is a different design. Its commands pass *objects* instead of text, and many names differ (`Get-ChildItem` is its `ls`, although it accepts `ls` as an alias). It is a good shell, but it is not what your servers and containers run. That is why, on Windows, we work inside a **Linux virtual machine** (Ubuntu or Debian) with bash ([Setting up the course environment](setup.md)).
 
 ## Common mistakes
 

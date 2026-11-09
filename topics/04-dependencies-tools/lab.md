@@ -23,9 +23,20 @@ brew install --cask visual-studio-code
 Homebrew installs the app in Applications and puts `code` in its own folder of the `PATH`. If Homebrew says the app already exists, you installed VS Code earlier from a download: keep it, and skip to the check below.
 
 
-**Windows (WSL)**
+**Linux and the VM**
 
-VS Code runs **on Windows**, not inside Ubuntu. In PowerShell:
+On Linux, and on Windows inside the **VM**, VS Code runs inside Linux, next to your files. In a web browser (inside the VM if you use one), download the **.deb** package from [code.visualstudio.com/download](https://code.visualstudio.com/download): **x64** if `uname -m` prints `x86_64`, **Arm64** if it prints `aarch64`. Then install it from the terminal:
+
+```bash
+sudo apt install ~/Downloads/code_*.deb
+```
+
+The package puts `code` in your `PATH` and adds Microsoft's repository, so `sudo apt upgrade` keeps VS Code up to date.
+
+
+**Windows with WSL (advanced)**
+
+Only if you use WSL instead of the VM (see [WSL (advanced)](../02-linux-shell/setup.md#wsl-advanced)). VS Code runs **on Windows**, not inside Ubuntu. In PowerShell:
 
 ```powershell
 winget install -e --id Microsoft.VisualStudioCode
@@ -36,7 +47,7 @@ or download the installer from [code.visualstudio.com](https://code.visualstudio
 With the WSL extension, the VS Code window runs on Windows, and a small server runs inside Ubuntu. The files, Python and uv stay in Linux, where the rest of the course runs.
 
 
-Now **open a new terminal** (the Ubuntu terminal on Windows) and check:
+Now **open a new terminal** (inside the VM if you use one) and check:
 
 ```bash
 code --version
@@ -50,7 +61,8 @@ Three lines: a version number such as `1.106.0`, a long commit identifier and th
 If you get `command not found`, the `code` command is not in your `PATH`:
 
 - **macOS, VS Code installed from a download:** move Visual Studio Code to the Applications folder if it isn't there, and open it. Open the Command Palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), type `shell command` and choose **Shell Command: Install 'code' command in PATH**. Open a new terminal and try again.
-- **Windows:** close every Ubuntu terminal and open a new one. WSL adds the folders of the Windows `PATH` to Linux's `PATH` when the terminal starts, so a terminal opened before installing VS Code doesn't see `code`.
+- **Linux and the VM:** the package didn't install. Check the output of `sudo apt install` for an error.
+- **WSL:** close every Ubuntu terminal and open a new one. WSL adds the folders of the Windows `PATH` to Linux's `PATH` when the terminal starts, so a terminal opened before installing VS Code doesn't see `code`.
 
 </details>
 
@@ -69,19 +81,19 @@ code .
 A VS Code window with the project's files in the Explorer on the left: `.venv`, `data`, `src`, `.python-version`, `pyproject.toml`, `README.md` and `uv.lock`.
 
 - **macOS:** VS Code asks *Do you trust the authors of the files in this folder?* Choose **Yes, I trust the authors**: they are your own files.
-- **Windows:** the first time, VS Code installs its server in Ubuntu, which takes a few seconds. The bottom-left corner shows **WSL: Ubuntu**. If it doesn't, the window is working on Windows files: close it and run `code .` again from the Ubuntu terminal. Don't open the folder from the Windows File Explorer.
+- **WSL:** the first time, VS Code installs its server in Ubuntu, which takes a few seconds. The bottom-left corner shows **WSL: Ubuntu**. If it doesn't, the window is working on Windows files: close it and run `code .` again from the Ubuntu terminal. Don't open the folder from the Windows File Explorer.
 
 </details>
 
 ### Install the Python extension
 
-Open the Extensions view (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on Windows), search for **Python** and install the extension **Python** by Microsoft. On Windows, the button says **Install in WSL: Ubuntu**: extensions that work with your code run on the Linux side, next to it.
+Open the Extensions view (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> on Linux, in the VM and on Windows), search for **Python** and install the extension **Python** by Microsoft. With WSL, the button says **Install in WSL: Ubuntu**: extensions that work with your code run on the Linux side, next to it.
 
 The Python extension also installs two others: **Pylance**, the language server that understands your code, and **Python Debugger**, which you use in step 7.
 
 ### Select the project's Python
 
-Pylance needs to know which Python runs the project, to know which libraries are installed and where. Open the Command Palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Windows), type `select interpreter`, choose **Python: Select Interpreter**, and pick the one whose path is `./.venv/bin/python`. VS Code usually marks it as *Recommended*.
+Pylance needs to know which Python runs the project, to know which libraries are installed and where. Open the Command Palette (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on Linux, in the VM and on Windows), type `select interpreter`, choose **Python: Select Interpreter**, and pick the one whose path is `./.venv/bin/python`. VS Code usually marks it as *Recommended*.
 
 Then open a terminal inside VS Code with **Terminal → New Terminal** (<kbd>Ctrl</kbd>+<kbd>Grave</kbd>):
 
@@ -95,7 +107,7 @@ uv run ledger
 
 The status bar at the bottom right shows the Python version (3.14) and `.venv`. The terminal opens at the bottom of the window, already in the project folder: `pwd` prints `.../smd/ledger`, and `uv run ledger` prints `Hello from ledger!`.
 
-On Windows this terminal is bash in Ubuntu, the same shell as the Ubuntu terminal.
+With WSL, this terminal is bash in Ubuntu, the same shell as the Ubuntu terminal.
 
 </details>
 
@@ -103,7 +115,7 @@ On Windows this terminal is bash in Ubuntu, the same shell as the Ubuntu termina
 
 In VS Code, open `src/ledger/__init__.py` from the Explorer on the left, and run the commands of this lab in VS Code's terminal. If you can't use VS Code, any text editor works: `nano src/ledger/__init__.py` in the terminal (<kbd>Ctrl</kbd>+<kbd>O</kbd> saves, <kbd>Ctrl</kbd>+<kbd>X</kbd> exits) or TextEdit on macOS in plain-text mode.
 
-Replace the contents of the file with the following, and save it (<kbd>Cmd</kbd>+<kbd>S</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>S</kbd> on Windows). A dot on the file's tab means it has unsaved changes, and `uv run` only sees what is saved:
+Replace the contents of the file with the following, and save it (<kbd>Cmd</kbd>+<kbd>S</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>S</kbd> on Linux, in the VM and on Windows). A dot on the file's tab means it has unsaved changes, and `uv run` only sees what is saved:
 
 ```python
 """ledger: balances and spending from a CSV file of transactions."""
@@ -428,7 +440,7 @@ Open `src/ledger/__init__.py` and find the line inside `totals_by` that adds up 
 
 Click just to the left of its line number. A red dot appears: that is a **breakpoint**, a line where the debugger stops *before* running it.
 
-Open the Run and Debug view (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> on Windows), check that **ledger spending** is selected at the top, and click the green triangle (or press <kbd>F5</kbd>).
+Open the Run and Debug view (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> on macOS, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> on Linux, in the VM and on Windows), check that **ledger spending** is selected at the top, and click the green triangle (or press <kbd>F5</kbd>).
 
 <details>
 <summary>✅ <b>What you should see</b></summary>
@@ -644,7 +656,7 @@ Ruff has hundreds of rules, and a project chooses which ones to apply in `pyproj
 
 You have finished the lab when:
 
-- [ ] `code .` opens `~/smd/ledger` in VS Code (on Windows, with **WSL: Ubuntu** in the bottom-left corner), with `.venv` as the interpreter;
+- [ ] `code .` opens `~/smd/ledger` in VS Code (with WSL, the bottom-left corner shows **WSL: Ubuntu**), with `.venv` as the interpreter;
 - [ ] `uv run ledger balance` prints `3349.10` and `906.00`, and `uv run ledger spending` prints the table;
 - [ ] `~/smd/ledger` contains `uv.lock`, and you can explain which files a teammate needs, and why `.venv` is not one of them;
 - [ ] `.vscode/launch.json` runs `ledger spending` under the debugger, and you can stop it in `totals_by` and read `t` and `totals`;

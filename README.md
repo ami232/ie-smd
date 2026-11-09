@@ -17,7 +17,7 @@ The running example is **ledger**, a small fintech application that records acco
  S13–S14 Azure:   Static Web Apps ──▶ Container Apps ──▶ PostgreSQL
 ```
 
-Your **group project** follows the same path with an application of your own choosing (a budgeting tool, a portfolio tracker, an invoicing system…). Whatever you learn in a lab on the ledger, you then apply to your project.
+You build your own application along the same path, in your own GitHub repository: from session 5 on, every lab adds to it. In the **group project**, your team builds one product (an invoicing system for freelancers, a shared-household budget, a micro-lending platform…), and the application each member builds is one module of it.
 
 ## Sessions
 
@@ -27,7 +27,7 @@ Your **group project** follows the same path with an application of your own cho
 | 2 | [Linux and the shell](topics/02-linux-shell/index.md) | notes · setup guide · lab · slides |
 | 3 | [Python projects with uv](topics/03-python-uv/index.md) | notes · lab · slides |
 | 4 | [Dependencies and developer tools](topics/04-dependencies-tools/index.md) | notes · lab · slides |
-| 5 | Version control and collaboration with Git | *coming soon* |
+| 5 | [Version control and collaboration with Git](topics/05-git-collaboration/index.md) | notes · lab · slides |
 | 6 | Software design and project structure | *coming soon* |
 | 7 | Databases and persistence | *coming soon* |
 | 8 | Backend APIs with FastAPI | *coming soon* |
@@ -57,20 +57,34 @@ We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cl
 
 | Component | Weight |
 |---|---|
-| Final exam (multiple choice and written answers) | 30 % |
-| Group project: final presentation and live demo | 40 % |
-| Individual work: labs and homework | 20 % |
 | Class participation | 10 % |
+| Individual work: five checkpoints of your own repository | 40 % |
+| Group work, with individual assessment | 30 % |
+| Final exam (multiple choice and written answers) | 20 % |
+
+**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**, by **Friday at 23:59** of the week indicated:
+
+| Checkpoint | What your repository shows | Due |
+|---|---|---|
+| 1 · Git | the full Git workflow of [Lab 5](topics/05-git-collaboration/lab.md), done by hand | Fri 13 Nov |
+| 2 · Structure and data | the application as a package, with a database | Fri 20 Nov |
+| 3 · API and tests | a REST API with tests that pass | Fri 27 Nov |
+| 4 · Frontend and containers | a web page that uses the API, and Docker Compose | Fri 11 Dec |
+| 5 · Cloud | the application running on Azure | Fri 18 Dec |
+
+A checkpoint can include a short written check, in class, about your own repository: it is part of that checkpoint's grade.
+
+**Group work.** Your team's product, its final presentation and demo, and your own part in it: your module, your pull requests and reviews, and your answers to questions about the code.
 
 Grades and submissions are always on Blackboard.
 
 ## Using AI
 
-Generative AI is **encouraged** in this course. Professional developers use AI assistants every day, and you should learn to use them well. Three rules:
+Generative AI is **allowed and encouraged** in this course, under the three rules below, in every activity **except when an activity explicitly says otherwise**. Professional developers use AI assistants every day, and you should learn to use them well. The rules:
 
 1. **You are responsible for every line you submit.** Assume AI output is wrong until you have run it and understood it. In the exam and in the live demo, you will be asked to explain your code.
 2. **Acknowledge it.** State which tool you used, for what, and with which prompts, as the syllabus describes. Acknowledging AI use does not lower your grade.
-3. **Learn the fundamentals first.** AI makes a developer who understands the basics much faster. A developer who doesn't understand them, it makes much slower at debugging. The labs are designed for you to type the commands and read the errors yourself.
+3. **Learn the fundamentals first.** AI makes a developer who understands the basics much faster. A developer who doesn't understand them, it makes much slower at debugging. The labs are designed for you to type the commands and read the errors yourself. For the same reason, a few activities are done without AI, and they say so at the top: the first is [Lab 5](topics/05-git-collaboration/lab.md), on Git.
 
 ## Tools
 

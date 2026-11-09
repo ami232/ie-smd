@@ -4,19 +4,25 @@
 >
 > Your "machine card" from [Lab 1](../01-dev-environments/lab.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
 
-For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that [Lab 2](lab.md) needs, and then [Docker](#docker), which we use from session 7 onwards. Installing it now leaves time to fix any problem before then. There are several ways to get them, and the right one depends on your laptop: keep the [machine card](../01-dev-environments/machine_card.md) from Lab 1 at hand. Your instructor announces the setup for the class.
+For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that [Lab 2](lab.md) needs, and then [Docker](#docker), which we use from session 7 onwards. Installing it now leaves time to fix any problem before then. There are several ways to get them, and the right one depends on your laptop's operating system: keep the [machine card](../01-dev-environments/machine_card.md) from Lab 1 at hand.
 
-This page describes the three possible setups, which we call *tracks*. Follow the one announced in class, unless your instructor tells you individually to use another one.
+This page describes the three possible setups, which we call *tracks*. Follow the one for your operating system, unless your instructor tells you individually to use another one.
 
 | Track | What you get | Who it suits |
 |---|---|---|
-| **A. Native** | your own OS's terminal + Docker Desktop (on Windows, a real Ubuntu through WSL) | most laptops: 16 GB of memory or more, administrator rights |
-| **B. Ubuntu VM** | an Ubuntu server running in a VM on your laptop, with Docker inside | when you want everything isolated from your own system, or native Docker doesn't work |
-| **C. Cloud** | a Linux machine in GitHub Codespaces, used from the browser or VS Code | managed laptops without administrator rights, low-spec machines, tablets |
+| **A. Native** | your own OS's terminal and package manager, plus Docker | macOS and Linux laptops |
+| **B. Linux VM** | an Ubuntu or Debian virtual machine on your laptop, the one you set up in the introductory course, with Docker inside | **everybody on Windows**; on macOS or Linux, anyone who prefers to keep the course separate from their own system |
+| **C. Cloud** | a Linux machine in GitHub Codespaces, used from the browser or VS Code | laptops where neither A nor B works: managed laptops without administrator rights, low-spec machines, tablets |
 
 Whichever track you follow, the commands in the rest of the course are the same: you always work in a Linux-style shell.
 
+> 📝 **And WSL?**
+>
+> On Windows there is another way to get Linux, **WSL** (the Windows Subsystem for Linux). It is well integrated with Windows, but when something goes wrong, fixing it needs a good understanding of how Windows, Linux and the virtual machine underneath fit together. **Use WSL only if you already know what you're doing**; otherwise use the VM (track B). If you do use it, the instructions are in [WSL (advanced)](#wsl-advanced).
+
 ## Track A: native
+
+For macOS and Linux. On Windows, use [track B](#track-b-a-linux-vm).
 
 **macOS**
 
@@ -35,9 +41,102 @@ brew --version
 ```
 
 
-**Windows**
+**Linux**
 
-On Windows, we work inside **WSL** (the Windows Subsystem for Linux): a real Ubuntu, with bash and `apt`, integrated with Windows. Docker Desktop uses it too.
+You already have the shell and the package manager: only [Docker](#docker) is left.
+
+
+## Track B: a Linux VM
+
+Use the **Ubuntu or Debian virtual machine** you set up in the introductory course. Start it, open its terminal and do **everything in the course inside the VM**: the shell, the package manager (`apt`), Docker, VS Code and your projects. Your laptop's own operating system only runs the VM.
+
+- **Keep your projects in your home folder inside the VM** (`~`, which is `/home/<you>`), not in a folder shared with your laptop. Shared folders are slower and handle permissions differently, which breaks some tools.
+- **Give the VM enough resources:** at least 2 CPUs, 4 GB of memory and 30 GB of disk. Docker images take space. You change this in the VM's settings while it is shut down.
+- **Shut the VM down** when you aren't working, to free your laptop's memory.
+
+Ubuntu and Debian are both Debian-based: the same `apt` commands work on both, and wherever the course says "Ubuntu", it applies to Debian too. Desktop installations don't always include `curl` and `git`, which the course uses from the start, so install them now:
+
+```bash
+sudo apt update && sudo apt install -y curl git
+```
+
+If you don't have a working VM, tell your instructor.
+
+## Track C: GitHub Codespaces
+
+A **codespace** is a Linux machine in GitHub's cloud, with VS Code in the browser and Docker ready to use. Nothing is installed on your laptop. A personal GitHub account includes a free monthly quota (enough for about 60 hours on the smallest machine), and the GitHub Student Developer Pack raises it.
+
+1. Sign in to GitHub. Your instructor gives you the link to the course's starter repository.
+2. In the repository, click **Code → Codespaces → Create codespace on main**.
+3. After a minute, VS Code opens in the browser. The **Terminal** panel at the bottom is a bash shell on Ubuntu.
+
+> ⚠️ **Stop your codespace when you finish**
+>
+> A codespace consumes your quota while it runs. It stops on its own after 30 minutes of inactivity, but it's better to stop it yourself: on [github.com/codespaces](https://github.com/codespaces), **… → Stop codespace**.
+
+## Docker
+
+Install Docker once your shell works. Docker needs about **20 GB of free disk** for the program and the images, and on a Mac a recent macOS: Docker Desktop supports the current version and the two previous ones.
+
+> ⚠️ **Not enough space, or an older macOS?**
+>
+> Skip Docker today and tell your instructor. Free space or update macOS before session 7, the first session that uses Docker. Everything else today, Lab 2 included, works without it.
+
+**macOS**
+
+**Install Docker Desktop.** Download it from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/). Choose **Apple Silicon** or **Intel** according to the architecture on your machine card. Open the `.dmg`, drag Docker to Applications and start it. Accept the terms. You can skip signing in.
+
+
+**Linux and the VM (track B)**
+
+Install Docker Engine with Docker's installation script, which works on Ubuntu and Debian, and let your user run Docker without `sudo`:
+
+```bash
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+```
+
+**Log out and in again** (or restart the VM) for the group change to take effect. On other distributions, follow the official instructions at [docs.docker.com/engine/install](https://docs.docker.com/engine/install/).
+
+
+**Codespace (track C)**
+
+Docker is already installed.
+
+
+## Check that it works
+
+Whatever your track, open the course shell (the macOS Terminal, the terminal on Linux or inside your VM, or the codespace terminal) and run:
+
+```bash
+echo $SHELL
+uname -sm
+curl --version | head -n 1
+docker run --rm hello-world
+```
+
+<details>
+<summary>✅ <b>What you should see</b></summary>
+
+- `/bin/zsh` or `/bin/bash`.
+- `Darwin arm64` (or `Darwin x86_64`) on a Mac. `Linux x86_64` or `Linux aarch64` everywhere else: in the VM, in WSL and in a codespace you are on Linux.
+- A line starting with `curl 8.` (any version is fine).
+- Docker downloads a tiny image and prints a message that starts with `Hello from Docker!` and explains what just happened.
+
+If `docker` says `permission denied while trying to connect to the Docker daemon socket`, your user isn't in the `docker` group yet: log out and in again (or restart the VM). If it says `Cannot connect to the Docker daemon`, Docker isn't running: start Docker Desktop on macOS, or run `sudo systemctl start docker` on Linux.
+
+</details>
+
+Once the first three commands work, you're ready for [Lab 2](lab.md). The Docker check can wait until after the lab if Docker is still downloading.
+
+## WSL (advanced)
+
+The course supports Windows through the VM ([track B](#track-b-a-linux-vm)). Use WSL only if you are already comfortable with it and can solve its problems on your own: in class, we help with the VM first.
+
+<details>
+<summary>⚠️ <b>WSL instructions: only if you know what you're doing</b></summary>
+
+**WSL** (the Windows Subsystem for Linux) gives you a real Ubuntu, with bash and `apt`, integrated with Windows. Docker Desktop uses it too.
 
 > 📘 **What WSL is**
 >
@@ -67,114 +166,12 @@ sudo apt update && sudo apt upgrade -y
 >
 > From now on, open the **Ubuntu** terminal for the course and keep your projects in your Linux home folder (`~`, which is `/home/<you>`), **not** in `/mnt/c/...`. Files on the Windows disk are much slower to access from Linux, and their permissions behave differently.
 
-If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware ([Lab 1, step 3](../01-dev-environments/lab.md#3-memory-disk-and-virtualization)). Ask your instructor.
+If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware ([Lab 1, step 3](../01-dev-environments/lab.md#3-memory-disk-and-virtualization)). If you can't fix it, use the VM.
 
+**3. Install Docker Desktop** on Windows. Download it from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) (choose **ARM64** if your machine card says `ARM64`) and install it with the default options, which use **WSL 2**. Start it, then in **Settings → Resources → WSL integration** turn on the integration with **Ubuntu**.
 
-**Linux**
-
-You already have the shell and the package manager: only [Docker](#docker) is left.
-
-
-## Track B: an Ubuntu VM
-
-We use **Multipass**, a tool from Canonical (the company behind Ubuntu) that creates Ubuntu VMs with one command, on macOS, Windows and Linux. You work in the VM through its shell.
-
-**1. Install Multipass.** On macOS: `brew install --cask multipass` (install Homebrew first, as in track A). On Windows or Linux, download it from [canonical.com/multipass](https://canonical.com/multipass/install). On Windows Home, Multipass needs VirtualBox, and the installer explains how to set it up.
-
-**2. Create the course VM** with 2 CPUs, 4 GB of memory and 30 GB of disk, and open a shell in it:
-
-```bash
-multipass launch 24.04 --name smd --cpus 2 --memory 4G --disk 30G
-multipass shell smd
-```
-
-The prompt changes to `ubuntu@smd:~$`: you are now inside the VM. Everything else in the course happens here.
-
-Useful commands, run on your laptop (not inside the VM): `multipass list` (VMs and their state), `multipass stop smd` (frees the memory when you're not working) and `multipass start smd`.
-
-## Track C: GitHub Codespaces
-
-A **codespace** is a Linux machine in GitHub's cloud, with VS Code in the browser and Docker ready to use. Nothing is installed on your laptop. A personal GitHub account includes a free monthly quota (enough for about 60 hours on the smallest machine), and the GitHub Student Developer Pack raises it.
-
-1. Sign in to GitHub. Your instructor gives you the link to the course's starter repository.
-2. In the repository, click **Code → Codespaces → Create codespace on main**.
-3. After a minute, VS Code opens in the browser. The **Terminal** panel at the bottom is a bash shell on Ubuntu.
-
-> ⚠️ **Stop your codespace when you finish**
->
-> A codespace consumes your quota while it runs. It stops on its own after 30 minutes of inactivity, but it's better to stop it yourself: on [github.com/codespaces](https://github.com/codespaces), **… → Stop codespace**.
-
-## Docker
-
-Install Docker once your shell works: on Windows, Docker Desktop needs WSL with Ubuntu, so finish the steps above first. Docker needs about **20 GB of free disk** for the program and the images, and on a Mac a recent macOS: Docker Desktop supports the current version and the two previous ones.
-
-> ⚠️ **Not enough space, or an older macOS?**
->
-> Skip Docker today and tell your instructor. Free space or update macOS before session 7, the first session that uses Docker. Everything else today, Lab 2 included, works without it.
-
-**macOS**
-
-**Install Docker Desktop.** Download it from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/). Choose **Apple Silicon** or **Intel** according to the architecture on your machine card. Open the `.dmg`, drag Docker to Applications and start it. Accept the terms. You can skip signing in.
-
-
-**Windows**
-
-**Install Docker Desktop.** Download it from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) (choose **ARM64** if your machine card says `ARM64`) and install it with the default options, which use **WSL 2**. Start it, then in **Settings → Resources → WSL integration** turn on the integration with **Ubuntu**.
-
-
-**Linux**
-
-Install Docker Engine following the official instructions for your distribution ([docs.docker.com/engine/install](https://docs.docker.com/engine/install/)). Then let your user run Docker without `sudo`:
-
-```bash
-sudo usermod -aG docker $USER
-```
-
-Log out and in again for the group change to take effect.
-
-
-**Ubuntu VM (track B)**
-
-Inside the VM (`multipass shell smd`), install Docker from Ubuntu's own packages and let your user use it:
-
-```bash
-sudo apt update
-sudo apt install -y docker.io docker-compose-v2
-sudo usermod -aG docker $USER
-exit
-```
-
-`exit` leaves the VM. Run `multipass shell smd` again so that the group change takes effect.
-
-
-**Codespace (track C)**
-
-Docker is already installed.
-
-
-## Check that it works
-
-Whatever your track, open the course shell (macOS Terminal, the Ubuntu terminal on Windows, `multipass shell smd`, or the codespace terminal) and run:
-
-```bash
-echo $SHELL
-uname -sm
-curl --version | head -n 1
-docker run --rm hello-world
-```
-
-<details>
-<summary>✅ <b>What you should see</b></summary>
-
-- `/bin/zsh` or `/bin/bash`.
-- `Darwin arm64` (or `Darwin x86_64`) on a Mac. `Linux x86_64` or `Linux aarch64` everywhere else: in WSL, in the VM and in a codespace you are on Linux.
-- A line starting with `curl 8.` (any version is fine).
-- Docker downloads a tiny image and prints a message that starts with `Hello from Docker!` and explains what just happened.
-
-If `docker` says `permission denied while trying to connect to the Docker daemon socket`, your user isn't in the `docker` group yet: log out and in again (or exit and reopen the VM shell). If it says `Cannot connect to the Docker daemon`, Docker Desktop isn't running: start it.
+With WSL, "the course shell" is the **Ubuntu** terminal, and the rest of the course works as on Linux.
 
 </details>
-
-Once the first three commands work, you're ready for [Lab 2](lab.md). The Docker check can wait until after the lab if Docker is still downloading.
 
 [← Previous: Users, packages and the environment](system.md) [Next: Lab 2 →](lab.md)

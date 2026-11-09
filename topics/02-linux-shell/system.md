@@ -124,7 +124,7 @@ On Windows, people traditionally install software by downloading an installer fr
 
 | System | Package manager | Install | Update everything |
 |---|---|---|---|
-| Ubuntu, Debian (and WSL) | `apt` | `sudo apt install tree` | `sudo apt update && sudo apt upgrade` |
+| Ubuntu, Debian (your VM, WSL) | `apt` | `sudo apt install tree` | `sudo apt update && sudo apt upgrade` |
 | macOS | Homebrew (`brew`) | `brew install tree` | `brew update && brew upgrade` |
 | Windows | `winget` | `winget install Git.Git` | `winget upgrade --all` |
 

@@ -18,7 +18,7 @@
 
 In Lab 2, `balance.sh` answered one question with `awk`. In this lab you turn `~/smd/ledger` into a Python project: a pinned Python version, its own virtual environment and a command called `ledger`. In [Lab 4](../04-dependencies-tools/lab.md) you write the code of that command.
 
-Work in the course shell (the macOS Terminal, the Ubuntu terminal in WSL, the VM or the codespace).
+Work in the course shell (the macOS Terminal, the terminal on Linux or inside your VM, or the codespace; the Ubuntu terminal if you use WSL).
 
 ## 1. Install uv
 
@@ -29,7 +29,7 @@ brew install uv
 ```
 
 
-**Linux, WSL, VM, codespace**
+**Linux, VM, codespace, WSL**
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
