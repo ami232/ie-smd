@@ -1,0 +1,1638 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/05-git-collaboration/git/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Version control with Git - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#version-control-with-git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Version control with Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-dev-environments/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Users, packages and the environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-python-uv/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects with uv
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python projects with uv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects and environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3: the ledger becomes a Python project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-dependencies-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and developer tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dependencies and developer tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and the lockfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4: writing and checking the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git and collaboration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git and collaboration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why version control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commits-snapshots-of-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commits: snapshots of the project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commits: snapshots of the project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worked-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-goes-in-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What goes in the repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-and-remote-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local and remote repositories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-and-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging and conflicts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pull-requests-and-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull requests and code review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why version control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commits-snapshots-of-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commits: snapshots of the project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commits: snapshots of the project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-three-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worked-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-goes-in-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What goes in the repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-and-remote-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local and remote repositories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-and-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging and conflicts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pull-requests-and-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull requests and code review
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="version-control-with-git">Version control with Git<a class="headerlink" href="#version-control-with-git" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p>The shell from <a href="../../02-linux-shell/shell/">Linux and the shell</a>: moving between folders, hidden files (<code>ls -a</code>) and running commands. The <code>ledger</code> project from <a href="../../04-dependencies-tools/lab/">Lab 4</a>, and which of its files describe the project and which are generated, from <a href="../../04-dependencies-tools/dependencies/">Dependencies and the lockfile</a>.</p>
+</div>
+<h2 id="why-version-control">Why version control<a class="headerlink" href="#why-version-control" title="Permanent link">&para;</a></h2>
+<p>Your <code>ledger</code> folder has changed every session: a shell script, then a Python project, then real code, a dependency and a lockfile. If tomorrow <code>uv run ledger spending</code> stopped working, could you say what changed since it last worked? Could you go back to Friday's version? Most people's first answer is to copy the folder: <code>ledger_old</code>, <code>ledger_v2</code>, <code>ledger_final</code>, <code>ledger_final_REALLY</code>. That works for a day. After a month nobody knows which copy is which, what changed between two of them, or why.</p>
+<p>Now add a team. Four people edit the same project. Ana changes <code>read_transactions</code> while Ben adds a command to <code>main</code>. They email files to each other, and one of them overwrites the other's work without noticing. On a real team, with real money in the data, this is how bugs reach production and nobody can say when they arrived.</p>
+<p>A <strong>version control system</strong> solves both problems. It records every saved state of the project with who saved it, when and why, it lets several people work on the same files at the same time, and it combines their work, warning when two changes collide. <strong>Git</strong> is the version control system almost everyone uses today, and <strong>GitHub</strong> is the most popular website for hosting Git projects and working on them as a team.</p>
+<h2 id="commits-snapshots-of-the-project">Commits: snapshots of the project<a class="headerlink" href="#commits-snapshots-of-the-project" title="Permanent link">&para;</a></h2>
+<p>Git records the history of a project as a sequence of <strong>commits</strong>. Think of a commit as a photograph of every file of the project at one moment, with a caption: the author, the date and a message saying what changed and why. You decide when to take the photograph, typically after each small piece of work that makes sense on its own ("add the spending command", "store amounts as Decimal").</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: repository and commit</p>
+<p>A <strong>repository</strong> (<em>repo</em>) is a project folder whose history Git tracks. The history is stored in a hidden folder, <code>.git</code>, at the top of the project.</p>
+<p>A <strong>commit</strong> is a snapshot of all the tracked files of the repository, together with its author, date, message and a reference to the previous commit (its <em>parent</em>). Each commit is identified by a <strong>hash</strong>, a 40-character code computed from its contents, such as <code>7259904e1c…</code>, usually shortened to its first 7 characters.</p>
+</div>
+<p>Because each commit points to its parent, the commits form a chain: the <strong>history</strong>. <code>git log</code> shows it, newest first. Because the hash is computed from the contents, including the parent's hash, nobody can change an old commit without changing every hash after it. Git notices, which is what makes the history trustworthy.</p>
+<p>Commits are cheap. Git stores only the files that changed between snapshots and compresses them, so committing often costs almost nothing.</p>
+<h3 id="the-three-areas">The three areas<a class="headerlink" href="#the-three-areas" title="Permanent link">&para;</a></h3>
+<p>Taking a snapshot is a two-step process, and this is the part of Git that confuses people most at first. Your files live in three places:</p>
+<ol>
+<li>The <strong>working tree</strong>: the files in the folder, as you edit them.</li>
+<li>The <strong>staging area</strong> (also called the <em>index</em>): the changes you have selected for the next commit.</li>
+<li>The <strong>repository</strong>: the commits already recorded in <code>.git</code>.</li>
+</ol>
+<p><code>git add</code> copies a change from the working tree to the staging area. <code>git commit</code> records everything in the staging area as a new commit. <code>git status</code> tells you, at any moment, what is changed but not staged, what is staged, and what Git doesn't track at all.</p>
+<div class="highlight"><pre><span></span><code> working tree  ──git add──▶  staging area  ──git commit──▶  repository
+  (your files)               (next commit)                 (history in .git)
+</code></pre></div>
+<p>Why two steps? Because you often change several things at once and want to record them as separate commits. If you fixed a bug in <code>totals_by</code> and also updated the README, <code>git add src/ledger/__init__.py</code> and a commit "fix totals for empty files", then <code>git add README.md</code> and a commit "document the spending command", gives a history where each commit has one purpose. When something breaks later, a history like that tells you which change caused it.</p>
+<h3 id="worked-example">Worked example<a class="headerlink" href="#worked-example" title="Permanent link">&para;</a></h3>
+<p>You have just edited the README of a repository. These are the commands and what each one shows:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w">                   </span><span class="c1"># README.md is listed as "modified", in red: changed, not staged</span>
+git<span class="w"> </span>diff<span class="w">                     </span><span class="c1"># the changed lines: - for removed, + for added</span>
+git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>status<span class="w">                   </span><span class="c1"># README.md is now under "Changes to be committed", in green</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Describe what the app does"</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w">            </span><span class="c1"># the new commit is at the top, with its short hash</span>
+</code></pre></div>
+<p>The message after <code>-m</code> is for people: write what the commit does and, if it isn't obvious, why. "Describe what the app does" helps someone reading the history in three months. "changes" or "asdf" doesn't.</p>
+<h2 id="what-goes-in-the-repository">What goes in the repository<a class="headerlink" href="#what-goes-in-the-repository" title="Permanent link">&para;</a></h2>
+<p>A repository should contain everything needed to rebuild the project, and nothing that can be rebuilt from it or that must stay private. For <code>ledger</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Commit</th>
+<th>Don't commit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pyproject.toml</code>, <code>uv.lock</code>, <code>.python-version</code></td>
+<td><code>.venv/</code>: generated by <code>uv</code>, specific to your machine</td>
+</tr>
+<tr>
+<td><code>src/</code>, <code>README.md</code></td>
+<td><code>__pycache__/</code>, <code>.ruff_cache/</code>: generated by Python and Ruff</td>
+</tr>
+<tr>
+<td>sample data the code needs (<code>data/transactions.csv</code>)</td>
+<td><code>.env</code> files with passwords or keys (session 12)</td>
+</tr>
+</tbody>
+</table>
+<p>A file called <strong><code>.gitignore</code></strong>, at the top of the repository, lists the patterns of files Git must ignore. A line <code>.venv/</code> makes Git ignore the whole folder: <code>git status</code> doesn't show it, and <code>git add .</code> doesn't add it. GitHub offers ready-made <code>.gitignore</code> templates for each language when you create a repository.</p>
+<div class="admonition warning">
+<p class="admonition-title">Secrets in Git are forever</p>
+<p>If you commit a password or an API key, deleting the file in the next commit doesn't remove it: it is still in the history, and anyone with a copy of the repository can find it. Public repositories on GitHub are scanned by bots looking for keys within minutes. If it happens, the only safe fix is to <strong>revoke the key</strong> and create a new one. Session 12 explains how to keep secrets out of the code.</p>
+</div>
+<h2 id="local-and-remote-repositories">Local and remote repositories<a class="headerlink" href="#local-and-remote-repositories" title="Permanent link">&para;</a></h2>
+<p>So far, everything happens on your laptop: Git doesn't need a server. To share the project, and to keep a copy that survives a broken laptop, you connect your repository to a <strong>remote</strong>: a copy of the same repository on a server, usually GitHub.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: remote, clone, push and pull</p>
+<p>A <strong>remote</strong> is another copy of the repository that yours knows about, by a name and a URL. The default name is <strong><code>origin</code></strong>.</p>
+<ul>
+<li><code>git clone &lt;url&gt;</code> downloads a repository with its whole history and sets it up as <code>origin</code>.</li>
+<li><code>git push</code> sends your new commits to the remote.</li>
+<li><code>git pull</code> downloads the new commits from the remote and merges them into your current branch. It is two operations in one: <code>git fetch</code> (download) followed by <code>git merge</code> (combine).</li>
+</ul>
+</div>
+<p>Your local repository and the remote are independent copies: a commit you make on your laptop is not on GitHub until you push it, and a change someone makes on GitHub is not on your laptop until you pull it. <code>git status</code> tells you when your branch is "ahead of 'origin/main' by 2 commits" (you have commits to push) or "behind" (there are commits to pull).</p>
+<p>GitHub needs to know who you are before it accepts a push. With the <strong>GitHub CLI</strong> (<code>gh</code>), <code>gh auth login</code> signs you in once through the browser and configures Git to use that login, so you don't type passwords or manage keys.</p>
+<h2 id="branches">Branches<a class="headerlink" href="#branches" title="Permanent link">&para;</a></h2>
+<p>On a team, several pieces of work are in progress at the same time: Ana's new command, Ben's bug fix, a teammate's experiment that may never be finished. If everyone committed to the same line of history, each person's half-finished work would break the project for the others. <strong>Branches</strong> let each piece of work have its own line of history until it is ready.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: branch</p>
+<p>A <strong>branch</strong> is a movable name that points to a commit. When you commit on a branch, the branch moves forward to the new commit. <strong><code>main</code></strong> is the branch that holds the project's official history. <strong><code>HEAD</code></strong> is the branch you are on now.</p>
+</div>
+<p>A branch costs almost nothing: it is a name and a 40-character hash. The usual workflow is to create a branch for each piece of work, commit on it, and bring it back into <code>main</code> when it's done and reviewed:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/monthly-report<span class="w">   </span><span class="c1"># create the branch and move to it</span>
+<span class="c1"># ...edit, add, commit, as many times as needed...</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/monthly-report<span class="w">   </span><span class="c1"># publish the branch on GitHub</span>
+git<span class="w"> </span>switch<span class="w"> </span>main<span class="w">                          </span><span class="c1"># go back to main</span>
+git<span class="w"> </span>branch<span class="w">                               </span><span class="c1"># list the local branches; * marks the current one</span>
+</code></pre></div>
+<p><code>-u</code> (short for <code>--set-upstream</code>) links the local branch to the one on GitHub, so that from then on a plain <code>git push</code> or <code>git pull</code> on this branch knows where to go. Branch names are free text; prefixes like <code>feature/</code> and <code>fix/</code> are a common convention that makes them easier to read.</p>
+<h2 id="merging-and-conflicts">Merging and conflicts<a class="headerlink" href="#merging-and-conflicts" title="Permanent link">&para;</a></h2>
+<p>When the work on a branch is finished, you <strong>merge</strong> it: you bring its commits into another branch, usually <code>main</code>. There are two cases.</p>
+<p>If <code>main</code> has not moved since the branch was created, Git just moves <code>main</code> forward to the branch's last commit. This is a <strong>fast-forward</strong>: no new commit is needed. It is also what usually happens when you <code>git pull</code> and only the remote has new commits.</p>
+<p>If both branches have new commits, Git creates a <strong>merge commit</strong>, a commit with two parents that combines both lines of work. Git combines the changes on its own, line by line, as long as they touch different parts of the files. Two people editing different functions of the same file is fine.</p>
+<div class="highlight"><pre><span></span><code>        A───B───C        main
+             \
+              D───E      feature/monthly-report
+
+git switch main
+git merge feature/monthly-report
+
+        A───B───C───M    main      M has two parents: C and E
+             \     /
+              D───E
+</code></pre></div>
+<p>A <strong>conflict</strong> happens when both branches changed <strong>the same lines</strong> of the same file. Git can't know which version is right, so it stops the merge and asks you. It writes both versions into the file, between markers:</p>
+<div class="highlight"><pre><span></span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Personal finance ledger: balances, spending and monthly reports.
+=======
+Personal finance ledger for the command line.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main
+</code></pre></div>
+<p>The part between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> is your version (the branch you are on). The part between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> is the incoming version. To resolve the conflict, you edit the file so it contains what it should contain (one version, the other, or a combination), delete the three marker lines, then <code>git add</code> the file and <code>git commit</code> to finish the merge. VS Code highlights the conflicts and offers buttons (<em>Accept Current</em>, <em>Accept Incoming</em>, <em>Accept Both</em>), but the decision is always yours: Git can't know what the text means.</p>
+<p>A conflict is not an error. It is Git refusing to guess. The usual cause is two people working on the same part of the code at the same time, and the best prevention is small branches that are merged often.</p>
+<h2 id="pull-requests-and-code-review">Pull requests and code review<a class="headerlink" href="#pull-requests-and-code-review" title="Permanent link">&para;</a></h2>
+<p>On GitHub, a branch doesn't usually go into <code>main</code> with a plain <code>git merge</code>. Instead, you open a <strong>pull request</strong> (PR): a proposal to merge a branch, with a title and a description of what it changes and why. GitHub shows the differences, and teammates <strong>review</strong> them: they read the code, comment on specific lines, ask for changes or approve. When the PR is approved, someone clicks <strong>Merge</strong>, and GitHub makes the merge on the server.</p>
+<p>Code review is how teams keep quality up and spread knowledge: at least two people have read every change before it reaches <code>main</code>, and both of them understand it. In the group project, every change to <code>main</code> goes through a reviewed pull request.</p>
+<p>GitHub offers three ways to merge a PR. <strong>Create a merge commit</strong> keeps every commit of the branch and adds a merge commit, so the history shows exactly what happened. <em>Squash and merge</em> combines all the commits of the branch into one. <em>Rebase and merge</em> copies the commits onto <code>main</code> without a merge commit. In this course we use <strong>merge commits</strong>, because the history is part of what we assess.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Committing without checking <code>git status</code> first.</strong> You commit files you didn't mean to (<code>.venv</code>, a <code>.env</code> with a password) or forget the ones you did. Run <code>git status</code> before every commit, and <code>git diff --staged</code> to see exactly what you're about to record.</li>
+<li><strong>Working on <code>main</code> for everything.</strong> It works alone, but on a team every half-finished change breaks <code>main</code> for everybody. Create a branch per piece of work.</li>
+<li><strong>Forgetting to pull.</strong> If you start working without pulling, you build on an old version and run into conflicts that didn't need to happen. Pull before you start.</li>
+<li><strong>Leaving conflict markers in a file.</strong> After a conflict, search the file for <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> before committing. A file with markers is not valid Python, Markdown or anything else.</li>
+<li><strong>Rewriting shared history.</strong> Commands such as <code>git push --force</code> replace the history on the remote. On a branch other people use, they delete their work. Don't use them until you know exactly what they do.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Key takeaways</p>
+<ul>
+<li>A <strong>commit</strong> is a snapshot of the project with an author, a date, a message and a parent. The chain of commits is the history, and each commit is identified by its hash.</li>
+<li>Changes go from the <strong>working tree</strong> to the <strong>staging area</strong> (<code>git add</code>) and from there to the <strong>repository</strong> (<code>git commit</code>). <code>git status</code> shows where each change is.</li>
+<li><code>.gitignore</code> keeps generated files and secrets out of the repository. A secret that was committed must be revoked.</li>
+<li><code>clone</code>, <code>push</code> and <code>pull</code> copy commits between your repository and a <strong>remote</strong> such as GitHub. <code>pull</code> is <code>fetch</code> plus <code>merge</code>.</li>
+<li>A <strong>branch</strong> is a movable name for a line of work. Merging combines branches; a <strong>conflict</strong> happens when both changed the same lines, and you resolve it by editing the file. A <strong>pull request</strong> proposes a merge and is where code review happens.</li>
+</ul>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong>1.</strong> You edited <code>src/ledger/__init__.py</code> and <code>README.md</code>, then ran <code>git add README.md</code>. What does <code>git status</code> show for each file? If you now run <code>git commit -m "..."</code>, which changes go into the commit?</p>
+<details class="success">
+<summary>Solution</summary>
+<p><code>README.md</code> appears under <strong>Changes to be committed</strong> (staged), and <code>src/ledger/__init__.py</code> under <strong>Changes not staged for commit</strong>. The commit records only the README change. The change to <code>__init__.py</code> stays in the working tree, still modified, until you <code>git add</code> it and commit again.</p>
+</details>
+<p><strong>2.</strong> After a teammate's commit, <code>git status</code> says "Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded". What does that mean, and what happens when you run <code>git pull</code>?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>The remote <code>main</code> has one commit that your local <code>main</code> doesn't, and you have no commits of your own that the remote lacks. <code>git pull</code> downloads the commit and moves your <code>main</code> forward to it (a fast-forward). No merge commit is created and there can be no conflict.</p>
+</details>
+<p><strong>3.</strong> Your branch changed line 3 of the README, and <code>main</code> changed line 10 of the same file. Do you get a conflict when you merge <code>main</code> into your branch? And if both changed line 3?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>Different lines: no conflict. Git combines both changes on its own and creates a merge commit. Same line: conflict. Git stops, writes both versions of line 3 between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> markers, and waits for you to edit the file, <code>git add</code> it and <code>git commit</code>.</p>
+</details>
+<p><strong>4.</strong> A teammate committed a file <code>.env</code> with the password of the team's database, then deleted it in the next commit and pushed both. Is the password safe now? What should the team do?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>No. The first commit is still in the history, on GitHub and in every clone, and anyone can read the file from it (<code>git show &lt;hash&gt;:.env</code>). The team must <strong>change the password</strong> of the database at once (revoke the old one), then add <code>.env</code> to <code>.gitignore</code> so it isn't committed again. Rewriting the history to remove the file is possible, but it doesn't help with copies that already exist, so changing the password is the step that matters.</p>
+</details>
+<p><a class="md-button" href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Back to the session</a> <a class="md-button md-button--primary" href="../lab/">Next: Lab 5 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Version control and collaboration with Git">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Version control and collaboration with Git
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 5: your app&#39;s repository">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 5: your app's repository
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

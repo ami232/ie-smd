@@ -1,0 +1,1692 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/05-git-collaboration/lab/">
+      
+      
+        <link rel="prev" href="../git/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lab 5: your app's repository - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-5-your-apps-repository" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 5: your app's repository
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-dev-environments/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the filesystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Users, packages and the environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-python-uv/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects with uv
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python projects with uv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects and environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3: the ledger becomes a Python project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-dependencies-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and developer tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dependencies and developer tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and the lockfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4: writing and checking the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git and collaboration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git and collaboration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-check-git-and-sign-in-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check Git and sign in to GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-the-repository-on-github-and-clone-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the repository on GitHub and clone it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-add-the-ledger-and-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Add the ledger and commit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Push
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-change-something-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Change something on GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Pull
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-create-a-branch-commit-and-push-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Create a branch, commit and push it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-create-a-conflict-and-resolve-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Create a conflict and resolve it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-open-and-merge-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Open and merge a pull request
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-check-git-and-sign-in-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check Git and sign in to GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-create-the-repository-on-github-and-clone-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the repository on GitHub and clone it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-add-the-ledger-and-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Add the ledger and commit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Push
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-change-something-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Change something on GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Pull
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-create-a-branch-commit-and-push-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Create a branch, commit and push it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-create-a-conflict-and-resolve-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Create a conflict and resolve it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-open-and-merge-a-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Open and merge a pull request
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="lab-5-your-apps-repository">Lab 5: your app's repository<a class="headerlink" href="#lab-5-your-apps-repository" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p>The <code>ledger</code> project from <a href="../../04-dependencies-tools/lab/">Lab 4</a> in <code>~/smd/ledger</code>, your GitHub account from <a href="../../01-dev-environments/lab/#5-create-your-github-account">Lab 1</a>, and the concepts of <a href="../git/">Version control with Git</a>. If your ledger isn't finished, you can start from the reference version, as explained in <a href="#4-add-the-ledger-and-commit">step 4</a>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Do this lab by hand, without AI</p>
+<p>In this lab, <strong>AI assistants are not allowed</strong>: type every command yourself and read what Git answers. Don't ask a chatbot for the commands, and turn off inline suggestions in VS Code for today (if you use Copilot: click the Copilot icon in the status bar and disable completions).</p>
+<p>Git is the safety net for everything else you do in this course, including the code you will write with AI: when an assistant breaks your project, Git is how you get it back. You can only trust a safety net you understand. Once you know what each command does, you can use AI for Git as for the rest of the course, under the rules in <a href="../../../#using-ai">Using AI</a>.</p>
+</div>
+<p>In this lab you create the repository where you will build your application for the rest of the course, and you go through the whole Git workflow once, on purpose: commits, pushing and pulling, a change made on GitHub, a branch, a conflict and a pull request. The repository's history is the proof that you did each step, so do them in order and don't rewrite it afterwards.</p>
+<p><strong>Submission.</strong> At the end, you submit the URL of your repository on Blackboard, <strong>by Friday 13 November, 23:59</strong>. The <a href="#checkpoint">checkpoint</a> lists what is checked.</p>
+<h2 id="1-check-git-and-sign-in-to-github">1. Check Git and sign in to GitHub<a class="headerlink" href="#1-check-git-and-sign-in-to-github" title="Permanent link">&para;</a></h2>
+<p>Work in the course shell (the macOS Terminal, the terminal on Linux or inside your VM; the Ubuntu terminal if you use WSL). Check that Git is installed:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>--version
+</code></pre></div>
+<p>If you get <code>command not found</code>: on macOS, run <code>xcode-select --install</code>; on Linux and in the VM, <code>sudo apt install -y git</code>.</p>
+<p>Install the <strong>GitHub CLI</strong>, <code>gh</code>, and sign in. It configures Git to use your GitHub login, so you never type a password or manage keys:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS</label><label for="__tabbed_1_2">Linux, VM, WSL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>gh
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>gh
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>gh<span class="w"> </span>auth<span class="w"> </span>login
+</code></pre></div>
+<p>Answer the questions with the arrow keys and <span class="keys"><kbd class="key-enter">Enter</kbd></span>: <strong>GitHub.com</strong>, <strong>HTTPS</strong>, <strong>Yes</strong> (authenticate Git with your GitHub credentials), <strong>Login with a web browser</strong>. <code>gh</code> prints a one-time code; press <span class="keys"><kbd class="key-enter">Enter</kbd></span>, paste the code in the browser page that opens, and authorize. Then check:</p>
+<div class="highlight"><pre><span></span><code>gh<span class="w"> </span>auth<span class="w"> </span>status
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>Logged in to github.com account &lt;your-username&gt;</code>, with <code>Git operations protocol: https</code>. If the browser doesn't open (some VMs), open <a href="https://github.com/login/device">github.com/login/device</a> yourself and type the code.</p>
+</details>
+<h2 id="2-configure-git">2. Configure Git<a class="headerlink" href="#2-configure-git" title="Permanent link">&para;</a></h2>
+<p>Git records an author in every commit. Tell it your name and email, once per computer:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">"Your Name"</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">"ID+username@users.noreply.github.com"</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">false</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span>nano
+</code></pre></div>
+<ul>
+<li>For the email, use your GitHub <strong>no-reply address</strong>: on GitHub, <em>Settings → Emails</em>, under "Keep my email addresses private". It looks like <code>12345678+username@users.noreply.github.com</code>. Your commits will be public, and this keeps your real address out of them. It also links the commits to your GitHub account.</li>
+<li><code>pull.rebase false</code> tells <code>git pull</code> to combine histories with a merge. Without it, recent versions of Git refuse a pull when both sides have new commits, which you will do in step 9.</li>
+<li><code>core.editor nano</code> makes Git open <code>nano</code> if it ever needs you to write a message. In <code>nano</code>, <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-o">O</kbd></span> and <span class="keys"><kbd class="key-enter">Enter</kbd></span> save, <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> exits.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--list
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p>Your five settings, among others: <code>user.name=...</code>, <code>user.email=...@users.noreply.github.com</code>, <code>init.defaultbranch=main</code>, <code>pull.rebase=false</code> and <code>core.editor=nano</code>.</p>
+</details>
+<h2 id="3-create-the-repository-on-github-and-clone-it">3. Create the repository on GitHub and clone it<a class="headerlink" href="#3-create-the-repository-on-github-and-clone-it" title="Permanent link">&para;</a></h2>
+<p>On <a href="https://github.com">github.com</a>, click <strong>+ → New repository</strong> (top right) and fill in:</p>
+<ul>
+<li><strong>Repository name:</strong> <code>smd-app</code>.</li>
+<li><strong>Public.</strong> Your repository is public: it is part of your portfolio, and it is how your work is checked.</li>
+<li><strong>Add README:</strong> on.</li>
+<li><strong>Add .gitignore:</strong> choose the <strong>Python</strong> template.</li>
+<li>No license for now.</li>
+</ul>
+<p>Click <strong>Create repository</strong>. GitHub makes the first commit for you, with the two files. Now copy the repository to your laptop. On the repository's page, click <strong>Code</strong>, choose <strong>HTTPS</strong> and copy the URL. Then:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/smd
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/smd-app.git
+<span class="nb">cd</span><span class="w"> </span>smd-app
+ls<span class="w"> </span>-a
+git<span class="w"> </span>log
+git<span class="w"> </span>status
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>git clone</code> prints <code>Cloning into 'smd-app'...</code> and creates the folder. <code>ls -a</code> shows <code>.git</code> (the history), <code>.gitignore</code> and <code>README.md</code>. <code>git log</code> shows one commit, "Initial commit", by you, with its full hash. <code>git status</code> says <code>On branch main</code>, <code>Your branch is up to date with 'origin/main'</code> and <code>nothing to commit, working tree clean</code>.</p>
+</details>
+<h2 id="4-add-the-ledger-and-commit">4. Add the ledger and commit<a class="headerlink" href="#4-add-the-ledger-and-commit" title="Permanent link">&para;</a></h2>
+<p>Copy the files that describe and build the ledger project into the repository. These are the files a teammate needs (<a href="../../04-dependencies-tools/lab/#6-rebuild-from-the-files">Lab 4, step 6</a>); <code>.venv</code> is not one of them:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>~/smd/ledger/<span class="o">{</span>pyproject.toml,uv.lock,.python-version,src,data<span class="o">}</span><span class="w"> </span>.
+uv<span class="w"> </span>run<span class="w"> </span>ledger<span class="w"> </span>balance
+</code></pre></div>
+<details class="tip">
+<summary>My ledger from Lab 4 is not finished</summary>
+<p>Use the reference version. On <a href="https://github.com/ami232/ie-smd-ledger">github.com/ami232/ie-smd-ledger</a>, switch to the tag <strong><code>s05-start</code></strong> (button <strong>main → Tags</strong>), click <strong>Code → Download ZIP</strong>, unzip it, and copy the same five items from the unzipped folder instead of from <code>~/smd/ledger</code>. Don't copy its <code>README.md</code> or <code>.gitignore</code>: your repository has its own.</p>
+</details>
+<p><code>uv run</code> creates <code>.venv</code> inside the repository. Look at what Git sees:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p>Under <strong>Untracked files</strong>: <code>.python-version</code>, <code>data/</code>, <code>pyproject.toml</code>, <code>src/</code> and <code>uv.lock</code>. There is no <code>.venv</code>: the Python <code>.gitignore</code> from GitHub lists it, so Git ignores it. <code>ledger balance</code> printed <code>3349.10</code> and <code>906.00</code>, as in Lab 4.</p>
+</details>
+<p>Stage the files, check exactly what will be recorded, and commit:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>status
+git<span class="w"> </span>diff<span class="w"> </span>--staged<span class="w"> </span>--stat
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add the ledger project from Lab 4"</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p>After <code>git add .</code>, the five items are under <strong>Changes to be committed</strong>. <code>git diff --staged --stat</code> lists the files and how many lines each adds. The commit prints its short hash and <code>5 files changed</code> or similar. <code>git log --oneline</code> shows two commits, newest first.</p>
+</details>
+<p>Now a second commit, for the README. Open the repository in VS Code (<code>code .</code>) and replace the contents of <code>README.md</code> with this, keeping the exact second line, which you will need in step 9:</p>
+<div class="highlight"><pre><span></span><code><span class="gh"># smd-app</span>
+
+Personal finance ledger: balances and spending from a CSV file.
+
+<span class="gu">## Run it</span>
+
+    uv run ledger balance
+    uv run ledger spending
+</code></pre></div>
+<p>Save it and commit it from the terminal:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+git<span class="w"> </span>diff
+git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Describe the app and how to run it"</span>
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>git diff</code> shows the old README lines with <code>-</code> and the new ones with <code>+</code>. After the commit, <code>git status</code> says <code>Your branch is ahead of 'origin/main' by 2 commits</code>: you have two commits that GitHub doesn't have yet.</p>
+</details>
+<h2 id="5-push">5. Push<a class="headerlink" href="#5-push" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push
+git<span class="w"> </span>status
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>git push</code> prints a few lines ending in <code>main -&gt; main</code>. <code>git status</code> says <code>Your branch is up to date with 'origin/main'</code>. Refresh the repository's page on GitHub: the files are there, the README shows its new text, and the commit count says 3 commits.</p>
+</details>
+<h2 id="6-change-something-on-github">6. Change something on GitHub<a class="headerlink" href="#6-change-something-on-github" title="Permanent link">&para;</a></h2>
+<p>Changes can also come from GitHub: a teammate's work, or an edit in the browser. Make one. On the repository's page, open <code>README.md</code>, click the <strong>pencil</strong> icon (<em>Edit this file</em>), and add at the end:</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Author</span>
+
+&lt;your-github-username&gt;
+</code></pre></div>
+<p>Click <strong>Commit changes…</strong>, keep "Commit directly to the main branch", write a message such as <code>Add author</code> and confirm. Your laptop doesn't have this commit yet.</p>
+<h2 id="7-pull">7. Pull<a class="headerlink" href="#7-pull" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+git<span class="w"> </span>pull
+git<span class="w"> </span>log<span class="w"> </span>--oneline
+cat<span class="w"> </span>README.md
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p>The first <code>git status</code> still says <code>up to date with 'origin/main'</code>: Git only knows about the remote what it saw at the last push or pull. <code>git pull</code> downloads the new commit and reports <code>Fast-forward</code>, since only GitHub had new work. <code>git log</code> shows four commits, the newest being yours from the browser, and the README now ends with the Author section.</p>
+</details>
+<h2 id="8-create-a-branch-commit-and-push-it">8. Create a branch, commit and push it<a class="headerlink" href="#8-create-a-branch-commit-and-push-it" title="Permanent link">&para;</a></h2>
+<p>Work on a new feature in its own branch. Create it and move to it:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/roadmap
+git<span class="w"> </span>branch
+</code></pre></div>
+<p>In <code>README.md</code>, make two changes:</p>
+<ol>
+<li>
+<p>Change the second line (the description) to:</p>
+<div class="highlight"><pre><span></span><code>Personal finance ledger: balances, spending and monthly reports from a CSV file.
+</code></pre></div>
+</li>
+<li>
+<p>Add this section before <strong>Author</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Roadmap</span>
+
+<span class="k">-</span><span class="w"> </span>Monthly report of income and spending
+<span class="k">-</span><span class="w"> </span>A database instead of a CSV file
+<span class="k">-</span><span class="w"> </span>A web API and a dashboard
+</code></pre></div>
+</li>
+</ol>
+<p>Save, commit and publish the branch:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add a roadmap"</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/roadmap
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>git branch</code> lists <code>main</code> and <code>* feature/roadmap</code> (the <code>*</code> is where you are). The push creates the branch on GitHub: the output includes <code>* [new branch] feature/roadmap -&gt; feature/roadmap</code> and a link to create a pull request (not yet). On GitHub, the branch selector (the <strong>main</strong> button) now lists <code>feature/roadmap</code>.</p>
+</details>
+<h2 id="9-create-a-conflict-and-resolve-it">9. Create a conflict and resolve it<a class="headerlink" href="#9-create-a-conflict-and-resolve-it" title="Permanent link">&para;</a></h2>
+<p>While you were working on the branch, someone changed <code>main</code>. Do it yourself: on GitHub, make sure the branch selector says <strong>main</strong>, open <code>README.md</code>, click the pencil, and change the <strong>same second line</strong> to:</p>
+<div class="highlight"><pre><span></span><code>Personal finance ledger for the command line.
+</code></pre></div>
+<p>Commit it directly to <code>main</code>. Now <code>main</code> and your branch have both changed the same line. Bring <code>main</code>'s new work into your branch:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<div class="highlight"><pre><span></span><code>Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre></div>
+<p>Git combined everything it could and stopped at the line both sides changed. <code>git status</code> says <code>You have unmerged paths</code> and lists <code>README.md</code> under <strong>Unmerged paths</strong>.</p>
+</details>
+<p>Open <code>README.md</code>. The second line is now:</p>
+<div class="highlight"><pre><span></span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Personal finance ledger: balances, spending and monthly reports from a CSV file.
+=======
+Personal finance ledger for the command line.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1a2b3c4d5e6f...
+</code></pre></div>
+<p><code>HEAD</code> is your branch's version; the other one comes from <code>main</code> on GitHub (the long code is its commit hash). Resolve it <strong>by editing the text yourself</strong>: replace the five lines, markers included, with one description that keeps both ideas:</p>
+<div class="highlight"><pre><span></span><code>Personal finance ledger for the command line: balances, spending and monthly reports from a CSV file.
+</code></pre></div>
+<p>Check that no marker is left, then finish the merge:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;&lt;&lt;&lt;&lt;&lt;&lt;\|=======\|&gt;&gt;&gt;&gt;&gt;&gt;&gt;"</span><span class="w"> </span>README.md
+git<span class="w"> </span>add<span class="w"> </span>README.md
+git<span class="w"> </span>commit<span class="w"> </span>--no-edit
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph
+git<span class="w"> </span>push
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>grep</code> prints nothing: no markers left. <code>git commit --no-edit</code> creates the <strong>merge commit</strong> with Git's default message, <code>Merge branch 'main' of https://github.com/...</code>. In <code>git log --oneline --graph</code>, two lines of history join at that commit: your roadmap commit on one side, the browser edit on the other. <code>git push</code> sends the merge to your branch on GitHub.</p>
+</details>
+<h2 id="10-open-and-merge-a-pull-request">10. Open and merge a pull request<a class="headerlink" href="#10-open-and-merge-a-pull-request" title="Permanent link">&para;</a></h2>
+<p>On GitHub, open the <strong>Pull requests</strong> tab and click <strong>New pull request</strong>. Choose <strong>base: main</strong> and <strong>compare: feature/roadmap</strong>. GitHub shows the differences and <code>Able to merge</code>, because you already resolved the conflict on the branch. Click <strong>Create pull request</strong> and fill in:</p>
+<ul>
+<li><strong>Title:</strong> <code>Add a roadmap</code></li>
+<li><strong>Description:</strong> two or three sentences: what the branch changes, and how you resolved the conflict in the description line.</li>
+</ul>
+<p>Click <strong>Create pull request</strong>. Read the <strong>Files changed</strong> tab, as a reviewer would. Then, in the <strong>Conversation</strong> tab, merge it: check that the green button says <strong>Merge pull request</strong> (if it says <em>Squash and merge</em> or <em>Rebase and merge</em>, use the arrow next to it to choose <strong>Create a merge commit</strong>), click it and confirm. GitHub offers to delete the branch: you can.</p>
+<p>Finally, bring the result to your laptop and tidy up:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>main
+git<span class="w"> </span>pull
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/roadmap
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>--all
+</code></pre></div>
+<details class="success">
+<summary>What you should see</summary>
+<p><code>git pull</code> fast-forwards <code>main</code> to the merge commit GitHub created (<code>Merge pull request #1 from &lt;your-username&gt;/feature/roadmap</code>). <code>git branch -d</code> deletes the local branch, which is safe because its commits are now in <code>main</code>. The graph shows the whole lab: the initial commit, your two commits, the browser edit, the branch with its roadmap commit, the merge that resolved the conflict, and the merge of the pull request. The README on GitHub has the combined description, the roadmap and the author.</p>
+</details>
+<h2 id="checkpoint">Checkpoint<a class="headerlink" href="#checkpoint" title="Permanent link">&para;</a></h2>
+<p>Submit the URL of your repository (<code>https://github.com/&lt;your-username&gt;/smd-app</code>) on Blackboard by <strong>Friday 13 November, 23:59</strong>. Don't change the history after submitting: no force pushes, and don't delete the repository. Your repository should show:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> a public repository with <code>pyproject.toml</code>, <code>uv.lock</code>, <code>.python-version</code>, <code>src/</code> and <code>data/</code>, and <strong>no</strong> <code>.venv</code>;</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> commits made from your laptop, with your name and your no-reply email;</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> a commit made on GitHub's website;</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> a branch other than <code>main</code>, pushed to GitHub, with its own commit;</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> on that branch, a merge of <code>main</code> that resolved a conflict, with no markers left;</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> a pull request from that branch to <code>main</code>, with a description, merged with a merge commit.</li>
+</ul>
+<p>This repository is where you build your application from now on. In the next labs you add to it, and from time to time you submit a version of it as a checkpoint.</p>
+<p><a class="md-button" href="../git/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Previous: Version control with Git</a> <a class="md-button md-button--primary" href="../">Back to the session <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../git/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Version control with Git">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Version control with Git
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
