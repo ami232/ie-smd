@@ -4,7 +4,7 @@
 
 ## The thread of the session
 
-1. **[Software design and project structure](design.md).** Separation of concerns and the single responsibility principle, the direction of dependencies, modules and packages, dataclasses and type hints, pure functions, refactoring and code smells, and how to design your own module.
+1. **[Software design and project structure](notes.md).** Separation of concerns and the single responsibility principle, the direction of dependencies, modules and packages, dataclasses and type hints, pure functions, refactoring and code smells, and how to design your own module.
 2. **[Lab: from one file to a package](lab.md).** You split `ledger` into `models`, `storage`, `reports` and `cli` on a branch, writing the calculations yourself in a starter package, check with `diff` that the output didn't change, add the `months` command, configure Ruff's rules and merge through a pull request.
 
 ## Objectives
@@ -24,7 +24,7 @@ By the end of the session you should be able to:
 
 | Page | What you do |
 |---|---|
-| [Software design and project structure](design.md) | read, with the exercises |
+| [Software design and project structure](notes.md) | read, with the exercises |
 | [Lab: from one file to a package](lab.md) | hands-on |
 
 ## Before you start

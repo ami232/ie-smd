@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The package structure of `ledger`, with its four modules (see [Lab: from one file to a package](../06-project-structure/lab.md)), and the ideas of [Software design and project structure](../06-project-structure/design.md), especially why storage is a separate concern. Why money is a `Decimal` and never a `float` (see [Money is not a float](../04-dependencies-tools/lab.md#3-money-is-not-a-float)).
+> The package structure of `ledger`, with its four modules (see [Lab: from one file to a package](../06-project-structure/lab.md)), and the ideas of [Software design and project structure](../06-project-structure/notes.md), especially why storage is a separate concern. Why money is a `Decimal` and never a `float` (see [Money is not a float](../04-dependencies-tools/lab.md#3-money-is-not-a-float)).
 
 ## Why a database
 
@@ -68,7 +68,7 @@ con.execute("PRAGMA foreign_keys = ON")
 ```
 
 ```text
-<sqlite3.Cursor object at 0x705ee7fcadc0>
+<sqlite3.Cursor object at 0x7edd6e331e40>
 ```
 
 ```python
@@ -81,7 +81,7 @@ con.execute("""
 ```
 
 ```text
-<sqlite3.Cursor object at 0x705ee7fcafc0>
+<sqlite3.Cursor object at 0x7edd6e331d40>
 ```
 
 ```python
@@ -98,7 +98,7 @@ con.execute("""
 ```
 
 ```text
-<sqlite3.Cursor object at 0x705ee7fcadc0>
+<sqlite3.Cursor object at 0x7edd6e331e40>
 ```
 
 ```python
@@ -118,7 +118,7 @@ con.executemany("INSERT INTO accounts (name) VALUES (?)", [("checking",), ("savi
 ```
 
 ```text
-<sqlite3.Cursor object at 0x705ee7fcafc0>
+<sqlite3.Cursor object at 0x7edd6e331d40>
 ```
 
 ```python
@@ -137,7 +137,7 @@ con.executemany(
 ```
 
 ```text
-<sqlite3.Cursor object at 0x705ee7fcadc0>
+<sqlite3.Cursor object at 0x7edd6e331e40>
 ```
 
 ```python
@@ -299,7 +299,7 @@ class TransactionRow(Base):
 - `ForeignKey("accounts.id")` declares the foreign key.
 - `relationship` is not a column. It gives you the related objects as attributes: `row.account` is the `Account` of a row, and `account.rows` the list of its rows. SQLAlchemy loads them with a query when you use them.
 
-In `ledger`, the table class is called `TransactionRow`, not `Transaction`, on purpose. The `Transaction` dataclass of `models.py` is what the rest of the program works with; `TransactionRow` is how a transaction is stored. `storage.py` converts one into the other, so the calculations in `reports.py` don't depend on SQLAlchemy and don't change when the storage does. That is the [direction of dependencies](../06-project-structure/design.md#the-direction-of-dependencies) at work.
+In `ledger`, the table class is called `TransactionRow`, not `Transaction`, on purpose. The `Transaction` dataclass of `models.py` is what the rest of the program works with; `TransactionRow` is how a transaction is stored. `storage.py` converts one into the other, so the calculations in `reports.py` don't depend on SQLAlchemy and don't change when the storage does. That is the [direction of dependencies](../06-project-structure/notes.md#the-direction-of-dependencies) at work.
 
 Two more objects connect the classes to a real database:
 
@@ -331,7 +331,7 @@ This is what makes a transfer safe: taking 300 € out of `checking` and putting
 
 ## Designing the tables of your module
 
-The data model you wrote for your module, its entities, fields and relationships (see [Designing your own module](../06-project-structure/design.md#designing-your-own-module)), becomes tables in four steps:
+The data model you wrote for your module, its entities, fields and relationships (see [Designing your own module](../06-project-structure/notes.md#designing-your-own-module)), becomes tables in four steps:
 
 1. **One table per entity**, with an `id` primary key.
 2. **One column per field**, with its type. Money is integer cents (or `NUMERIC` on a database that has it), never `REAL`.

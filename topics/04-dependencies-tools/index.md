@@ -4,7 +4,7 @@ The `ledger` project has its own Python, its own environment and a `ledger` comm
 
 ## The thread of the session
 
-1. **[Dependencies and the lockfile](dependencies.md).** Direct and transitive dependencies, version constraints, and why a lockfile is needed on top of them.
+1. **[Dependencies and the lockfile](notes.md).** Direct and transitive dependencies, version constraints, and why a lockfile is needed on top of them.
 2. **[Lab: writing and checking the ledger](lab.md).** You set up VS Code and write the ledger in Python, add `rich` and rebuild the project from its files, step through the code with the debugger, and run Ruff.
 
 The concepts of editors, language servers, debuggers, linters and formatters are summarized in the slides below. A full notes page will follow.
@@ -23,7 +23,7 @@ By the end of the session you should be able to:
 
 ## Before you start
 
-You need the `ledger` project, where `uv run ledger` prints `Hello from ledger!` (see [The ledger becomes a Python project](../03-python-uv/lab.md)). The concepts of [Python projects and environments](../03-python-uv/python.md) are assumed, especially virtual environments.
+You need the `ledger` project, where `uv run ledger` prints `Hello from ledger!` (see [The ledger becomes a Python project](../03-python-uv/lab.md)). The concepts of [Python projects and environments](../03-python-uv/notes.md) are assumed, especially virtual environments.
 
 ## Class slides
 

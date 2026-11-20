@@ -4,7 +4,7 @@
 
 ## The thread of the session
 
-1. **[Databases and persistence](databases.md).** Tables, primary and foreign keys, SQL (`SELECT`, `JOIN`, `GROUP BY`, `INSERT`), declarative SQL versus imperative Python, SQL injection, money in a database, SQLite and database servers, the ORM, and database transactions.
+1. **[Databases and persistence](notes.md).** Tables, primary and foreign keys, SQL (`SELECT`, `JOIN`, `GROUP BY`, `INSERT`), declarative SQL versus imperative Python, SQL injection, money in a database, SQLite and database servers, the ORM, and database transactions.
 2. **[Lab: the ledger in a database](lab.md).** You add a database module, link transactions to accounts with a foreign key, read the rows back as `Transaction`s, import the CSV file into SQLite, check that the reports don't change, query the database with SQL, and add the business rules for recording new transactions. At the end you tag your repository as **checkpoint 2** and submit it on Blackboard.
 
 ## Objectives
@@ -25,7 +25,7 @@ By the end of the session you should be able to:
 
 | Page | What you do |
 |---|---|
-| [Databases and persistence](databases.md) | read, with the exercises |
+| [Databases and persistence](notes.md) | read, with the exercises |
 | [Lab: the ledger in a database](lab.md) | hands-on |
 
 ## Before you start

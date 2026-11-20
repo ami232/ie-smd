@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)): the folder `~/smd/ledger` with `pyproject.toml`, `src/ledger/__init__.py` and `.venv`, where `uv run ledger` prints `Hello from ledger!`. The concepts of dependencies are in [Dependencies and the lockfile](dependencies.md).
+> The `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)): the folder `~/smd/ledger` with `pyproject.toml`, `src/ledger/__init__.py` and `.venv`, where `uv run ledger` prints `Hello from ledger!`. The concepts of dependencies are in [Dependencies and the lockfile](notes.md).
 
 The `ledger` project exists but has no code yet. In this lab you write its code in a real editor and make it a complete project. You set up VS Code and write the ledger in Python (steps 1 to 3). You add a third-party library, which gives the project a lockfile, and prove that the project rebuilds from its files (steps 4 to 6). Then you use two tools on the code: the debugger, to watch the program run line by line, and Ruff, to find a bug without running the code (steps 7 and 8).
 
@@ -306,7 +306,7 @@ grep -c "^\[\[package\]\]" uv.lock
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-`pyproject.toml` now lists one direct dependency with a constraint, such as `"rich>=15.0.0"`. `uv tree` shows `rich` and its three transitive dependencies (`markdown-it-py`, `mdurl`, `pygments`). `uv.lock` has **5** packages: those four plus `ledger` itself, each with an exact version and file hashes. Your versions may be newer than the ones shown in [Dependencies and the lockfile](dependencies.md#direct-and-transitive).
+`pyproject.toml` now lists one direct dependency with a constraint, such as `"rich>=15.0.0"`. `uv tree` shows `rich` and its three transitive dependencies (`markdown-it-py`, `mdurl`, `pygments`). `uv.lock` has **5** packages: those four plus `ledger` itself, each with an exact version and file hashes. Your versions may be newer than the ones shown in [Dependencies and the lockfile](notes.md#direct-and-transitive).
 
 </details>
 
@@ -677,4 +677,4 @@ The three months sum to the net total of both accounts, `4255.10`:
 
 </details>
 
-[← Previous: Dependencies and the lockfile](dependencies.md) [Back to the session ↑](index.md)
+[← Previous: Dependencies and the lockfile](notes.md) [Back to the session ↑](index.md)

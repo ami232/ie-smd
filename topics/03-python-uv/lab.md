@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The [course environment](../02-linux-shell/setup.md) and the folder `~/smd/ledger` with `data/transactions.csv` (see [A ledger in the shell](../02-linux-shell/lab.md)). The concepts are in [Python projects and environments](python.md).
+> The [course environment](../02-linux-shell/setup.md) and the folder `~/smd/ledger` with `data/transactions.csv` (see [A ledger in the shell](../02-linux-shell/lab.md)). The concepts are in [Python projects and environments](notes.md).
 
 > ⚠️ **If you don't have the `ledger` folder**
 >
@@ -47,7 +47,7 @@ uv --version
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-A line such as `uv 0.13.6`. Any recent version works. If you get `command not found`, it is the [`PATH` problem](../02-linux-shell/system.md#path-how-the-shell-finds-commands): open a new terminal.
+A line such as `uv 0.13.6`. Any recent version works. If you get `command not found`, it is the [`PATH` problem](../02-linux-shell/notes.md#path-how-the-shell-finds-commands): open a new terminal.
 
 </details>
 
@@ -112,7 +112,7 @@ cat src/ledger/__init__.py
 
 Your existing files (`data/` and, if you made them, `balance.sh` and `report.txt`) are untouched. Next to them there are four new ones: `.python-version` (contains `3.14`), `README.md`, `pyproject.toml` and `src/ledger/__init__.py`.
 
-`pyproject.toml` is like the one explained in [the concepts page](python.md#pyprojecttoml): `requires-python = ">=3.14"`, no dependencies yet, and a script `ledger = "ledger:main"`. If your Git configuration has your name, uv adds an `authors` line too. The package contains a single function:
+`pyproject.toml` is like the one explained in [the concepts page](notes.md#pyprojecttoml): `requires-python = ">=3.14"`, no dependencies yet, and a script `ledger = "ledger:main"`. If your Git configuration has your name, uv adds an `authors` line too. The package contains a single function:
 
 ```python
 def main() -> None:
@@ -164,7 +164,7 @@ uv python pin 3.13
 error: The requested Python version `3.13` is incompatible with the project `requires-python` value of `>=3.14`.
 ```
 
-(uv may first download Python 3.13.) The project declares that it needs 3.14 or newer, and uv enforces it. This error, at setup time, is what would have saved Ana from the `SyntaxError` on the server (see [It works on my machine](../01-dev-environments/environments.md#it-works-on-my-machine)).
+(uv may first download Python 3.13.) The project declares that it needs 3.14 or newer, and uv enforces it. This error, at setup time, is what would have saved Ana from the `SyntaxError` on the server (see [It works on my machine](../01-dev-environments/notes.md#it-works-on-my-machine)).
 
 </details>
 
@@ -177,4 +177,4 @@ You have finished the lab when:
 - [ ] `uv python pin 3.13` is refused, and you can explain why;
 - [ ] you can explain what is inside `.venv`, and why each project has its own.
 
-[← Previous: Python projects and environments](python.md) [Back to the session ↑](index.md)
+[← Previous: Python projects and environments](notes.md) [Back to the session ↑](index.md)

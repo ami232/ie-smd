@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The `ledger` project in your repository `smd-app`: one file, `src/ledger/__init__.py`, that reads the CSV file, computes balances and spending, and prints them. Functions, dictionaries and `import` in Python, and [Python projects with uv](../03-python-uv/python.md), especially the `[project.scripts]` entry of `pyproject.toml`.
+> The `ledger` project in your repository `smd-app`: one file, `src/ledger/__init__.py`, that reads the CSV file, computes balances and spending, and prints them. Functions, dictionaries and `import` in Python, and [Python projects with uv](../03-python-uv/notes.md), especially the `[project.scripts]` entry of `pyproject.toml`.
 
 ## Why structure matters
 

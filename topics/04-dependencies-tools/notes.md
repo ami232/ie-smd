@@ -2,9 +2,9 @@
 
 > ℹ️ **What you need first**
 >
-> Virtual environments, `pyproject.toml` and the basic uv commands, from [Python projects and environments](../03-python-uv/python.md), and the `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)).
+> Virtual environments, `pyproject.toml` and the basic uv commands, from [Python projects and environments](../03-python-uv/notes.md), and the `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)).
 
-A project needs four things: a declared Python version, its own environment, a standard way to run it, and **a precise list of the libraries it uses**. The first three are explained in [From a script to a project](../03-python-uv/python.md#from-a-script-to-a-project). So far `ledger` only uses Python's standard library, so the list is empty. The moment it needs a library from PyPI, the project needs that fourth thing, and this page explains how it works.
+A project needs four things: a declared Python version, its own environment, a standard way to run it, and **a precise list of the libraries it uses**. The first three are explained in [From a script to a project](../03-python-uv/notes.md#from-a-script-to-a-project). So far `ledger` only uses Python's standard library, so the list is empty. The moment it needs a library from PyPI, the project needs that fourth thing, and this page explains how it works.
 
 ## Direct and transitive
 
@@ -52,7 +52,7 @@ The two files have different jobs. **`pyproject.toml` says what the project acce
 | `uv tree` | shows the dependency tree |
 | `uv lock --upgrade` | resolves again with the newest versions the constraints allow |
 
-`uv run` also syncs the environment before running, so after a teammate changes the lockfile, your next `uv run` installs what changed. Together, `.python-version`, `pyproject.toml` and `uv.lock` describe layers 4 and 5 of the environment completely. Anyone who has uv can rebuild them identically, which is exactly the "automate it" level of reproducibility from [session 1](../01-dev-environments/environments.md#reproducibility).
+`uv run` also syncs the environment before running, so after a teammate changes the lockfile, your next `uv run` installs what changed. Together, `.python-version`, `pyproject.toml` and `uv.lock` describe layers 4 and 5 of the environment completely. Anyone who has uv can rebuild them identically, which is exactly the "automate it" level of reproducibility from [session 1](../01-dev-environments/notes.md#reproducibility).
 
 ## Common mistakes
 

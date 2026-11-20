@@ -2,18 +2,18 @@
 
 > ℹ️ **What you need first**
 >
-> The layers of an environment and the idea of reproducibility, from [Environments and reproducibility](../01-dev-environments/environments.md). Environment variables and `PATH`, from [Users, packages and the environment](../02-linux-shell/system.md#environment-variables).
+> The layers of an environment and the idea of reproducibility, from [Environments and reproducibility](../01-dev-environments/notes.md). Environment variables and `PATH`, from [Users, packages and the environment](../02-linux-shell/notes.md#environment-variables).
 
 ## From a script to a project
 
-Ana's fraud script from [It works on my machine](../01-dev-environments/environments.md#it-works-on-my-machine) was a **script**: one file, run by hand, depending on whatever happened to be installed on her laptop. Scripts are great for exploring. Once other people need to run the code, though, on other machines and for months, it becomes a **project**, and it needs four things the script didn't have:
+Ana's fraud script from [It works on my machine](../01-dev-environments/notes.md#it-works-on-my-machine) was a **script**: one file, run by hand, depending on whatever happened to be installed on her laptop. Scripts are great for exploring. Once other people need to run the code, though, on other machines and for months, it becomes a **project**, and it needs four things the script didn't have:
 
 1. **A declared Python version**, so nobody runs it on an interpreter that can't understand it.
 2. **Its own set of installed libraries**, separate from those of every other project on the machine.
 3. **A precise list of those libraries and their versions**, so that every installation is identical.
 4. **A standard way to run it**, documented in the project itself.
 
-This page explains the version, the environment and the way to run it, and the [lab](lab.md) builds them with uv. The precise list of libraries comes with the project's first dependency (see [Dependencies and the lockfile](../04-dependencies-tools/dependencies.md)).
+This page explains the version, the environment and the way to run it, and the [lab](lab.md) builds them with uv. The precise list of libraries comes with the project's first dependency (see [Dependencies and the lockfile](../04-dependencies-tools/notes.md)).
 
 ## The interpreter
 
@@ -102,7 +102,7 @@ For years, Python developers needed several tools for all this: `pyenv` to insta
 | `uv run <cmd>` | runs a command in the project's environment, creating the environment first if needed |
 | `uv python pin 3.14` | changes the project's Python version in `.python-version` |
 
-The file `.python-version` (just `3.14`) tells uv which Python to use for the project's environment, and uv downloads it if it's missing. The commands for adding libraries to a project are in [uv commands for dependencies](../04-dependencies-tools/dependencies.md#uv-commands-for-dependencies).
+The file `.python-version` (just `3.14`) tells uv which Python to use for the project's environment, and uv downloads it if it's missing. The commands for adding libraries to a project are in [uv commands for dependencies](../04-dependencies-tools/notes.md#uv-commands-for-dependencies).
 
 ## Common mistakes
 

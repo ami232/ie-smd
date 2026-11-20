@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> Your [machine card](../01-dev-environments/machine_card.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
+> Your [machine card](../01-dev-environments/machine_card.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/notes.md#three-places-to-run-software-host-virtual-machine-container).
 
 For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that the [lab](lab.md) needs, and then [Docker](#docker). Installing it now leaves time to fix any problem before you need it. There are several ways to get them, and the right one depends on your laptop's operating system: keep your [machine card](../01-dev-environments/machine_card.md) at hand.
 
@@ -140,7 +140,7 @@ The course supports Windows through the VM ([track B](#track-b-a-linux-vm)). Use
 
 > 📘 **What WSL is**
 >
-> WSL lets Linux programs run on Windows **without dual booting and without managing a VM yourself**. Its current version, WSL 2, runs a real Linux kernel, built by Microsoft, inside a small, lightweight [virtual machine](../01-dev-environments/environments.md#virtual-machines) that Windows starts and stops for you in a second or two. On top of that kernel you install a *distribution* (we use Ubuntu), which brings the usual Linux userland: bash, `apt` and the standard tools.
+> WSL lets Linux programs run on Windows **without dual booting and without managing a VM yourself**. Its current version, WSL 2, runs a real Linux kernel, built by Microsoft, inside a small, lightweight [virtual machine](../01-dev-environments/notes.md#virtual-machines) that Windows starts and stops for you in a second or two. On top of that kernel you install a *distribution* (we use Ubuntu), which brings the usual Linux userland: bash, `apt` and the standard tools.
 >
 > Unlike a VM you create yourself, WSL is integrated with Windows. Ubuntu appears as a tab in Windows Terminal; the Windows disk is visible from Linux at `/mnt/c`; your Linux files are visible from the File Explorer under **Linux**; and Windows programs (such as VS Code) can work on Linux folders. Docker Desktop uses the same lightweight VM to run Linux containers, which is why it needs WSL.
 >
@@ -174,4 +174,4 @@ With WSL, "the course shell" is the **Ubuntu** terminal, and the rest of the cou
 
 </details>
 
-[← Previous: Users, packages and the environment](system.md) [Next: Lab →](lab.md)
+[← Previous: The shell and the system](notes.md) [Next: Lab →](lab.md)

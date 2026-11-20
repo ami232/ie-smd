@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](environments.md).
+> Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](notes.md).
 
 In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the GitHub account you need for the course. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: it is what you use to set up the course environment, so fill it in carefully.
 
@@ -188,4 +188,4 @@ groups | tr ' ' '\n' | grep -x sudo
 
 When you finish, upload your filled-in machine card to the **Machine Card** assignment on Blackboard. Keep a copy: you need it to set up the course environment.
 
-[← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)
+[← Previous: Environments and reproducibility](notes.md) [Back to the session ↑](index.md)

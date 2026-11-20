@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The course environment installed and checked ([Setting up the course environment](setup.md#check-that-it-works)). The commands are explained in [The shell and the filesystem](shell.md) and [Users, packages and the environment](system.md).
+> The course environment installed and checked ([Setting up the course environment](setup.md#check-that-it-works)). The commands are explained in [The shell and the system](notes.md).
 
 In this lab you create the folder for **ledger**, the application we build during the course. You download its first data, a CSV file with three months of transactions from a personal checking account and a savings account, and answer questions about the money using only the shell. Then you turn your best pipeline into a script, the first piece of code of the project.
 
@@ -93,7 +93,7 @@ grep ",savings," data/transactions.csv
 
 ## 4. Spending by category
 
-Which categories have the most transactions? This is the `sort | uniq -c | sort -rn` pattern from [the concepts page](shell.md#the-text-toolbox), applied to the fourth column. `tail -n +2` skips the header line:
+Which categories have the most transactions? This is the `sort | uniq -c | sort -rn` pattern from [the notes](notes.md#the-text-toolbox), applied to the fourth column. `tail -n +2` skips the header line:
 
 ```bash
 cut -d, -f4 data/transactions.csv | tail -n +2 | sort | uniq -c | sort -rn
@@ -174,7 +174,7 @@ EOF
 Line by line:
 
 - `#!/usr/bin/env bash`, the **shebang**, tells the system to run the file with bash.
-- `file="${LEDGER_FILE:-data/transactions.csv}"` reads the environment variable `LEDGER_FILE` and, if it isn't set, uses the default path. This is how programs get their configuration, as described in [the concepts page](system.md#environment-variables).
+- `file="${LEDGER_FILE:-data/transactions.csv}"` reads the environment variable `LEDGER_FILE` and, if it isn't set, uses the default path. This is how programs get their configuration, as described in [the concepts page](notes.md#environment-variables).
 - The `awk` program adds the amounts *per account*. `s[$2]` is a table indexed by the second column.
 
 Now run it:
@@ -229,7 +229,7 @@ unset LEDGER_FILE
 
 With `LEDGER_FILE=data/checking.csv`, only the `checking` line appears: `grep -v` kept all the lines *except* the savings ones (the header included). The next `./balance.sh` uses the default file again, because the variable existed only for that one command.
 
-With the missing file, `awk` prints an error saying it can't open `data/missing.csv`, yet `echo $?` prints `0`: the script says it succeeded. [Exercise 5 of the concepts page](system.md#exercises) explains why, and how `set -o pipefail` fixes it. Add `set -euo pipefail` as the second line of `balance.sh` and try again. Now the exit code is not 0.
+With the missing file, `awk` prints an error saying it can't open `data/missing.csv`, yet `echo $?` prints `0`: the script says it succeeded. [Exercise 10 of the notes](notes.md#exercises) explains why, and how `set -o pipefail` fixes it. Add `set -euo pipefail` as the second line of `balance.sh` and try again. Now the exit code is not 0.
 
 </details>
 

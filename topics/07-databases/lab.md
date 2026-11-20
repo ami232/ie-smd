@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> Your repository `smd-app` with `ledger` as a package (see [Lab: from one file to a package](../06-project-structure/lab.md)) merged into `main`: the modules `models`, `storage`, `reports` and `cli`, and the commands `balance`, `spending` and `months`. The concepts of [Databases and persistence](databases.md): tables, primary and foreign keys, SQL, money in a database, and the ORM.
+> Your repository `smd-app` with `ledger` as a package (see [Lab: from one file to a package](../06-project-structure/lab.md)) merged into `main`: the modules `models`, `storage`, `reports` and `cli`, and the commands `balance`, `spending` and `months`. The concepts of [Databases and persistence](notes.md): tables, primary and foreign keys, SQL, money in a database, and the ORM.
 
 In this lab `ledger` stops reading a CSV file on every run and keeps its transactions in a **SQLite database**, through **SQLAlchemy**. The CSV file becomes something you import once, and a new command records transactions that are still there the next time the program runs. The tables and the connection go in a new module, `db.py`, and `storage.py` and `cli.py` grow new functions. `models.py` and `reports.py` don't change at all: the reports keep working on `Transaction`s, wherever they come from. The code is on this page, except for a few places marked `# TODO`: the link between transactions and accounts, reading the rows back, two business rules, and a SQL query.
 
@@ -135,7 +135,7 @@ def get_session() -> Session:
 Read it from the top:
 
 - **`DATABASE_URL`** says which database to use: `sqlite:///ledger.db` is a SQLite file called `ledger.db` in the folder where you run the program. To use PostgreSQL instead, only this line would change.
-- **`Money`** is a column type for amounts. It stores each amount as a whole number of **cents** (`-950.00` → `-95000`) and gives it back as a `Decimal`, so the rest of the program never sees the cents. SQLite has no exact decimal type, and money is never a float (see [Money in a database](databases.md#money-in-a-database)).
+- **`Money`** is a column type for amounts. It stores each amount as a whole number of **cents** (`-950.00` → `-95000`) and gives it back as a `Decimal`, so the rest of the program never sees the cents. SQLite has no exact decimal type, and money is never a float (see [Money in a database](notes.md#money-in-a-database)).
 - **`Base`** is the class every table inherits from. SQLAlchemy collects the tables of its subclasses, which is how `create_tables` knows what to create.
 - **`Account`** is the table `accounts`: each account is stored once, with a unique name. `account.rows` is the list of its transactions, through a `relationship`.
 - **`TransactionRow`** is the table `transactions`, one row per transaction. It is not your `Transaction` dataclass: `Transaction` is what the program works with, `TransactionRow` is how it is stored, and `storage.py` converts one into the other.
@@ -464,7 +464,7 @@ The amounts are in cents (`-3990` is −39.90 €), and the account of each tran
 <details>
 <summary>💡 <b>Hints</b></summary>
 
-The name is in `accounts` and the amounts are in `transactions`: you need a `JOIN` on the foreign key, a `SUM` and a `GROUP BY` (see [SQL](databases.md#sql)).
+The name is in `accounts` and the amounts are in `transactions`: you need a `JOIN` on the foreign key, a `SUM` and a `GROUP BY` (see [SQL](notes.md#sql)).
 
 </details>
 
@@ -591,4 +591,4 @@ What is checked is that commit:
 - [ ] two merged pull requests, from `refactor/package` (see [Lab: from one file to a package](../06-project-structure/lab.md)) and from `feature/database`, each with a description and merged with a merge commit;
 - [ ] the tag `cp2` pushed to GitHub.
 
-[← Previous: Databases and persistence](databases.md) [Back to the session ↑](index.md)
+[← Previous: Databases and persistence](notes.md) [Back to the session ↑](index.md)

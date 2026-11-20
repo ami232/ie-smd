@@ -4,7 +4,7 @@ Until now, `ledger` lived only in a folder on your laptop, and its only history 
 
 ## The thread of the session
 
-1. **[Version control with Git](git.md).** Commits, the working tree and the staging area, `.gitignore`, remotes, branches, merges, conflicts, pull requests, tags, and how a team works on one repository.
+1. **[Version control with Git](notes.md).** Commits, the working tree and the staging area, `.gitignore`, remotes, branches, merges, conflicts, pull requests, tags, and how a team works on one repository.
 2. **[Lab: your app's repository](lab.md).** You create your repository on GitHub, add the ledger, and go through the whole workflow: commit, push, pull, branch, conflict and pull request. You submit the URL of your repository on Blackboard. This lab is done without AI.
 
 ## Objectives
@@ -25,7 +25,7 @@ By the end of the session you should be able to:
 
 | Page | What you do |
 |---|---|
-| [Version control with Git](git.md) | read, with the exercises |
+| [Version control with Git](notes.md) | read, with the exercises |
 | [Lab: your app's repository](lab.md) | hands-on, by hand |
 
 ## Before you start

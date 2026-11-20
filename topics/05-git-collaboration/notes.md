@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The shell from [Linux and the shell](../02-linux-shell/shell.md): moving between folders, hidden files (`ls -a`) and running commands. The `ledger` project (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)), and which of its files describe the project and which are generated, from [Dependencies and the lockfile](../04-dependencies-tools/dependencies.md).
+> The shell from [Linux and the shell](../02-linux-shell/notes.md): moving between folders, hidden files (`ls -a`) and running commands. The `ledger` project (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)), and which of its files describe the project and which are generated, from [Dependencies and the lockfile](../04-dependencies-tools/notes.md).
 
 ## Why version control
 

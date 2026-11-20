@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> Your repository `smd-app` on GitHub (see [Lab: your app's repository](../05-git-collaboration/lab.md)), cloned in `~/smd/smd-app`, where `uv run ledger balance` works. The ideas of [Software design and project structure](design.md): concerns, modules, the direction of dependencies, dataclasses and refactoring.
+> Your repository `smd-app` on GitHub (see [Lab: your app's repository](../05-git-collaboration/lab.md)), cloned in `~/smd/smd-app`, where `uv run ledger balance` works. The ideas of [Software design and project structure](notes.md): concerns, modules, the direction of dependencies, dataclasses and refactoring.
 
 In this lab you reorganize `ledger` from one file into a package of four modules, each with one responsibility: `models` (what a transaction is), `storage` (reading the CSV file), `reports` (the calculations) and `cli` (the command line). You don't write the modules from scratch: this page gives them to you, complete except for a few places marked `# TODO`, where you write the code yourself. This is a **refactoring**, so when you finish every command prints exactly what it printed before, and you prove it with `diff`. Then you add a command, configure Ruff and merge the work through a pull request.
 
@@ -330,7 +330,7 @@ Choose the project's linting rules: add this at the end of `pyproject.toml`:
 select = ["E", "F", "I", "B", "UP", "SIM"]
 ```
 
-[Code smells](design.md#code-smells) explains each group. Run the linter and the formatter:
+[Code smells](notes.md#code-smells) explains each group. Run the linter and the formatter:
 
 ```bash
 uv run ruff check
@@ -388,4 +388,4 @@ You have finished the lab when your repository on GitHub shows:
 - [ ] `ledger balance`, `ledger spending` and `ledger months` working;
 - [ ] a merged pull request from `refactor/package` with a description, merged with a merge commit.
 
-[← Previous: Software design and project structure](design.md) [Back to the session ↑](index.md)
+[← Previous: Software design and project structure](notes.md) [Back to the session ↑](index.md)

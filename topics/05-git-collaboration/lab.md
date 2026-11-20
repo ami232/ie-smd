@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> The `ledger` project in `~/smd/ledger` (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)), a GitHub account (see [Create your GitHub account](../01-dev-environments/lab.md#5-create-your-github-account)), and the concepts of [Version control with Git](git.md). If your ledger isn't finished, you can start from the reference version, as explained in [step 4](#4-add-the-ledger-and-commit).
+> The `ledger` project in `~/smd/ledger` (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)), a GitHub account (see [Create your GitHub account](../01-dev-environments/lab.md#5-create-your-github-account)), and the concepts of [Version control with Git](notes.md). If your ledger isn't finished, you can start from the reference version, as explained in [step 4](#4-add-the-ledger-and-commit).
 
 > ⛔ **Do this lab by hand, without AI**
 >
@@ -370,4 +370,4 @@ Submit the URL of your repository (`https://github.com/<your-username>/smd-app`)
 
 This repository is where you build your application: from here on, every change to it goes through Git.
 
-[← Previous: Version control with Git](git.md) [Back to the session ↑](index.md)
+[← Previous: Version control with Git](notes.md) [Back to the session ↑](index.md)

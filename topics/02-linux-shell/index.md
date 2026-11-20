@@ -6,10 +6,9 @@ This session gives you a working knowledge of both: how a Unix system is organiz
 
 ## The thread of the session
 
-1. **[The shell and the filesystem](shell.md).** The Unix philosophy (small tools that do one thing, combined with pipes), how the filesystem is organized, and the twenty or so commands that cover most daily work.
-2. **[Users, packages and the environment](system.md).** Who can do what (users, groups, permissions, `sudo`), how software is installed (package managers), and the environment variables that configure every program, starting with `PATH`.
-3. **[Setting up the course environment](setup.md).** The setup we use for the rest of the course, with installation steps for each operating system.
-4. **[Lab: a ledger in the shell](lab.md).** You create the project folder for the course application, download its first dataset, answer questions about the transactions with pipelines, and write your first shell script.
+1. **[The shell and the system](notes.md).** The Unix philosophy (small tools that do one thing, combined with pipes), how the filesystem is organized, and the twenty or so commands that cover most daily work. Then the system itself: who can do what (users, groups, permissions, `sudo`), how software is installed (package managers), and the environment variables that configure every program, starting with `PATH`.
+2. **[Setting up the course environment](setup.md).** The setup we use for the rest of the course, with installation steps for each operating system.
+3. **[Lab: a ledger in the shell](lab.md).** You create the project folder for the course application, download its first dataset, answer questions about the transactions with pipelines, and write your first shell script.
 
 ## Objectives
 
@@ -24,7 +23,7 @@ By the end of the session you should be able to:
 
 ## Before you start
 
-You need a terminal and your filled-in [machine card](../01-dev-environments/machine_card.md). The concepts of [environments and reproducibility](../01-dev-environments/environments.md) are useful, especially the difference between a VM and a container.
+You need a terminal and your filled-in [machine card](../01-dev-environments/machine_card.md). The concepts of [environments and reproducibility](../01-dev-environments/notes.md) are useful, especially the difference between a VM and a container.
 
 ## Class slides
 
