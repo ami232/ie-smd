@@ -316,7 +316,7 @@ For a team of six or seven building one web application in a few weeks, **trunk-
 
 In practice, a team agrees on five rules:
 
-1. **Nobody pushes to `main`.** Protect it on GitHub: *Settings → Branches → Add branch protection rule* (or *Rules → Rulesets*) for `main`, requiring a pull request with at least one approval and, once there is continuous integration, the checks to pass. GitHub then refuses a direct `git push` to `main`, for everybody.
+1. **Nobody pushes to `main`.** Protect it on GitHub: *Settings → Branches → Add branch protection rule* (or *Settings → Rulesets*) for `main`, requiring a pull request with at least one approval and, once there is continuous integration, the checks to pass. GitHub then refuses a direct `git push` to `main`, for everybody.
 2. **One branch per task, created from an up-to-date `main`**, and named after the task: `feature/invoices-api`, `fix/dashboard-totals`, `docs/readme-conventions`.
 3. **Small pull requests, merged within a day or two.** A pull request that changes a few files is reviewed in minutes; one that changes half the project waits for days and conflicts with everybody's work.
 4. **Bring `main` into your branch often**, and resolve conflicts on your branch, before the pull request is merged. The button *Update branch* on the pull request does the same on GitHub when there is no conflict.
