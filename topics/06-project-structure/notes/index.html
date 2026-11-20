@@ -1,0 +1,2176 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/06-project-structure/notes/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Software design and project structure - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-design-and-project-structure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software design and project structure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-dev-environments/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-python-uv/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python projects with uv
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Python projects with uv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects and environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger becomes a Python project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-dependencies-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dependencies and developer tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dependencies and developer tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and the lockfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: writing and checking the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-git-collaboration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Git and collaboration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Git and collaboration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Software design and project structure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-structure-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why structure matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separation-of-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of concerns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Separation of concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-direction-of-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The direction of dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-single-responsibility-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The single responsibility principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-much-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How much structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules-and-packages-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modules and packages in Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules and packages in Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-src-layout-and-the-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The src layout and the entry point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circular-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circular imports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-as-classes-dataclasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data as classes: dataclasses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-functions-at-the-centre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure functions at the centre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refactoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-smells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code smells
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-your-own-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing your own module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: from one file to a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-databases/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Databases and persistence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger in a database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-structure-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why structure matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separation-of-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of concerns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Separation of concerns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-direction-of-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The direction of dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-single-responsibility-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The single responsibility principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-much-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How much structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules-and-packages-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modules and packages in Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules and packages in Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-src-layout-and-the-entry-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The src layout and the entry point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circular-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circular imports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-as-classes-dataclasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data as classes: dataclasses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-functions-at-the-centre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure functions at the centre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refactoring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-smells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code smells
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-your-own-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing your own module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="software-design-and-project-structure">Software design and project structure<a class="headerlink" href="#software-design-and-project-structure" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p>The <code>ledger</code> project in your repository <code>smd-app</code>: one file, <code>src/ledger/__init__.py</code>, that reads the CSV file, computes balances and spending, and prints them. Functions, dictionaries and <code>import</code> in Python, and <a href="../../03-python-uv/notes/">Python projects with uv</a>, especially the <code>[project.scripts]</code> entry of <code>pyproject.toml</code>.</p>
+</div>
+<h2 id="why-structure-matters">Why structure matters<a class="headerlink" href="#why-structure-matters" title="Permanent link">&para;</a></h2>
+<p><code>ledger</code> is about 50 lines in one file, and it works. Now imagine the next requests. <em>"Keep the transactions in a database instead of a CSV file."</em> <em>"Offer the same balances through a web API, for a dashboard."</em> <em>"Add a report of spending per month."</em> For each one, ask: which lines of <code>__init__.py</code> change?</p>
+<p>The honest answer is "it depends, read the whole file". <code>read_transactions</code> reads the CSV <em>and</em> turns amounts into <code>Decimal</code>. <code>main</code> reads the command line, <em>and</em> filters out transfers to find the spending, <em>and</em> draws the table. The rule "spending means a negative amount that is not a transfer" lives inside the code that prints. To serve the spending through an API, you would copy that rule, and the day it changes (refunds, say), someone updates one copy and forgets the other.</p>
+<p>In a small script that is fine. In software that a team keeps changing for years, it is the main source of bugs and slowness: every change touches code that does several things, so every change risks breaking something unrelated. <strong>Software design</strong> is the set of decisions about how to split a program into parts so that each likely change touches as few parts as possible. This page covers the decisions that matter for an application like <code>ledger</code>: which parts to have, how they depend on each other, how to represent the data, and how to reorganize code that already works without breaking it.</p>
+<h2 id="separation-of-concerns">Separation of concerns<a class="headerlink" href="#separation-of-concerns" title="Permanent link">&para;</a></h2>
+<p>Look at what <code>ledger</code> does and group it by <em>reason to change</em>. There are four groups:</p>
+<ol>
+<li><strong>What the data is.</strong> A transaction has a date, an account, a description, a category and an amount. This changes only when the business changes (a transaction gets a currency, say).</li>
+<li><strong>Where the data is stored.</strong> Today, a CSV file. Tomorrow, a database. This changes when the infrastructure changes.</li>
+<li><strong>What we compute.</strong> Balances per account, spending per category, the definition of spending. This changes when the business questions change.</li>
+<li><strong>How the user talks to the program.</strong> Today, a command line with a <code>rich</code> table. Tomorrow, a web API. This changes when the interface changes.</li>
+</ol>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: concern, module, separation of concerns</p>
+<p>A <strong>concern</strong> is one area of responsibility of a program, with its own reasons to change: the data, storage, calculations, the user interface.</p>
+<p><strong>Separation of concerns</strong> is the design principle of putting each concern in its own part of the code, so that a change in one concern touches only that part. In Python, the natural part is the <strong>module</strong>: one <code>.py</code> file with the functions and classes of one concern.</p>
+</div>
+<p>For <code>ledger</code>, separation of concerns gives four modules:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Concern</th>
+<th>Knows about</th>
+<th>Doesn't know about</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>models.py</code></td>
+<td>what a transaction is</td>
+<td>nothing else in the project</td>
+<td>files, databases, printing</td>
+</tr>
+<tr>
+<td><code>storage.py</code></td>
+<td>reading transactions from where they are kept</td>
+<td><code>models</code></td>
+<td>the calculations, printing</td>
+</tr>
+<tr>
+<td><code>reports.py</code></td>
+<td>the calculations: balances, spending, months</td>
+<td><code>models</code></td>
+<td>where the data came from, how it is shown</td>
+</tr>
+<tr>
+<td><code>cli.py</code></td>
+<td>the command line: arguments and output</td>
+<td><code>storage</code>, <code>reports</code></td>
+<td>how the calculations work</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-direction-of-dependencies">The direction of dependencies<a class="headerlink" href="#the-direction-of-dependencies" title="Permanent link">&para;</a></h3>
+<p>A module <em>depends on</em> another when it imports it. The table above implies a direction:</p>
+<div class="highlight"><pre><span></span><code>          cli.py
+         /      \
+        ▼        ▼
+ storage.py   reports.py
+         \      /
+          ▼    ▼
+        models.py
+</code></pre></div>
+<p>The arrows go from the outside (the parts that talk to the world: the user, the disk) towards the inside (the data and the business rules), never the other way. <code>reports.py</code> doesn't import <code>storage</code> or <code>cli</code>. That is the property that pays off: when the CSV file becomes a database, only <code>storage.py</code> changes; when the command line gets a web API next to it, the API calls the same <code>reports</code> functions, and the definition of spending exists once.</p>
+<h3 id="the-single-responsibility-principle">The single responsibility principle<a class="headerlink" href="#the-single-responsibility-principle" title="Permanent link">&para;</a></h3>
+<p>The same idea, applied to each piece of code, has a name.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: single responsibility principle</p>
+<p><em>A module should have one, and only one, reason to change.</em> A <strong>responsibility</strong> is a reason to change: a part of the program that changes when one kind of requirement changes (the data, the storage, the business rules, the interface). The principle was formulated by Robert C. Martin, and it is the <em>S</em> of <strong>SOLID</strong>, five principles of object-oriented design.</p>
+</div>
+<p>It applies to functions and classes as much as to modules. The old <code>main</code> of <code>ledger</code> has four reasons to change: the command-line arguments, the rule of what counts as spending, how totals are computed, and how the table is drawn. The new <code>is_spending</code> has one: the rule of what counts as spending. When that rule changes (say, refunds must reduce spending), there is exactly one place to edit, and nothing else can break.</p>
+<p>A rule of thumb to check a design: for each module or function, finish the sentence "this changes when…". If the sentence needs an "and" ("when the file format changes <em>and</em> when the definition of spending changes"), it mixes two responsibilities, and it should be split.</p>
+<h3 id="how-much-structure">How much structure<a class="headerlink" href="#how-much-structure" title="Permanent link">&para;</a></h3>
+<p>Separation of concerns can be overdone. A program split into thirty files of five lines each, with layers that only pass calls through, is as hard to change as one big file, because every change now visits many places. The goal is one module per concern that really changes on its own, not as many modules as possible. Four modules for <code>ledger</code> is enough; a large application has the same four layers, each one a package with several modules.</p>
+<h2 id="modules-and-packages-in-python">Modules and packages in Python<a class="headerlink" href="#modules-and-packages-in-python" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: module and package</p>
+<p>A <strong>module</strong> is a <code>.py</code> file. Its name, without <code>.py</code>, is what you import: the file <code>reports.py</code> is the module <code>reports</code>.</p>
+<p>A <strong>package</strong> is a folder of modules with an <code>__init__.py</code> file. The folder <code>src/ledger/</code> is the package <code>ledger</code>, and <code>src/ledger/reports.py</code> is the module <code>ledger.reports</code>.</p>
+</div>
+<p>Inside the package, modules import each other by their full name, starting at the package. These are <strong>absolute imports</strong>, and they work the same from any module and from any folder you run the program in:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">ledger.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transaction</span>    <span class="c1"># one name from a module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ledger</span><span class="w"> </span><span class="kn">import</span> <span class="n">reports</span><span class="p">,</span> <span class="n">storage</span>      <span class="c1"># whole modules; then reports.balances(...)</span>
+</code></pre></div>
+<p><code>__init__.py</code> runs the first time anything from the package is imported. It can stay almost empty: a docstring that says what the package is. Before, all of <code>ledger</code> lived in it; now each concern has its own module.</p>
+<h3 id="the-src-layout-and-the-entry-point">The <code>src</code> layout and the entry point<a class="headerlink" href="#the-src-layout-and-the-entry-point" title="Permanent link">&para;</a></h3>
+<p><code>ledger</code> uses the <strong>src layout</strong>: the package is in <code>src/ledger/</code>, not in the project's top folder. uv installs the package into <code>.venv</code> in <em>editable</em> mode (the environment points to your <code>src</code> folder, so your edits are used at once), and the code always runs as the installed package <code>ledger</code>. Without the <code>src</code> folder, Python could also import <code>ledger</code> straight from the current folder, and code that works on your laptop could fail once installed somewhere else.</p>
+<p>The command <code>ledger</code> is declared in <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[project.scripts]</span>
+<span class="n">ledger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ledger.cli:main"</span>
+</code></pre></div>
+<p>This means: the command <code>ledger</code> imports the module <code>ledger.cli</code> and calls its function <code>main</code>. When <code>main</code> moves from <code>__init__.py</code> to <code>cli.py</code>, this line must change from <code>"ledger:main"</code> to <code>"ledger.cli:main"</code>. <code>uv run</code> notices that <code>pyproject.toml</code> changed and reinstalls the project before running it.</p>
+<h3 id="circular-imports">Circular imports<a class="headerlink" href="#circular-imports" title="Permanent link">&para;</a></h3>
+<p>If <code>reports.py</code> imports <code>cli.py</code> and <code>cli.py</code> imports <code>reports.py</code>, Python starts loading one, has to load the other halfway through, and fails with <code>ImportError: cannot import name ... (most likely due to a circular import)</code>. With dependencies in one direction, from the outside to the inside, this can't happen. A circular import is almost always a sign that two modules share a concern, or that a module is reaching outwards.</p>
+<h2 id="data-as-classes-dataclasses">Data as classes: dataclasses<a class="headerlink" href="#data-as-classes-dataclasses" title="Permanent link">&para;</a></h2>
+<p>In the one-file <code>ledger</code>, a transaction is a dictionary: <code>{"date": "2026-01-01", "account": "checking", ..., "amount": Decimal("-950.00")}</code>. Dictionaries are flexible, and that is their problem as data models. Nothing says which keys a transaction has. A typo, <code>t["amout"]</code>, is only found when that line runs. The editor can't complete <code>t["...</code> for you, and the date is a string that every piece of code has to remember to parse.</p>
+<p>A <strong>dataclass</strong> declares the shape of the data once. You write the fields and their types, and Python generates the rest: a constructor, a readable <code>repr</code>, and comparison with <code>==</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Transaction</span><span class="p">:</span>
+    <span class="n">date</span><span class="p">:</span> <span class="n">date</span>
+    <span class="n">account</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
+
+
+<span class="n">rent</span> <span class="o">=</span> <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Rent"</span><span class="p">,</span> <span class="s2">"housing"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-950.00"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rent</span><span class="p">)</span>
+</code></pre></div>
+<div class="resultado">
+<div class="highlight"><pre><span></span><code>Transaction(date=datetime.date(2026, 1, 1), account='checking', description='Rent', category='housing', amount=Decimal('-950.00'))
+</code></pre></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">rent</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">rent</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
+</code></pre></div>
+<div class="resultado">
+<div class="highlight"><pre><span></span><code>-950.00 1
+</code></pre></div>
+</div>
+<p>Each field is an attribute, <code>rent.amount</code>, so the editor completes it and Ruff and Pylance flag a misspelled one before the code runs. The date is a real <code>date</code>, so <code>rent.date.month</code> works without parsing a string.</p>
+<p>The annotations (<code>amount: Decimal</code>) are <strong>type hints</strong>. Python doesn't check them when the program runs: <code>Transaction(..., amount="lots")</code> is accepted. Tools do check them, and the editor uses them to tell you what each value is. They also document the code: a reader knows what <code>balances</code> returns from its signature, <code>def balances(transactions: Iterable[Transaction]) -&gt; dict[str, Decimal]</code>, without reading its body.</p>
+<p><code>frozen=True</code> makes the objects <strong>immutable</strong>: once created, their fields can't change. A transaction that happened doesn't change, and immutable objects can be passed to any function without the risk that it modifies them behind your back:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrozenInstanceError</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">rent</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"0"</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">FrozenInstanceError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"FrozenInstanceError:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+</code></pre></div>
+<div class="resultado">
+<div class="highlight"><pre><span></span><code>FrozenInstanceError: cannot assign to field 'amount'
+</code></pre></div>
+</div>
+<h2 id="pure-functions-at-the-centre">Pure functions at the centre<a class="headerlink" href="#pure-functions-at-the-centre" title="Permanent link">&para;</a></h2>
+<p>Look at the functions of <code>reports.py</code> in <a href="../lab/#3-write-the-calculations">the lab</a>: they receive transactions and return dictionaries. They don't open files, print, read the clock or ask the user anything.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: pure function and side effect</p>
+<p>A <strong>side effect</strong> is anything a function does besides returning a value: reading or writing a file or a database, printing, reading the clock, changing a global variable.</p>
+<p>A <strong>pure function</strong> has no side effects, and its result depends only on its arguments: called twice with the same arguments, it returns the same result.</p>
+</div>
+<p>Pure functions are the easiest code to understand and to check. To know whether <code>spending_by_category</code> is right, build a few transactions by hand and look at the result. No file, no database, no terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">totals_by</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="n">totals</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Decimal</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transactions</span><span class="p">:</span>
+        <span class="n">totals</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">t</span><span class="o">.</span><span class="n">amount</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">totals</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_spending</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">category</span> <span class="o">!=</span> <span class="s2">"transfer"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">spending_by_category</span><span class="p">(</span><span class="n">transactions</span><span class="p">):</span>
+    <span class="n">spending</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transactions</span> <span class="k">if</span> <span class="n">is_spending</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
+    <span class="n">totals</span> <span class="o">=</span> <span class="n">totals_by</span><span class="p">(</span><span class="n">spending</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">category</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="o">-</span><span class="n">total</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">total</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])}</span>
+
+
+<span class="n">sample</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Rent"</span><span class="p">,</span> <span class="s2">"housing"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-950.00"</span><span class="p">)),</span>
+    <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Carrefour"</span><span class="p">,</span> <span class="s2">"groceries"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-65.15"</span><span class="p">)),</span>
+    <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"To savings"</span><span class="p">,</span> <span class="s2">"transfer"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-300.00"</span><span class="p">)),</span>
+    <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Salary"</span><span class="p">,</span> <span class="s2">"income"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"2600.00"</span><span class="p">)),</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spending_by_category</span><span class="p">(</span><span class="n">sample</span><span class="p">))</span>
+</code></pre></div>
+<div class="resultado">
+<div class="highlight"><pre><span></span><code>{'housing': Decimal('950.00'), 'groceries': Decimal('65.15')}
+</code></pre></div>
+</div>
+<p>The transfer and the salary are not spending, and the result says so. This is the shape of a design that is easy to test: <strong>side effects at the edges</strong> (<code>storage</code> reads, <code>cli</code> prints) and <strong>pure logic at the centre</strong> (<code>reports</code>). Program bugs are mostly in the logic, and the logic is the part you can check with four lines of data.</p>
+<p><code>totals_by</code> takes <code>key</code>, a <em>function</em> that says how to group, instead of a column name: <code>key=lambda t: t.category</code>. A <code>lambda</code> is a short function without a name; <code>lambda t: t.category</code> is the same as <code>def f(t): return t.category</code>. Passing a function makes <code>totals_by</code> work for any grouping, including ones that are not a field, like the month: <code>key=lambda t: t.date.strftime("%Y-%m")</code>.</p>
+<h2 id="refactoring">Refactoring<a class="headerlink" href="#refactoring" title="Permanent link">&para;</a></h2>
+<p>Moving the code of <code>ledger</code> into four modules doesn't add a feature. The program must do exactly what it did before.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: refactoring</p>
+<p><strong>Refactoring</strong> is changing the structure of code without changing its behaviour: the same inputs give the same outputs, before and after.</p>
+</div>
+<p>Refactoring is how real code gets a good design: almost nobody gets the structure right before the program exists. The risk is breaking something while moving it, so a refactoring is done with a safety net:</p>
+<ol>
+<li><strong>Record the behaviour before you start.</strong> Save the output of each command to a file. (With automated tests, the tests are the record; that is the next step for any serious project.)</li>
+<li><strong>Work on a branch,</strong> so <code>main</code> keeps working while you refactor.</li>
+<li><strong>Move code, don't rewrite it.</strong> Change the structure and the names, keep the logic. If you find a bug on the way, note it and fix it in a separate commit, after the refactoring, so that each commit does one thing.</li>
+<li><strong>Compare the behaviour after.</strong> Run the same commands and compare the output with <code>diff</code>. No differences means the refactoring kept the behaviour, at least for these inputs.</li>
+<li><strong>Review and merge</strong> with a pull request.</li>
+</ol>
+<h2 id="code-smells">Code smells<a class="headerlink" href="#code-smells" title="Permanent link">&para;</a></h2>
+<p>A <strong>code smell</strong> is a pattern in the code that is not a bug but usually makes the next change harder. Naming them helps a team agree on what to improve. These are the ones the one-file <code>ledger</code> had:</p>
+<table>
+<thead>
+<tr>
+<th>Smell</th>
+<th>In the old <code>ledger</code></th>
+<th>The fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A function that does several things</strong></td>
+<td><code>main</code> reads arguments, filters, computes and draws</td>
+<td>one function per job: parse, compute, print</td>
+</tr>
+<tr>
+<td><strong>Magic value</strong></td>
+<td>the string <code>"transfer"</code> inside a filter</td>
+<td>a named constant, <code>TRANSFER = "transfer"</code>, defined once</td>
+</tr>
+<tr>
+<td><strong>Duplicated knowledge</strong></td>
+<td>the rule "spending is negative and not a transfer" would be copied by any new interface</td>
+<td>one function, <code>is_spending</code>, used everywhere</td>
+</tr>
+<tr>
+<td><strong>Primitive data</strong></td>
+<td>a transaction is a dict of strings</td>
+<td>a <code>Transaction</code> dataclass with real types</td>
+</tr>
+<tr>
+<td><strong>Vague names</strong></td>
+<td><code>totals</code>, <code>t</code>, <code>data</code> used for different things</td>
+<td>names that say what a value is (<code>balances</code>, <code>spending</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Some smells can be detected automatically. A linter like Ruff does not judge the design, but it catches the patterns that often hide bugs, and a team chooses which rules to apply in <code>pyproject.toml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.ruff.lint]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"E"</span><span class="p">,</span><span class="w"> </span><span class="s2">"F"</span><span class="p">,</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SIM"</span><span class="p">]</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Rules</th>
+<th>Name</th>
+<th>Example of what they find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>E</code>, <code>F</code></td>
+<td>pycodestyle, Pyflakes</td>
+<td>lines too long, undefined names, unused imports (the default)</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>isort</td>
+<td>imports not grouped and sorted (standard library, third party, the project)</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>flake8-bugbear</td>
+<td>likely bugs, such as a mutable default argument <code>def f(items=[])</code></td>
+</tr>
+<tr>
+<td><code>UP</code></td>
+<td>pyupgrade</td>
+<td>old syntax that the project's Python version can write more simply</td>
+</tr>
+<tr>
+<td><code>SIM</code></td>
+<td>flake8-simplify</td>
+<td>code that can be written more simply, such as <code>if x: return True else: return False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Most of these problems Ruff can fix itself with <code>uv run ruff check --fix</code>. Read what it changed before committing, as you would read a teammate's change.</p>
+<h2 id="designing-your-own-module">Designing your own module<a class="headerlink" href="#designing-your-own-module" title="Permanent link">&para;</a></h2>
+<p>Your application, and your module of the group product, will go through the same steps as <code>ledger</code>, so it pays to design its data before writing code. Write down, in the README of your repository:</p>
+<ol>
+<li><strong>The entities</strong>: the kinds of things your module records (<code>Subscription</code>, <code>Invoice</code>, <code>Loan</code>…). One or two is enough.</li>
+<li><strong>Their fields, with types</strong>: <code>name: str</code>, <code>monthly_price: Decimal</code>, <code>start: date</code>. Money is always <code>Decimal</code>.</li>
+<li><strong>The relationships</strong>: which entity belongs to which (a payment belongs to an invoice; an invoice belongs to a client).</li>
+<li><strong>The calculations</strong>: what your module computes from the data, as pure functions (<code>monthly_cost(subscriptions) -&gt; Decimal</code>, <code>overdue(invoices, today) -&gt; list[Invoice]</code>).</li>
+<li><strong>The commands</strong>: what the user asks for, as <code>ledger balance</code> or <code>ledger spending</code> do.</li>
+</ol>
+<p>The four modules of <code>ledger</code> are a template: your <code>models.py</code> holds the entities, your <code>reports.py</code> the calculations, and the other two adapt with few changes.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Moving code and changing it at the same time.</strong> If the output changes, you can't tell whether the move or the edit broke it. Move first, compare, commit; then change.</li>
+<li><strong>Forgetting to update the entry point.</strong> After moving <code>main</code> to <code>cli.py</code>, <code>uv run ledger</code> fails with <code>AttributeError: module 'ledger' has no attribute 'main'</code> until <code>pyproject.toml</code> says <code>ledger.cli:main</code>.</li>
+<li><strong>Imports from the current folder.</strong> <code>import models</code> (instead of <code>from ledger import models</code>) may work when you run a file directly from <code>src/ledger/</code>, and fails everywhere else.</li>
+<li><strong>Printing inside <code>reports.py</code>.</strong> A calculation that prints can't be reused by an API or checked without reading the terminal. Return the value; let <code>cli.py</code> print it.</li>
+<li><strong>One module per function.</strong> Splitting by function rather than by concern gives many tiny files that always change together.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Key takeaways</p>
+<ul>
+<li>Design means splitting a program so that each likely change touches as few parts as possible. The <strong>single responsibility principle</strong>: each module, class or function has one reason to change. For an application: data, storage, calculations, interface.</li>
+<li>In Python each concern is a <strong>module</strong> (<code>.py</code> file), and a folder of modules with <code>__init__.py</code> is a <strong>package</strong>. Import with absolute names: <code>from ledger.models import Transaction</code>.</li>
+<li>Dependencies point <strong>inwards</strong>: the interface and storage use the models and the calculations, never the other way round. This avoids circular imports and lets you replace the CSV file or the command line without touching the calculations.</li>
+<li>A <strong>dataclass</strong> declares the shape of the data with typed fields; with <code>frozen=True</code>, the objects can't be changed after they are created.</li>
+<li>Keep side effects at the edges and <strong>pure functions</strong> at the centre: they are easy to read, reuse and check.</li>
+<li><strong>Refactoring</strong> changes the structure, not the behaviour: record the output before, move code without rewriting it, compare after, and merge through a pull request.</li>
+</ul>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong>1.</strong> For each change, say which module or modules of the new <code>ledger</code> (<code>models</code>, <code>storage</code>, <code>reports</code>, <code>cli</code>) must change:</p>
+<ol>
+<li>Transactions now come from a JSON file.</li>
+<li>Refunds, positive amounts in a spending category, must reduce that category's spending.</li>
+<li>The balance must be shown in a <code>rich</code> table too.</li>
+<li>Each transaction gets a <code>currency</code> field.</li>
+</ol>
+<details class="success">
+<summary>Solution</summary>
+<ol>
+<li><code>storage</code> only: a new function that reads JSON and returns the same <code>Transaction</code> objects.</li>
+<li><code>reports</code> only: the rule for spending changes in <code>is_spending</code> (and <code>spending_by_category</code>), and every interface picks up the change.</li>
+<li><code>cli</code> only: printing is its job.</li>
+<li><code>models</code> (the new field), <code>storage</code> (read it from the file) and probably <code>reports</code> (adding amounts in different currencies needs a decision); <code>cli</code> only if the currency is shown.</li>
+</ol>
+<p>A change to the data model is the one that travels furthest, which is why it is worth designing the data first.</p>
+</details>
+<p><strong>2.</strong> A teammate adds this to <code>reports.py</code>. What is wrong with it from a design point of view, and how would you change it?</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">print_balances</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">transactions</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">account</span><span class="p">,</span> <span class="n">total</span> <span class="ow">in</span> <span class="n">balances</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">account</span><span class="si">:</span><span class="s2">&lt;10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<details class="success">
+<summary>Solution</summary>
+<p>It mixes three concerns in the module of calculations: reading (storage), computing and printing (the interface). <code>reports.py</code> now depends on <code>storage</code>, and the function can't be reused by an API or checked without a file and a terminal. The calculation already exists (<code>balances</code>); reading belongs in <code>cli.main</code>, which calls <code>storage.read_csv</code>, and printing in <code>cli.print_totals</code>. The function should be deleted.</p>
+</details>
+<p><strong>3.</strong> <code>cli.py</code> has <code>import reports</code> and <code>reports.py</code> has <code>from cli import print_totals</code>. What happens when you run <code>uv run ledger balance</code>, and why?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>Two problems. First, <code>import reports</code> and <code>from cli import ...</code> are imports from the current folder, not from the package: with the src layout they fail with <code>ModuleNotFoundError: No module named 'reports'</code>; they must be <code>from ledger import reports</code> and <code>from ledger.cli import print_totals</code>. Second, with those fixed, the two modules import each other: a circular import, which fails with <code>ImportError: cannot import name 'print_totals' from partially initialized module 'ledger.cli'</code>. The real fix is the design: <code>reports</code> must not depend on <code>cli</code>. It returns values and <code>cli</code> prints them.</p>
+</details>
+<p><strong>4.</strong> Design the data for a <em>Subscriptions</em> module: the user records their subscriptions (Netflix, the gym…), each with a monthly price and a start date, and can cancel one. Write the dataclass, and the signature and docstring of two pure functions: the total monthly cost of the active subscriptions, and the subscriptions that cost more than a given amount.</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Subscription</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">monthly_price</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">start</span><span class="p">:</span> <span class="n">date</span>
+    <span class="n">cancelled</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># None while it is active</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">monthly_cost</span><span class="p">(</span><span class="n">subscriptions</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Subscription</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decimal</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Total monthly price of the subscriptions that are not cancelled."""</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">more_expensive_than</span><span class="p">(</span>
+    <span class="n">subscriptions</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Subscription</span><span class="p">],</span> <span class="n">limit</span><span class="p">:</span> <span class="n">Decimal</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Subscription</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Active subscriptions whose monthly price is above `limit`, most expensive first."""</span>
+</code></pre></div>
+<p>The price is a <code>Decimal</code>, not a <code>float</code>. Cancelling is a date, not a boolean, so the data says <em>when</em> it was cancelled; <code>date | None</code> means "a date or nothing". Neither function reads files or prints, so both can be checked with a list of three subscriptions written by hand.</p>
+</details>
+<p><a class="md-button" href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Back to the session</a> <a class="md-button md-button--primary" href="../lab/">Next: Lab <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Software design and project structure">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Software design and project structure
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab: from one file to a package">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab: from one file to a package
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

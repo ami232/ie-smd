@@ -1,0 +1,46 @@
+.slides-embed {
+  width: 100%;
+  aspect-ratio: 16 / 9.6;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+}
+.demo-embed {
+  width: 100%;
+  height: 720px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+}
+
+/* Resultado de los bloques ```python exec (hooks/exec_code.py) */
+.resultado {
+  margin: -0.6em 0 1em;
+  border-left: 3px solid var(--md-accent-fg-color);
+}
+.resultado pre > code {
+  background-color: var(--md-default-bg-color);
+  font-size: 0.75em;
+}
+.resultado::before {
+  content: "Resultado";
+  display: block;
+  padding: 0.2em 0.8em 0;
+  font-size: 0.65em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+.resultado-figura {
+  padding: 0.4em 0.8em;
+  background: #fff;
+}
+.resultado-figura img {
+  max-width: 100%;
+}
+.resultado pre {
+  margin-top: 0.2em;
+  margin-bottom: 0;
+}
+.resultado .md-clipboard {
+  display: none;
+}
