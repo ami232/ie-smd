@@ -17,7 +17,7 @@ The running example is **ledger**, a small fintech application that records acco
  S12–S13 Azure:   Static Web Apps ──▶ Container Apps ──▶ PostgreSQL
 ```
 
-You build your own application along the same path, in your own GitHub repository: from session 5 on, every lab adds to it. In the **group project**, your team builds one product (an invoicing system for freelancers, a shared-household budget, a micro-lending platform…), and the application each member builds is one module of it.
+You build `ledger` along this path in your own GitHub repository, lab by lab. In the **group project**, your team builds one product of its own choice (an invoicing system for freelancers, a shared-household budget, a micro-lending platform…) in one shared repository, where each member owns one module and applies the same steps to it. Everything about the group project is on Blackboard.
 
 ## Sessions
 
