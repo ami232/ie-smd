@@ -174,6 +174,39 @@ Code review is how teams keep quality up and spread knowledge: at least two peop
 
 GitHub offers three ways to merge a PR. **Create a merge commit** keeps every commit of the branch and adds a merge commit, so the history shows exactly what happened. *Squash and merge* combines all the commits of the branch into one. *Rebase and merge* copies the commits onto `main` without a merge commit. In this course we use **merge commits**, because the history is part of what we assess.
 
+## Tags: a name for one commit
+
+A branch is a name that moves: each new commit on `main` takes the name `main` with it. Sometimes you need the opposite, a name that stays on one commit forever: the version `1.0` that you released, or the exact state of your repository that you hand in. That is a **tag**.
+
+> 📘 **Definition: tag**
+>
+> A **tag** is a name attached to one commit, which doesn't move when new commits are added. It is used to mark versions (`v1.0`, `v1.1`…) and any state of the project that other people need to find again exactly.
+
+```bash
+git tag cp2                       # tag the current commit (HEAD) as cp2
+git tag -a v1.0 -m "First release"   # an annotated tag: with an author, a date and a message
+git tag                           # list the tags
+git log --oneline --decorate -3   # the tags appear next to their commits: (HEAD -> main, tag: cp2)
+git push origin cp2               # send the tag to GitHub
+```
+
+A tag without options is a **lightweight** tag: just the name. An **annotated** tag (`-a`) also records who created it, when and why, and is the usual choice for released versions. Both point to one commit in the same way.
+
+`git push` doesn't send tags: you push each one by name, as in the last line. Until you do, the tag exists only on your computer. On GitHub, the repository's **Tags** page (`https://github.com/<user>/<repo>/tags`) lists them, each with the id of its commit. Clicking the id opens the page of that commit, whose address, `https://github.com/<user>/<repo>/commit/<hash>`, is a permanent link to that exact state of the project.
+
+A tag is meant not to move. If you tagged the wrong commit, you can move it with `-f` (*force*), and you must force the push too, because you are replacing a tag that GitHub already has:
+
+```bash
+git tag -f cp2                    # move cp2 to the current commit
+git push -f origin cp2            # replace the tag on GitHub
+git tag -d cp2                    # or delete it locally...
+git push origin --delete cp2      # ...and on GitHub
+```
+
+Move or delete only your own tags, and only before anyone relies on them: a team that has deployed `v1.0` must be able to trust that `v1.0` is always the same code.
+
+In this course, you mark the commit you hand in for each checkpoint with a tag (`cp2`, `cp3`…), and you submit the link to that commit on Blackboard. What is graded is that commit, whatever you push afterwards.
+
 ## Working as a team on one repository
 
 Branches, merges and pull requests are the mechanics. A team also needs to agree on **how** to use them: which branches exist, how long they live, and how work gets into `main`. Without an agreement, six people working on one repository step on each other: someone pushes half-finished code to `main` and breaks it for everybody, a branch lives for two weeks and conflicts with everything when it is finally merged, and nobody knows which version works.
@@ -314,6 +347,7 @@ Writing `Closes #12` in the description of a pull request links it to issue 12, 
 - **Forgetting to pull.** If you start working without pulling, you build on an old version and run into conflicts that didn't need to happen. Pull before you start.
 - **Leaving conflict markers in a file.** After a conflict, search the file for `<<<<<<<` before committing. A file with markers is not valid Python, Markdown or anything else.
 - **Long-lived branches.** A branch that lives for two weeks collects conflicts with everything merged in the meantime. Merge small pieces often, and bring `main` into your branch every day.
+- **Forgetting to push a tag.** `git push` sends commits, not tags. Push each tag by name (`git push origin cp2`) and check that it appears on the repository's **Tags** page on GitHub.
 - **Rewriting shared history.** Commands such as `git push --force` replace the history on the remote. On a branch other people use, they delete their work. Don't use them until you know exactly what they do.
 
 > ✅ **Key takeaways**
@@ -323,6 +357,7 @@ Writing `Closes #12` in the description of a pull request links it to issue 12, 
 > - `.gitignore` keeps generated files and secrets out of the repository. A secret that was committed must be revoked.
 > - `clone`, `push` and `pull` copy commits between your repository and a **remote** such as GitHub. `pull` is `fetch` plus `merge`.
 > - A **branch** is a movable name for a line of work. Merging combines branches; a **conflict** happens when both changed the same lines, and you resolve it by editing the file. A **pull request** proposes a merge and is where code review happens.
+> - A **tag** is a name for one commit that doesn't move: `git tag <name>` creates it and `git push origin <name>` sends it to GitHub. It marks versions and any state that others must find exactly, such as the commit you hand in.
 > - A **branching strategy** is a team's agreement on how to use branches. **Gitflow** has long-lived `main` and `develop` branches and release branches, for software released in versions. **Trunk-based development** keeps one branch, `main`, always working, with short-lived branches merged through pull requests: the right choice for a small team building a web application.
 
 ## Exercises
@@ -369,6 +404,15 @@ No. The first commit is still in the history, on GitHub and in every clone, and 
 <summary>✅ <b>Solution</b></summary>
 
 Gitflow is designed for software released in versions on a schedule, with several versions in use at once, which is not this case: there is one version, deployed continuously from `main`. With Gitflow, every feature would be merged twice (into `develop`, then through a release branch into `main`), and `develop` would drift away from what is deployed. Trunk-based development fits better: `main` is always working and deployable, every change is a short-lived branch merged through a reviewed pull request, and branches are merged within a day or two so conflicts stay small. GitHub enforces it with a branch protection rule (or ruleset) on `main` that requires a pull request with an approval and passing checks, so nobody can push to `main` directly.
+
+</details>
+
+**6.** You finished the work for a checkpoint, ran `git tag cp2`, and submitted the link to the commit. Then you noticed a bug, fixed it and pushed the fix to `main`. Which version will be graded? What do you do so that the fix counts?
+
+<details>
+<summary>✅ <b>Solution</b></summary>
+
+The commit of the link, the one tagged `cp2`: the tag doesn't move with new commits, so the fix is not in it. To include the fix, move the tag to the new commit and send it again (`git tag -f cp2`, then `git push -f origin cp2`), and submit the link to the new commit. If you had only run `git tag cp2` without `git push origin cp2`, the tag wouldn't exist on GitHub at all: check the **Tags** page after pushing.
 
 </details>
 
