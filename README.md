@@ -62,21 +62,21 @@ We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cl
 | Group work, with individual assessment | 30 % |
 | Final exam (multiple choice and written answers) | 20 % |
 
-**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**, by **Sunday at 23:59** after the last session of its block:
+**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**:
 
-| Checkpoint | What your repository shows | Due |
-|---|---|---|
-| 1 · Git | the full Git workflow of [Lab 5](topics/05-git-collaboration/lab.md), done by hand | Sun 15 Nov |
-| 2 · Structure and data | the application as a package, with a database | Sun 22 Nov |
-| 3 · API and tests | a REST API with tests that pass | Sun 29 Nov |
-| 4 · Frontend and containers | a web page that uses the API, and Docker Compose with its configuration | Sun 6 Dec |
-| 5 · Cloud | the application running on Azure | Sun 13 Dec |
+| Checkpoint | What your repository shows |
+|---|---|
+| 1 · Git | the full Git workflow of [Lab: your app's repository](topics/05-git-collaboration/lab.md), done by hand |
+| 2 · Structure and data | the application as a package, with a database |
+| 3 · API and tests | a REST API with tests that pass |
+| 4 · Frontend and containers | a web page that uses the API, and Docker Compose with its configuration |
+| 5 · Cloud | the application running on Azure |
 
 A checkpoint can include a short written check, in class, about your own repository: it is part of that checkpoint's grade.
 
-**Group work.** Your team's product, its final presentation and demo (session 14), and your own part in it: your module, your pull requests and reviews, and your answers to questions about the code.
+**Group work.** Your team's product, its final presentation and demo, and your own part in it: your module, your pull requests and reviews, and your answers to questions about the code.
 
-Grades and submissions are always on Blackboard.
+Due dates, submissions and grades are always on Blackboard.
 
 ## Using AI
 
