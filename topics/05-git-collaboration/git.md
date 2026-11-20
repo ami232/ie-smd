@@ -180,6 +180,7 @@ Gitflow fits software that is **released in versions on a schedule**, sometimes 
 In [trunk-based development](https://trunkbaseddevelopment.com/), there is **one long-lived branch**, `main` (the *trunk*), and it must always work. Every change is a **short-lived branch** that lives hours or a day or two, goes through a pull request with review and automated checks, and is merged into `main`. The version of it that most teams on GitHub use is called **GitHub flow**.
 
 ```mermaid
+%%{init: {'gitGraph': {'showCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'commitLabelFontSize': '12px'}}}%%
 gitGraph
     commit
     branch feature/invoices-api
