@@ -284,12 +284,22 @@ The four modules of `ledger` are a template: your `models.py` holds the entities
 
 ## Exercises
 
-**1.** For each change, say which module or modules of the new `ledger` (`models`, `storage`, `reports`, `cli`) must change: (a) transactions now come from a JSON file; (b) refunds, positive amounts in a spending category, must reduce that category's spending; (c) the balance must be shown in a `rich` table too; (d) each transaction gets a `currency` field.
+**1.** For each change, say which module or modules of the new `ledger` (`models`, `storage`, `reports`, `cli`) must change:
+
+1. Transactions now come from a JSON file.
+2. Refunds, positive amounts in a spending category, must reduce that category's spending.
+3. The balance must be shown in a `rich` table too.
+4. Each transaction gets a `currency` field.
 
 <details>
 <summary>✅ <b>Solution</b></summary>
 
-(a) `storage` only: a new function that reads JSON and returns the same `Transaction` objects. (b) `reports` only: the rule for spending changes in `is_spending` (and `spending_by_category`), and every interface picks up the change. (c) `cli` only: printing is its job. (d) `models` (the new field), `storage` (read it from the file) and probably `reports` (adding amounts in different currencies needs a decision); `cli` only if the currency is shown. A change to the data model is the one that travels furthest, which is why it is worth designing the data first.
+1. `storage` only: a new function that reads JSON and returns the same `Transaction` objects.
+2. `reports` only: the rule for spending changes in `is_spending` (and `spending_by_category`), and every interface picks up the change.
+3. `cli` only: printing is its job.
+4. `models` (the new field), `storage` (read it from the file) and probably `reports` (adding amounts in different currencies needs a decision); `cli` only if the currency is shown.
+
+A change to the data model is the one that travels furthest, which is why it is worth designing the data first.
 
 </details>
 
