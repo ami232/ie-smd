@@ -179,10 +179,23 @@ Gitflow fits software that is **released in versions on a schedule**, sometimes 
 
 In [trunk-based development](https://trunkbaseddevelopment.com/), there is **one long-lived branch**, `main` (the *trunk*), and it must always work. Every change is a **short-lived branch** that lives hours or a day or two, goes through a pull request with review and automated checks, and is merged into `main`. The version of it that most teams on GitHub use is called **GitHub flow**.
 
-```text
- main   ──●──●──────●──●──────●──●──●──
-           \  /      \  /      \  /
-            ●●        ●●        ●●     short-lived branches, one per task
+```mermaid
+gitGraph
+    commit
+    branch feature/invoices-api
+    commit
+    commit
+    checkout main
+    merge feature/invoices-api
+    branch fix/dashboard-totals
+    commit
+    checkout main
+    merge fix/dashboard-totals
+    branch feature/login
+    commit
+    commit
+    checkout main
+    merge feature/login
 ```
 
 Trunk-based development fits **web applications that are deployed continuously**: every merge into `main` can go to production, because continuous integration checks every pull request. It requires discipline: changes must be small, and nobody may break `main`.
