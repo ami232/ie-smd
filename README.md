@@ -21,23 +21,23 @@ You build `ledger` along this path in your own GitHub repository, lab by lab. In
 
 ## Sessions
 
-| # | Session | Material |
-|---|---------|----------|
-| 1 | [Development environments](topics/01-dev-environments/index.md) | notes · lab · slides |
-| 2 | [Linux and the shell](topics/02-linux-shell/index.md) | notes · setup guide · lab · slides |
-| 3 | [Python projects with uv](topics/03-python-uv/index.md) | notes · lab · slides |
-| 4 | [Dependencies and developer tools](topics/04-dependencies-tools/index.md) | notes · lab · slides |
-| 5 | [Version control and collaboration with Git](topics/05-git-collaboration/index.md) | notes · lab · slides |
-| 6 | [Software design and project structure](topics/06-project-structure/index.md) | notes · lab · slides |
-| 7 | [Databases and persistence](topics/07-databases/index.md) | notes · lab · slides |
-| 8 | Backend APIs with FastAPI | *coming soon* |
-| 9 | Testing, errors and reliability | *coming soon* |
-| 10 | Frontend fundamentals and API consumption | *coming soon* |
-| 11 | Containers, Docker and configuration | *coming soon* |
-| 12 | Cloud fundamentals and container registries (Azure) | *coming soon* |
-| 13 | Cloud deployment and secrets (Azure) | *coming soon* |
-| 14 | Final presentations | — |
-| 15 | Final exam | — |
+| # | Session |
+|---|---------|
+| 1 | [Development environments](topics/01-dev-environments/index.md) |
+| 2 | [Linux and the shell](topics/02-linux-shell/index.md) |
+| 3 | [Python projects with uv](topics/03-python-uv/index.md) |
+| 4 | [Dependencies and developer tools](topics/04-dependencies-tools/index.md) |
+| 5 | [Version control and collaboration with Git](topics/05-git-collaboration/index.md) |
+| 6 | [Software design and project structure](topics/06-project-structure/index.md) |
+| 7 | [Databases and persistence](topics/07-databases/index.md) |
+| 8 | Backend APIs with FastAPI |
+| 9 | Testing, errors and reliability |
+| 10 | Frontend fundamentals and API consumption |
+| 11 | Containers, Docker and configuration |
+| 12 | Cloud fundamentals and container registries (Azure) |
+| 13 | Cloud deployment and secrets (Azure) |
+| 14 | Final presentations |
+| 15 | Final exam |
 
 ## Local first, then the cloud
 
@@ -46,7 +46,7 @@ We build everything **on your own machine first**. You run the database and the 
 We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cloud names. The concepts are the same, and this is the equivalent we use:
 
 | Concept | Google Cloud (used in the syllabus) | Azure (used in this course) |
-|---|---|---|
+|---|---|
 | Private registry for container images | Artifact Registry | Azure Container Registry |
 | Serverless containers for the API | Cloud Run | Azure Container Apps |
 | Hosting for the web frontend | App Engine | Azure Static Web Apps |
