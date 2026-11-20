@@ -118,17 +118,38 @@ If `main` has not moved since the branch was created, Git just moves `main` forw
 
 If both branches have new commits, Git creates a **merge commit**, a commit with two parents that combines both lines of work. Git combines the changes on its own, line by line, as long as they touch different parts of the files. Two people editing different functions of the same file is fine.
 
-```text
-        A───B───C        main
-             \
-              D───E      feature/monthly-report
+Before the merge, `main` and `feature/monthly-report` have both moved on since commit B:
 
+```mermaid
+%%{init: {'gitGraph': {'showCommitLabel': true, 'rotateCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'git4': '#4fc3f7', 'gitBranchLabel4': '#000000', 'git5': '#e57373', 'gitBranchLabel5': '#ffffff', 'commitLabelFontSize': '13px', 'tagLabelFontSize': '12px'}}}%%
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch feature/monthly-report
+    commit id: "D"
+    commit id: "E"
+    checkout main
+    commit id: "C"
+```
+
+```bash
 git switch main
 git merge feature/monthly-report
+```
 
-        A───B───C───M    main      M has two parents: C and E
-             \     /
-              D───E
+After the merge, `main` has a new commit M with two parents, C and E:
+
+```mermaid
+%%{init: {'gitGraph': {'showCommitLabel': true, 'rotateCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'git4': '#4fc3f7', 'gitBranchLabel4': '#000000', 'git5': '#e57373', 'gitBranchLabel5': '#ffffff', 'commitLabelFontSize': '13px', 'tagLabelFontSize': '12px'}}}%%
+gitGraph
+    commit id: "A"
+    commit id: "B"
+    branch feature/monthly-report
+    commit id: "D"
+    commit id: "E"
+    checkout main
+    commit id: "C"
+    merge feature/monthly-report id: "M"
 ```
 
 A **conflict** happens when both branches changed **the same lines** of the same file. Git can't know which version is right, so it stops the merge and asks you. It writes both versions into the file, between markers:
@@ -173,6 +194,42 @@ Two strategies dominate in practice.
 - `release/*` branches prepare a release: they start from `develop` and are merged into `main` and back into `develop`;
 - `hotfix/*` branches fix a released version: they start from `main` and are merged into `main` and `develop`.
 
+```mermaid
+%%{init: {'gitGraph': {'showCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'git4': '#4fc3f7', 'gitBranchLabel4': '#000000', 'git5': '#e57373', 'gitBranchLabel5': '#ffffff', 'commitLabelFontSize': '13px', 'tagLabelFontSize': '12px'}}}%%
+gitGraph
+    commit tag: "v0.9"
+    branch develop order: 3
+    commit
+    branch feature/invoices order: 4
+    commit
+    checkout develop
+    branch feature/login order: 5
+    commit
+    checkout feature/invoices
+    commit
+    checkout develop
+    merge feature/invoices
+    checkout feature/login
+    commit
+    checkout develop
+    merge feature/login
+    branch release/1.0 order: 2
+    commit
+    checkout develop
+    commit
+    checkout main
+    merge release/1.0 tag: "v1.0"
+    checkout develop
+    merge release/1.0
+    checkout main
+    branch hotfix/1.0.1 order: 1
+    commit
+    checkout main
+    merge hotfix/1.0.1 tag: "v1.0.1"
+    checkout develop
+    merge hotfix/1.0.1
+```
+
 Gitflow fits software that is **released in versions on a schedule**, sometimes with several versions in use at once: a mobile app that goes through store review, a product installed on customers' servers, a library. It is heavy for anything else: every feature goes through two merges, and `develop` and `main` drift apart.
 
 ### Trunk-based development
@@ -180,24 +237,35 @@ Gitflow fits software that is **released in versions on a schedule**, sometimes 
 In [trunk-based development](https://trunkbaseddevelopment.com/), there is **one long-lived branch**, `main` (the *trunk*), and it must always work. Every change is a **short-lived branch** that lives hours or a day or two, goes through a pull request with review and automated checks, and is merged into `main`. The version of it that most teams on GitHub use is called **GitHub flow**.
 
 ```mermaid
-%%{init: {'gitGraph': {'showCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'commitLabelFontSize': '12px'}}}%%
+%%{init: {'gitGraph': {'showCommitLabel': false}, 'themeVariables': {'git0': '#78909c', 'gitBranchLabel0': '#ffffff', 'git1': '#26a69a', 'gitBranchLabel1': '#ffffff', 'git2': '#ffb74d', 'gitBranchLabel2': '#000000', 'git3': '#9575cd', 'gitBranchLabel3': '#ffffff', 'git4': '#4fc3f7', 'gitBranchLabel4': '#000000', 'git5': '#e57373', 'gitBranchLabel5': '#ffffff', 'commitLabelFontSize': '13px', 'tagLabelFontSize': '12px'}}}%%
 gitGraph
     commit
     branch feature/invoices-api
     commit
-    commit
     checkout main
-    merge feature/invoices-api
     branch fix/dashboard-totals
     commit
     checkout main
     merge fix/dashboard-totals
-    branch feature/login
-    commit
+    checkout feature/invoices-api
     commit
     checkout main
+    branch feature/login
+    commit
+    checkout feature/invoices-api
+    merge main
+    commit
+    checkout main
+    merge feature/invoices-api
+    checkout feature/login
+    commit
+    merge main
+    checkout main
     merge feature/login
+    commit
 ```
+
+Three tasks overlap here, as they do in a real team: `fix/dashboard-totals` is opened and merged while `feature/invoices-api` is still in progress, and `feature/login` starts before `feature/invoices-api` is merged. Before their pull requests are merged, the two longer branches bring `main` into themselves (`git pull origin main`), so they are tested with everybody else's work.
 
 Trunk-based development fits **web applications that are deployed continuously**: every merge into `main` can go to production, because continuous integration checks every pull request. It requires discipline: changes must be small, and nobody may break `main`.
 
