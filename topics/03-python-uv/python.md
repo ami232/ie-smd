@@ -6,14 +6,14 @@
 
 ## From a script to a project
 
-Ana's fraud script from [session 1](../01-dev-environments/environments.md#it-works-on-my-machine) was a **script**: one file, run by hand, depending on whatever happened to be installed on her laptop. Scripts are great for exploring. Once other people need to run the code, though, on other machines and for months, it becomes a **project**, and it needs four things the script didn't have:
+Ana's fraud script from [It works on my machine](../01-dev-environments/environments.md#it-works-on-my-machine) was a **script**: one file, run by hand, depending on whatever happened to be installed on her laptop. Scripts are great for exploring. Once other people need to run the code, though, on other machines and for months, it becomes a **project**, and it needs four things the script didn't have:
 
 1. **A declared Python version**, so nobody runs it on an interpreter that can't understand it.
 2. **Its own set of installed libraries**, separate from those of every other project on the machine.
 3. **A precise list of those libraries and their versions**, so that every installation is identical.
 4. **A standard way to run it**, documented in the project itself.
 
-This page explains the version, the environment and the way to run it, and the [lab](lab.md) builds them with uv. The precise list of libraries comes with the project's first dependency, in [session 4](../04-dependencies-tools/dependencies.md).
+This page explains the version, the environment and the way to run it, and the [lab](lab.md) builds them with uv. The precise list of libraries comes with the project's first dependency (see [Dependencies and the lockfile](../04-dependencies-tools/dependencies.md)).
 
 ## The interpreter
 
@@ -21,7 +21,7 @@ When you run `python3 report.py`, the program `python3` is the **interpreter**. 
 
 This is different from languages like C, Go or Rust, which are **compiled**: a compiler turns the source code into machine code for one processor and one operating system *before* it runs, and you distribute the result. Python code, by contrast, is distributed as source, and it runs wherever there is a suitable interpreter. That makes the interpreter itself part of the environment, with two consequences:
 
-- **The interpreter must be installed** on every machine that runs the code. A container image for a Python application (session 11) always starts from an image that already has Python.
+- **The interpreter must be installed** on every machine that runs the code. A container image for a Python application always starts from an image that already has Python.
 - **Its version matters**, because each version understands a slightly different language.
 
 ### Python versions
@@ -84,7 +84,7 @@ requires = ["uv_build>=0.13.6,<0.14.0"]
 build-backend = "uv_build"
 ```
 
-- `[project]` holds the standard metadata: the name, the version of *your* project, the supported Python and the list of direct dependencies. It is empty for now: `ledger` gets its first dependency in [session 4](../04-dependencies-tools/dependencies.md).
+- `[project]` holds the standard metadata: the name, the version of *your* project, the supported Python and the list of direct dependencies. It is empty for now, because `ledger` has no dependencies yet.
 - `[project.scripts]` creates a command: `ledger` will run the function `main` of the package `ledger`. This is the "standard way to run it" from the start of the page.
 - `[build-system]` says which tool turns the project into an installable package. You won't need to touch it.
 
@@ -102,7 +102,7 @@ For years, Python developers needed several tools for all this: `pyenv` to insta
 | `uv run <cmd>` | runs a command in the project's environment, creating the environment first if needed |
 | `uv python pin 3.14` | changes the project's Python version in `.python-version` |
 
-The file `.python-version` (just `3.14`) tells uv which Python to use for the project's environment, and uv downloads it if it's missing. The commands for adding libraries to a project come in [session 4](../04-dependencies-tools/dependencies.md#uv-commands-for-dependencies).
+The file `.python-version` (just `3.14`) tells uv which Python to use for the project's environment, and uv downloads it if it's missing. The commands for adding libraries to a project are in [uv commands for dependencies](../04-dependencies-tools/dependencies.md#uv-commands-for-dependencies).
 
 ## Common mistakes
 
@@ -137,4 +137,4 @@ Activating only puts `.venv/bin` at the front of the `PATH` variable of the curr
 
 </details>
 
-[← Back to the session](index.md) [Next: Lab 3 →](lab.md)
+[← Back to the session](index.md) [Next: Lab →](lab.md)

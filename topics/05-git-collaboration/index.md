@@ -5,7 +5,7 @@ Until now, `ledger` lived only in a folder on your laptop, and its only history 
 ## The thread of the session
 
 1. **[Version control with Git](git.md).** Commits, the working tree and the staging area, `.gitignore`, remotes, branches, merges, conflicts and pull requests.
-2. **[Lab 5: your app's repository](lab.md).** You create your repository on GitHub, add the ledger, and go through the whole workflow: commit, push, pull, branch, conflict and pull request. **Submit the URL of your repository on Blackboard by Friday 13 November, 23:59.** This lab is done without AI.
+2. **[Lab: your app's repository](lab.md).** You create your repository on GitHub, add the ledger, and go through the whole workflow: commit, push, pull, branch, conflict and pull request. You submit the URL of your repository on Blackboard. This lab is done without AI.
 
 ## Objectives
 
@@ -21,14 +21,14 @@ By the end of the session you should be able to:
 
 ## How to study this session
 
-| Page | What you do | Time |
-|---|---|---|
-| [Version control with Git](git.md) | read, with the exercises | 40 min |
-| [Lab 5: your app's repository](lab.md) | hands-on, by hand | 60 min |
+| Page | What you do |
+|---|---|
+| [Version control with Git](git.md) | read, with the exercises |
+| [Lab: your app's repository](lab.md) | hands-on, by hand |
 
 ## Before you start
 
-You need the `ledger` project from [Lab 4](../04-dependencies-tools/lab.md) and your GitHub account from [Lab 1](../01-dev-environments/lab.md). If your ledger isn't finished, the lab explains how to start from the reference version.
+You need the `ledger` project (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)) and a GitHub account (see [Know your machine](../01-dev-environments/lab.md#5-create-your-github-account)). If your ledger isn't finished, the lab explains how to start from the reference version.
 
 ## Class slides
 

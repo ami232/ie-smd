@@ -1,11 +1,11 @@
 # Dependencies and developer tools
 
-In [session 3](../03-python-uv/index.md) you created the `ledger` project: its own Python, its own environment and a `ledger` command that only says hello. This session gives it real code, and the tools to write and check that code. You set up **VS Code**, an editor that understands Python, and write the ledger in it. You add the project's first third-party library, which brings the last piece of a reproducible project: the **lockfile**. Then you use a **debugger** to watch the program run line by line, and **Ruff** to find mistakes without running the code.
+The `ledger` project has its own Python, its own environment and a `ledger` command that only says hello (see [Python projects with uv](../03-python-uv/index.md)). This session gives it real code, and the tools to write and check that code. You set up **VS Code**, an editor that understands Python, and write the ledger in it. You add the project's first third-party library, which brings the last piece of a reproducible project: the **lockfile**. Then you use a **debugger** to watch the program run line by line, and **Ruff** to find mistakes without running the code.
 
 ## The thread of the session
 
 1. **[Dependencies and the lockfile](dependencies.md).** Direct and transitive dependencies, version constraints, and why a lockfile is needed on top of them.
-2. **[Lab 4: writing and checking the ledger](lab.md).** You set up VS Code and write the ledger in Python, add `rich` and rebuild the project from its files, step through the code with the debugger, and run Ruff.
+2. **[Lab: writing and checking the ledger](lab.md).** You set up VS Code and write the ledger in Python, add `rich` and rebuild the project from its files, step through the code with the debugger, and run Ruff.
 
 The concepts of editors, language servers, debuggers, linters and formatters are summarized in the slides below. A full notes page will follow.
 
@@ -23,7 +23,7 @@ By the end of the session you should be able to:
 
 ## Before you start
 
-You need the `ledger` project from [Lab 3](../03-python-uv/lab.md): `uv run ledger` prints `Hello from ledger!`. The concepts of [Python projects and environments](../03-python-uv/python.md) are assumed, especially virtual environments.
+You need the `ledger` project, where `uv run ledger` prints `Hello from ledger!` (see [The ledger becomes a Python project](../03-python-uv/lab.md)). The concepts of [Python projects and environments](../03-python-uv/python.md) are assumed, especially virtual environments.
 
 ## Class slides
 

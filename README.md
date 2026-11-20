@@ -8,13 +8,13 @@ Every session follows the same pattern. First, a short explanation of the ideas 
 
 ## The application we build: a personal ledger
 
-The running example is **ledger**, a small fintech application that records accounts and transactions and computes balances and spending by category. It starts in session 3 as a 30-line Python script that reads a CSV file. It ends in session 14 as a three-part system running on Azure: a web dashboard, a REST API and a PostgreSQL database.
+The running example is **ledger**, a small fintech application that records accounts and transactions and computes balances and spending by category. It starts in session 3 as a 30-line Python script that reads a CSV file. It ends in session 13 as a three-part system running on Azure: a web dashboard, a REST API and a PostgreSQL database.
 
 ```text
- S3–S6   laptop:  python script ──▶ structured package
- S7–S10  laptop:  frontend ──▶ FastAPI ──▶ PostgreSQL (in Docker)
- S11–S12 laptop:  the same three parts, in Docker Compose
- S13–S14 Azure:   Static Web Apps ──▶ Container Apps ──▶ PostgreSQL
+ S3–S7   laptop:  python script ──▶ structured package ──▶ SQLite database
+ S8–S10  laptop:  frontend ──▶ FastAPI ──▶ SQLite
+ S11     laptop:  the same parts in Docker Compose, with PostgreSQL
+ S12–S13 Azure:   Static Web Apps ──▶ Container Apps ──▶ PostgreSQL
 ```
 
 You build your own application along the same path, in your own GitHub repository: from session 5 on, every lab adds to it. In the **group project**, your team builds one product (an invoicing system for freelancers, a shared-household budget, a micro-lending platform…), and the application each member builds is one module of it.
@@ -28,16 +28,16 @@ You build your own application along the same path, in your own GitHub repositor
 | 3 | [Python projects with uv](topics/03-python-uv/index.md) | notes · lab · slides |
 | 4 | [Dependencies and developer tools](topics/04-dependencies-tools/index.md) | notes · lab · slides |
 | 5 | [Version control and collaboration with Git](topics/05-git-collaboration/index.md) | notes · lab · slides |
-| 6 | Software design and project structure | *coming soon* |
-| 7 | Databases and persistence | *coming soon* |
+| 6 | [Software design and project structure](topics/06-project-structure/index.md) | notes · lab · slides |
+| 7 | [Databases and persistence](topics/07-databases/index.md) | notes · lab · slides |
 | 8 | Backend APIs with FastAPI | *coming soon* |
 | 9 | Testing, errors and reliability | *coming soon* |
 | 10 | Frontend fundamentals and API consumption | *coming soon* |
-| 11 | Containers and Docker | *coming soon* |
-| 12 | Configuration, environments and secrets | *coming soon* |
-| 13 | Cloud fundamentals and container registries (Azure) | *coming soon* |
-| 14 | Cloud deployment (Azure) | *coming soon* |
-| 15 | Final presentations and final exam | — |
+| 11 | Containers, Docker and configuration | *coming soon* |
+| 12 | Cloud fundamentals and container registries (Azure) | *coming soon* |
+| 13 | Cloud deployment and secrets (Azure) | *coming soon* |
+| 14 | Final presentations | — |
+| 15 | Final exam | — |
 
 ## Local first, then the cloud
 
@@ -62,19 +62,19 @@ We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cl
 | Group work, with individual assessment | 30 % |
 | Final exam (multiple choice and written answers) | 20 % |
 
-**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**, by **Friday at 23:59** of the week indicated:
+**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**, by **Sunday at 23:59** after the last session of its block:
 
 | Checkpoint | What your repository shows | Due |
 |---|---|---|
-| 1 · Git | the full Git workflow of [Lab 5](topics/05-git-collaboration/lab.md), done by hand | Fri 13 Nov |
-| 2 · Structure and data | the application as a package, with a database | Fri 20 Nov |
-| 3 · API and tests | a REST API with tests that pass | Fri 27 Nov |
-| 4 · Frontend and containers | a web page that uses the API, and Docker Compose | Fri 11 Dec |
-| 5 · Cloud | the application running on Azure | Fri 18 Dec |
+| 1 · Git | the full Git workflow of [Lab 5](topics/05-git-collaboration/lab.md), done by hand | Sun 15 Nov |
+| 2 · Structure and data | the application as a package, with a database | Sun 22 Nov |
+| 3 · API and tests | a REST API with tests that pass | Sun 29 Nov |
+| 4 · Frontend and containers | a web page that uses the API, and Docker Compose with its configuration | Sun 6 Dec |
+| 5 · Cloud | the application running on Azure | Sun 13 Dec |
 
 A checkpoint can include a short written check, in class, about your own repository: it is part of that checkpoint's grade.
 
-**Group work.** Your team's product, its final presentation and demo, and your own part in it: your module, your pull requests and reviews, and your answers to questions about the code.
+**Group work.** Your team's product, its final presentation and demo (session 14), and your own part in it: your module, your pull requests and reviews, and your answers to questions about the code.
 
 Grades and submissions are always on Blackboard.
 

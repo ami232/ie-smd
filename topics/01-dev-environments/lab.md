@@ -1,10 +1,10 @@
-# Lab 1: know your machine
+# Lab: know your machine
 
 > ℹ️ **What you need first**
 >
 > Your laptop, with its password, and your IE email. The concepts are in [Environments and reproducibility](environments.md).
 
-In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the GitHub account we need from session 5 onwards. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: in session 2 you use it to set up the course environment, so fill it in carefully.
+In this lab you meet the tool you will use more than any other in the course, the **terminal**. You use it to find out exactly which environment your laptop provides, layer by layer. You also create the GitHub account you need for the course. Before you start, download the [machine card](machine_card.md) and write your answers in it as you go: it is what you use to set up the course environment, so fill it in carefully.
 
 You don't install anything today. Every command below only *reads* information.
 
@@ -141,7 +141,7 @@ df -h ~
 
 Something like `16 GB` of memory and a free-space figure. For the course you need **at least 8 GB of memory (16 GB is comfortable)** and **at least 20 GB of free disk**. If you have less, don't worry: write it down on your [machine card](machine_card.md). Session 2 has setup options for smaller machines.
 
-On Windows, if **Virtualization** says **Disabled**, write that down too: it can be turned on in the computer's firmware settings (BIOS/UEFI), and we will help you with that in session 2.
+On Windows, if **Virtualization** says **Disabled**, write that down too: it can be turned on in the computer's firmware settings (BIOS/UEFI), and we will help you with that when you set up the course environment.
 
 </details>
 
@@ -180,12 +180,12 @@ groups | tr ' ' '\n' | grep -x sudo
 
 ## 5. Create your GitHub account
 
-**GitHub** hosts your code from session 5 onwards and runs our automated pipelines in session 13. Create the account now, because verifying it can take a while. If you already have one, use it.
+**GitHub** hosts your code and runs the automated pipelines of the course. Create the account now, because verifying it can take a while. If you already have one, use it.
 
 1. Go to [github.com/signup](https://github.com/signup) and create an account. Choose a **professional username**: it appears in your repositories, and employers will see it on your CV.
 2. Enable **two-factor authentication** (*Settings → Password and authentication*). GitHub requires it to contribute code.
 3. Optionally, apply to the [GitHub Student Developer Pack](https://education.github.com/pack) with your IE email. It gives you free access to GitHub Copilot and other developer tools.
 
-When you finish, upload your filled-in machine card to the **Session 1: Machine Card** assignment on Blackboard. Keep a copy: you need it in session 2.
+When you finish, upload your filled-in machine card to the **Machine Card** assignment on Blackboard. Keep a copy: you need it to set up the course environment.
 
 [← Previous: Environments and reproducibility](environments.md) [Back to the session ↑](index.md)

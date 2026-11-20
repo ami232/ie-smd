@@ -2,9 +2,9 @@
 
 > ℹ️ **What you need first**
 >
-> Your "machine card" from [Lab 1](../01-dev-environments/lab.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
+> Your [machine card](../01-dev-environments/machine_card.md), administrator rights on your laptop and a good internet connection. The downloads add up to a few gigabytes, most of it Docker. The ideas behind the options are in [Environments and reproducibility](../01-dev-environments/environments.md#three-places-to-run-software-host-virtual-machine-container).
 
-For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that [Lab 2](lab.md) needs, and then [Docker](#docker), which we use from session 7 onwards. Installing it now leaves time to fix any problem before then. There are several ways to get them, and the right one depends on your laptop's operating system: keep the [machine card](../01-dev-environments/machine_card.md) from Lab 1 at hand.
+For the rest of the course, everybody needs the same three things: a **Unix shell** (bash or zsh), a **package manager** to install tools, and **Docker** to run containers. You install all three today: first the shell and the package manager, which are all that the [lab](lab.md) needs, and then [Docker](#docker). Installing it now leaves time to fix any problem before you need it. There are several ways to get them, and the right one depends on your laptop's operating system: keep your [machine card](../01-dev-environments/machine_card.md) at hand.
 
 This page describes the three possible setups, which we call *tracks*. Follow the one for your operating system, unless your instructor tells you individually to use another one.
 
@@ -80,7 +80,7 @@ Install Docker once your shell works. Docker needs about **20 GB of free disk** 
 
 > ⚠️ **Not enough space, or an older macOS?**
 >
-> Skip Docker today and tell your instructor. Free space or update macOS before session 7, the first session that uses Docker. Everything else today, Lab 2 included, works without it.
+> Skip Docker today and tell your instructor, then free space or update macOS. Everything else today, the lab included, works without it.
 
 **macOS**
 
@@ -127,7 +127,7 @@ If `docker` says `permission denied while trying to connect to the Docker daemon
 
 </details>
 
-Once the first three commands work, you're ready for [Lab 2](lab.md). The Docker check can wait until after the lab if Docker is still downloading.
+Once the first three commands work, you're ready for the [lab](lab.md). The Docker check can wait until after the lab if Docker is still downloading.
 
 ## WSL (advanced)
 
@@ -166,7 +166,7 @@ sudo apt update && sudo apt upgrade -y
 >
 > From now on, open the **Ubuntu** terminal for the course and keep your projects in your Linux home folder (`~`, which is `/home/<you>`), **not** in `/mnt/c/...`. Files on the Windows disk are much slower to access from Linux, and their permissions behave differently.
 
-If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware ([Lab 1, step 3](../01-dev-environments/lab.md#3-memory-disk-and-virtualization)). If you can't fix it, use the VM.
+If `wsl --install` fails, the most common cause is virtualization being disabled in the firmware (see [Memory, disk and virtualization](../01-dev-environments/lab.md#3-memory-disk-and-virtualization)). If you can't fix it, use the VM.
 
 **3. Install Docker Desktop** on Windows. Download it from [docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop/) (choose **ARM64** if your machine card says `ARM64`) and install it with the default options, which use **WSL 2**. Start it, then in **Settings → Resources → WSL integration** turn on the integration with **Ubuntu**.
 
@@ -174,4 +174,4 @@ With WSL, "the course shell" is the **Ubuntu** terminal, and the rest of the cou
 
 </details>
 
-[← Previous: Users, packages and the environment](system.md) [Next: Lab 2 →](lab.md)
+[← Previous: Users, packages and the environment](system.md) [Next: Lab →](lab.md)

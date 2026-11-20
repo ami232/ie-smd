@@ -2,13 +2,13 @@
 
 > ℹ️ **What you need first**
 >
-> Virtual environments, `pyproject.toml` and the basic uv commands, from [Python projects and environments](../03-python-uv/python.md), and the `ledger` project from [Lab 3](../03-python-uv/lab.md).
+> Virtual environments, `pyproject.toml` and the basic uv commands, from [Python projects and environments](../03-python-uv/python.md), and the `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)).
 
-A project needs four things: a declared Python version, its own environment, a standard way to run it, and **a precise list of the libraries it uses**. The first three were set up in [session 3](../03-python-uv/python.md#from-a-script-to-a-project). So far `ledger` only uses Python's standard library, so the list is empty. The moment it needs a library from PyPI, the project needs that fourth thing, and this page explains how it works.
+A project needs four things: a declared Python version, its own environment, a standard way to run it, and **a precise list of the libraries it uses**. The first three are explained in [From a script to a project](../03-python-uv/python.md#from-a-script-to-a-project). So far `ledger` only uses Python's standard library, so the list is empty. The moment it needs a library from PyPI, the project needs that fourth thing, and this page explains how it works.
 
 ## Direct and transitive
 
-The libraries your code imports are its **direct dependencies**. They have dependencies of their own, which you also need: these are **transitive** dependencies. In [Lab 4](lab.md), `ledger` depends on one library, `rich`, which draws tables in the terminal. But installing it brings four packages:
+The libraries your code imports are its **direct dependencies**. They have dependencies of their own, which you also need: these are **transitive** dependencies. In the [lab](lab.md), `ledger` depends on one library, `rich`, which draws tables in the terminal. But installing it brings four packages:
 
 ```text
 ledger v0.1.0
@@ -88,4 +88,4 @@ The two files have different jobs. **`pyproject.toml` says what the project acce
 
 </details>
 
-[← Back to the session](index.md) [Next: Lab 4 →](lab.md)
+[← Back to the session](index.md) [Next: Lab →](lab.md)

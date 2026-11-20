@@ -1,12 +1,12 @@
-# Lab 3: the ledger becomes a Python project
+# Lab: the ledger becomes a Python project
 
 > ℹ️ **What you need first**
 >
-> The course environment from [session 2](../02-linux-shell/setup.md) and the folder `~/smd/ledger` with `data/transactions.csv` from [Lab 2](../02-linux-shell/lab.md). The concepts are in [Python projects and environments](python.md).
+> The [course environment](../02-linux-shell/setup.md) and the folder `~/smd/ledger` with `data/transactions.csv` (see [A ledger in the shell](../02-linux-shell/lab.md)). The concepts are in [Python projects and environments](python.md).
 
-> ⚠️ **If you didn't finish Lab 2**
+> ⚠️ **If you don't have the `ledger` folder**
 >
-> This lab only needs the data file from Lab 2. These commands create the folder and download the file:
+> This lab only needs the data file. These commands create the folder and download the file:
 >
 > ```bash
 > mkdir -p ~/smd/ledger/data
@@ -14,9 +14,9 @@
 > curl -fsSL -o data/transactions.csv https://raw.githubusercontent.com/ami232/ie-smd/main/data/transactions.csv
 > ```
 >
-> `ls data` should show `transactions.csv`. Finish the rest of Lab 2 at home.
+> `ls data` should show `transactions.csv`.
 
-In Lab 2, `balance.sh` answered one question with `awk`. In this lab you turn `~/smd/ledger` into a Python project: a pinned Python version, its own virtual environment and a command called `ledger`. In [Lab 4](../04-dependencies-tools/lab.md) you write the code of that command.
+In the shell, `balance.sh` answered one question with `awk`. In this lab you turn `~/smd/ledger` into a Python project: a pinned Python version, its own virtual environment and a command called `ledger`, ready for its code.
 
 Work in the course shell (the macOS Terminal, the terminal on Linux or inside your VM, or the codespace; the Ubuntu terminal if you use WSL).
 
@@ -47,7 +47,7 @@ uv --version
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-A line such as `uv 0.13.6`. Any recent version works. If you get `command not found`, it is the `PATH` problem from [session 2](../02-linux-shell/system.md#path-how-the-shell-finds-commands): open a new terminal.
+A line such as `uv 0.13.6`. Any recent version works. If you get `command not found`, it is the [`PATH` problem](../02-linux-shell/system.md#path-how-the-shell-finds-commands): open a new terminal.
 
 </details>
 
@@ -95,7 +95,7 @@ uv init --package --vcs none --python 3.14
 ```
 
 - `--package` creates an installable package with a command-line entry point (not just a script).
-- `--vcs none` skips creating a Git repository. We do that properly in session 5.
+- `--vcs none` skips creating a Git repository: the project goes into Git on its own, with a repository on GitHub.
 - `--python 3.14` pins the project to Python 3.14.
 
 Look at what it created, including hidden files:
@@ -110,7 +110,7 @@ cat src/ledger/__init__.py
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-Your files from Lab 2 (`data/` and, if you made them, `balance.sh` and `report.txt`) are untouched. Next to them there are four new ones: `.python-version` (contains `3.14`), `README.md`, `pyproject.toml` and `src/ledger/__init__.py`.
+Your existing files (`data/` and, if you made them, `balance.sh` and `report.txt`) are untouched. Next to them there are four new ones: `.python-version` (contains `3.14`), `README.md`, `pyproject.toml` and `src/ledger/__init__.py`.
 
 `pyproject.toml` is like the one explained in [the concepts page](python.md#pyprojecttoml): `requires-python = ">=3.14"`, no dependencies yet, and a script `ledger = "ledger:main"`. If your Git configuration has your name, uv adds an `authors` line too. The package contains a single function:
 
@@ -145,7 +145,7 @@ Creating virtual environment at: .venv
 Hello from ledger!
 ```
 
-There are now a `.venv` folder and a `uv.lock` file. `uv.lock` lists the exact packages installed in `.venv`; for now only `ledger` itself, as the project has no dependencies yet. It becomes important when the project gets its first dependency, in [Lab 4](../04-dependencies-tools/lab.md). `.venv/bin` contains `python` and `ledger`, the command defined in `[project.scripts]`. The last command prints a path ending in `ledger/.venv/bin/python3`: `uv run` uses the project's own Python, not the system one.
+There are now a `.venv` folder and a `uv.lock` file. `uv.lock` lists the exact packages installed in `.venv`; for now only `ledger` itself, as the project has no dependencies yet. It becomes important when the project gets its first dependency. `.venv/bin` contains `python` and `ledger`, the command defined in `[project.scripts]`. The last command prints a path ending in `ledger/.venv/bin/python3`: `uv run` uses the project's own Python, not the system one.
 
 </details>
 
@@ -164,7 +164,7 @@ uv python pin 3.13
 error: The requested Python version `3.13` is incompatible with the project `requires-python` value of `>=3.14`.
 ```
 
-(uv may first download Python 3.13.) The project declares that it needs 3.14 or newer, and uv enforces it. This error, at setup time, is what would have saved Ana from the `SyntaxError` on the server in [session 1](../01-dev-environments/environments.md#it-works-on-my-machine).
+(uv may first download Python 3.13.) The project declares that it needs 3.14 or newer, and uv enforces it. This error, at setup time, is what would have saved Ana from the `SyntaxError` on the server (see [It works on my machine](../01-dev-environments/environments.md#it-works-on-my-machine)).
 
 </details>
 

@@ -2,14 +2,14 @@
 
 Almost all the software you will deploy in your career runs on Linux. That includes the servers behind banking apps, the containers in this course and the machines that run Azure Container Apps. Almost all of it is set up and operated from a **shell**: a text interface where you type commands. Graphical interfaces come and go, but the shell is the same on your laptop, in a container and on a server on the other side of the world, and it is the only interface many of those machines have.
 
-This session gives you a working knowledge of both: how a Unix system is organized, and how to get things done in its shell. It is also the session where everybody sets up the course environment, using the [machine card](../01-dev-environments/machine_card.md) you filled in during session 1.
+This session gives you a working knowledge of both: how a Unix system is organized, and how to get things done in its shell. It is also the session where everybody sets up the course environment, using your [machine card](../01-dev-environments/machine_card.md).
 
 ## The thread of the session
 
 1. **[The shell and the filesystem](shell.md).** The Unix philosophy (small tools that do one thing, combined with pipes), how the filesystem is organized, and the twenty or so commands that cover most daily work.
 2. **[Users, packages and the environment](system.md).** Who can do what (users, groups, permissions, `sudo`), how software is installed (package managers), and the environment variables that configure every program, starting with `PATH`.
 3. **[Setting up the course environment](setup.md).** The setup we use for the rest of the course, with installation steps for each operating system.
-4. **[Lab 2: a ledger in the shell](lab.md).** You create the project folder for the course application, download its first dataset, answer questions about the transactions with pipelines, and write your first shell script.
+4. **[Lab: a ledger in the shell](lab.md).** You create the project folder for the course application, download its first dataset, answer questions about the transactions with pipelines, and write your first shell script.
 
 ## Objectives
 
@@ -24,7 +24,7 @@ By the end of the session you should be able to:
 
 ## Before you start
 
-You need the terminal and the "machine card" from [Lab 1](../01-dev-environments/lab.md). The concepts of [environments and reproducibility](../01-dev-environments/environments.md) are useful, especially the difference between a VM and a container.
+You need a terminal and your filled-in [machine card](../01-dev-environments/machine_card.md). The concepts of [environments and reproducibility](../01-dev-environments/environments.md) are useful, especially the difference between a VM and a container.
 
 ## Class slides
 

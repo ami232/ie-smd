@@ -1,8 +1,8 @@
-# Lab 5: your app's repository
+# Lab: your app's repository
 
 > ℹ️ **What you need first**
 >
-> The `ledger` project from [Lab 4](../04-dependencies-tools/lab.md) in `~/smd/ledger`, your GitHub account from [Lab 1](../01-dev-environments/lab.md#5-create-your-github-account), and the concepts of [Version control with Git](git.md). If your ledger isn't finished, you can start from the reference version, as explained in [step 4](#4-add-the-ledger-and-commit).
+> The `ledger` project in `~/smd/ledger` (see [Writing and checking the ledger](../04-dependencies-tools/lab.md)), a GitHub account (see [Create your GitHub account](../01-dev-environments/lab.md#5-create-your-github-account)), and the concepts of [Version control with Git](git.md). If your ledger isn't finished, you can start from the reference version, as explained in [step 4](#4-add-the-ledger-and-commit).
 
 > ⛔ **Do this lab by hand, without AI**
 >
@@ -12,7 +12,7 @@
 
 In this lab you create the repository where you will build your application for the rest of the course, and you go through the whole Git workflow once, on purpose: commits, pushing and pulling, a change made on GitHub, a branch, a conflict and a pull request. The repository's history is the proof that you did each step, so do them in order and don't rewrite it afterwards.
 
-**Submission.** At the end, you submit the URL of your repository on Blackboard, **by Friday 13 November, 23:59**. The [checkpoint](#checkpoint) lists what is checked.
+**Submission.** At the end, you submit the URL of your repository on Blackboard. The [checkpoint](#checkpoint) lists what is checked.
 
 ## 1. Check Git and sign in to GitHub
 
@@ -115,7 +115,7 @@ git status
 
 ## 4. Add the ledger and commit
 
-Copy the files that describe and build the ledger project into the repository. These are the files a teammate needs ([Lab 4, step 6](../04-dependencies-tools/lab.md#6-rebuild-from-the-files)); `.venv` is not one of them:
+Copy the files that describe and build the ledger project into the repository. These are the files a teammate needs (see [Rebuild from the files](../04-dependencies-tools/lab.md#6-rebuild-from-the-files)); `.venv` is not one of them:
 
 ```bash
 cp -r ~/smd/ledger/{pyproject.toml,uv.lock,.python-version,src,data} .
@@ -123,9 +123,9 @@ uv run ledger balance
 ```
 
 <details>
-<summary>💡 <b>My ledger from Lab 4 is not finished</b></summary>
+<summary>💡 <b>My ledger is not finished</b></summary>
 
-Use the reference version. On [github.com/ami232/ie-smd-ledger](https://github.com/ami232/ie-smd-ledger), switch to the tag **`s05-start`** (button **main → Tags**), click **Code → Download ZIP**, unzip it, and copy the same five items from the unzipped folder instead of from `~/smd/ledger`. Don't copy its `README.md` or `.gitignore`: your repository has its own.
+Use the reference version. On [github.com/ami232/ie-smd-ledger](https://github.com/ami232/ie-smd-ledger), switch to the tag **`ledger-script`** (button **main → Tags**), click **Code → Download ZIP**, unzip it, and copy the same five items from the unzipped folder instead of from `~/smd/ledger`. Don't copy its `README.md` or `.gitignore`: your repository has its own.
 
 </details>
 
@@ -138,7 +138,7 @@ git status
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-Under **Untracked files**: `.python-version`, `data/`, `pyproject.toml`, `src/` and `uv.lock`. There is no `.venv`: the Python `.gitignore` from GitHub lists it, so Git ignores it. `ledger balance` printed `3349.10` and `906.00`, as in Lab 4.
+Under **Untracked files**: `.python-version`, `data/`, `pyproject.toml`, `src/` and `uv.lock`. There is no `.venv`: the Python `.gitignore` from GitHub lists it, so Git ignores it. `ledger balance` printed `3349.10` and `906.00`, as before.
 
 </details>
 
@@ -148,7 +148,7 @@ Stage the files, check exactly what will be recorded, and commit:
 git add .
 git status
 git diff --staged --stat
-git commit -m "Add the ledger project from Lab 4"
+git commit -m "Add the ledger project"
 git log --oneline
 ```
 
@@ -359,7 +359,7 @@ git log --oneline --graph --all
 
 ## Checkpoint
 
-Submit the URL of your repository (`https://github.com/<your-username>/smd-app`) on Blackboard by **Friday 13 November, 23:59**. Don't change the history after submitting: no force pushes, and don't delete the repository. Your repository should show:
+Submit the URL of your repository (`https://github.com/<your-username>/smd-app`) on Blackboard. Don't change the history after submitting: no force pushes, and don't delete the repository. Your repository should show:
 
 - [ ] a public repository with `pyproject.toml`, `uv.lock`, `.python-version`, `src/` and `data/`, and **no** `.venv`;
 - [ ] commits made from your laptop, with your name and your no-reply email;
@@ -368,6 +368,6 @@ Submit the URL of your repository (`https://github.com/<your-username>/smd-app`)
 - [ ] on that branch, a merge of `main` that resolved a conflict, with no markers left;
 - [ ] a pull request from that branch to `main`, with a description, merged with a merge commit.
 
-This repository is where you build your application from now on. In the next labs you add to it, and from time to time you submit a version of it as a checkpoint.
+This repository is where you build your application: from here on, every change to it goes through Git.
 
 [← Previous: Version control with Git](git.md) [Back to the session ↑](index.md)

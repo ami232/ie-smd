@@ -2,7 +2,7 @@
 
 > ℹ️ **What you need first**
 >
-> A terminal open on a Unix shell: macOS Terminal, Linux, the terminal of your Linux VM, or an Ubuntu container. [Lab 1](../01-dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
+> A terminal open on a Unix shell: macOS Terminal, Linux, the terminal of your Linux VM, or an Ubuntu container. [Know your machine](../01-dev-environments/lab.md) shows how to open one. Try every command on this page as you read: the shell is learned with the fingers.
 
 ## Why a text interface
 
@@ -88,7 +88,7 @@ On Windows, each disk has its own letter (`C:\`, `D:\`). On Unix systems there i
 | `/tmp` | temporary files, deleted on reboot |
 | `/proc`, `/sys` | not real files: a view into the running kernel (Linux only) |
 
-You will meet these folders again. In session 11, a container image is exactly a tree like this one, packed into a file.
+You will meet these folders again: a container image is exactly a tree like this one, packed into a file.
 
 ### Paths
 

@@ -1,6 +1,6 @@
 # Machine card
 
-Fill in this card during [Lab 1](lab.md), and keep it: you need it in session 2 to set up the course environment.
+Fill in this card during the [lab](lab.md), and keep it: you need it to set up the course environment.
 
 [Download the template (.md)](https://raw.githubusercontent.com/ami232/ie-smd/main/topics/01-dev-environments/machine_card.md)
 

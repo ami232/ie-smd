@@ -1,10 +1,10 @@
-# Lab 4: writing and checking the ledger
+# Lab: writing and checking the ledger
 
 > ℹ️ **What you need first**
 >
-> The `ledger` project from [Lab 3](../03-python-uv/lab.md): the folder `~/smd/ledger` with `pyproject.toml`, `src/ledger/__init__.py` and `.venv`, where `uv run ledger` prints `Hello from ledger!`. The concepts of dependencies are in [Dependencies and the lockfile](dependencies.md).
+> The `ledger` project (see [The ledger becomes a Python project](../03-python-uv/lab.md)): the folder `~/smd/ledger` with `pyproject.toml`, `src/ledger/__init__.py` and `.venv`, where `uv run ledger` prints `Hello from ledger!`. The concepts of dependencies are in [Dependencies and the lockfile](dependencies.md).
 
-In Lab 3 you created the `ledger` project. In this lab you write its code in a real editor and make it a complete project. You set up VS Code and write the ledger in Python (steps 1 to 3). You add a third-party library, which gives the project a lockfile, and prove that the project rebuilds from its files (steps 4 to 6). Then you use two tools on the code: the debugger, to watch the program run line by line, and Ruff, to find a bug without running the code (steps 7 and 8).
+The `ledger` project exists but has no code yet. In this lab you write its code in a real editor and make it a complete project. You set up VS Code and write the ledger in Python (steps 1 to 3). You add a third-party library, which gives the project a lockfile, and prove that the project rebuilds from its files (steps 4 to 6). Then you use two tools on the code: the debugger, to watch the program run line by line, and Ruff, to find a bug without running the code (steps 7 and 8).
 
 ## 1. Set up VS Code
 
@@ -184,7 +184,7 @@ checking      3349.10
 savings        906.00
 ```
 
-The same balances as `balance.sh` in Lab 2. Then the spending by category, most negative first:
+The same balances as `balance.sh` in the shell. Then the spending by category, most negative first:
 
 ```text
 housing          -2850.00
@@ -195,7 +195,7 @@ health            -119.70
 subscriptions      -77.94
 ```
 
-`--help` prints a usage message that `argparse` generated for free. `ledger total` fails with `invalid choice: 'total' (choose from 'balance', 'spending')`, and `echo $?` would print `2`: a proper error and a proper exit code, unlike the script from Lab 2.
+`--help` prints a usage message that `argparse` generated for free. `ledger total` fails with `invalid choice: 'total' (choose from 'balance', 'spending')`, and `echo $?` would print `2`: a proper error and a proper exit code, unlike the shell script.
 
 </details>
 
@@ -257,7 +257,7 @@ print(Decimal(0.1))  # created from a float: the binary error is now visible
 0.1000000000000000055511151231257827021181583404541015625
 ```
 
-In a report, a balance of `3349.0999999999995` looks careless. In a payment system, an amount that is one cent wrong is a reconciliation problem, and comparisons such as `balance == 0` can fail when they shouldn't. The rule in financial software is simple: **money is never a `float`**. In Python you use `Decimal`. In databases you use a `NUMERIC` column (session 7). In some systems amounts are stored as integers in cents.
+In a report, a balance of `3349.0999999999995` looks careless. In a payment system, an amount that is one cent wrong is a reconciliation problem, and comparisons such as `balance == 0` can fail when they shouldn't. The rule in financial software is simple: **money is never a `float`**. In Python you use `Decimal`. In databases you use a `NUMERIC` column, or store amounts as integers in cents, as `ledger` does when it moves to a database.
 
 Now see it in `ledger`: break it on purpose. In `read_transactions`, change `Decimal(t["amount"])` to `float(t["amount"])`. In `totals_by`, change `defaultdict(Decimal)` to `defaultdict(float)`. Run both commands again:
 
@@ -394,7 +394,7 @@ cd ~/smd/ledger
 
 After `rm -rf .venv`, `uv sync` recreates it and installs the same five packages in well under a second. The packages are in uv's cache, so nothing is downloaded again. In the copy, `uv run` creates a new environment from the lockfile and prints the same table.
 
-These files are what you will commit to Git in session 5. `.venv` is not among them.
+These files are what goes into a Git repository. `.venv` is not among them.
 
 </details>
 
@@ -426,7 +426,7 @@ In the Explorer, click the **New File** icon next to the project's name, type `.
 
 - `"name"` is the name you choose from a list when you start debugging.
 - `"type": "debugpy"` uses the Python Debugger extension.
-- `"program"` is the `ledger` command that uv created in `.venv/bin` in [step 4 of Lab 3](../03-python-uv/lab.md#4-first-run). `${workspaceFolder}` is the project folder. This is what `uv run ledger` runs: the command imports the `ledger` package and calls `main()`.
+- `"program"` is the `ledger` command that uv created in `.venv/bin` when you first ran the project (see [First run](../03-python-uv/lab.md#4-first-run)). `${workspaceFolder}` is the project folder. This is what `uv run ledger` runs: the command imports the `ledger` package and calls `main()`.
 - `"args"` are the command-line arguments, the same words you type after `uv run ledger`.
 - `"console": "integratedTerminal"` shows the program's output in VS Code's terminal.
 
@@ -650,7 +650,7 @@ Ruff reports `1 file reformatted`. VS Code shows the new layout of `__init__.py`
 
 </details>
 
-Ruff has hundreds of rules, and a project chooses which ones to apply in `pyproject.toml`. We configure them later in the course, when we reorganize `ledger` into modules. If you want to see Ruff's messages as you type, install the **Ruff** extension (by Astral) from the Extensions view.
+Ruff has hundreds of rules, and a project chooses which ones to apply in `pyproject.toml`. For now the defaults are enough. If you want to see Ruff's messages as you type, install the **Ruff** extension (by Astral) from the Extensions view.
 
 ## Checkpoint
 

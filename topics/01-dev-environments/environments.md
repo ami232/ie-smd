@@ -58,8 +58,8 @@ The key words are *from files*. If the environment exists only as "what I happen
 There are three levels of ambition, and professional teams usually combine all three:
 
 1. **Document it.** A README that lists what to install and how. It is better than nothing, but people skip steps and instructions go out of date.
-2. **Automate it.** Files that tools read to install exactly what is needed. In Python that is `pyproject.toml` with a **lockfile** (`uv.lock`), which pins the exact version of every dependency (session 3). The configuration goes into an `.env` file, which is not committed, and a template of it, which is (session 12).
-3. **Package it.** Ship the environment itself together with the code: a **virtual machine image** or a **container image** that already contains the operating system, the runtime and the dependencies (sessions 11–14).
+2. **Automate it.** Files that tools read to install exactly what is needed. In Python that is `pyproject.toml` with a **lockfile** (`uv.lock`), which pins the exact version of every dependency. The configuration goes into an `.env` file, which is not committed, and a template of it, which is.
+3. **Package it.** Ship the environment itself together with the code: a **virtual machine image** or a **container image** that already contains the operating system, the runtime and the dependencies.
 
 Each level covers more layers of the stack. A README can't stop someone from installing the wrong Python. A lockfile fixes layer 5, and with a tool like uv also layer 4. A container image fixes layers 2 to 5 at once.
 
@@ -106,7 +106,7 @@ There is one layer that neither VMs nor containers make disappear: the processor
 This matters in this course in two places:
 
 - **Your laptop.** Apple Silicon Macs (M1 to M5) are `arm64`. Most Windows laptops are `x86_64`, but Windows on ARM (Snapdragon processors) is becoming common. You will see these names in installers: choose the right one.
-- **Shipping to the cloud.** A container image built on an `arm64` Mac is, by default, an `arm64` image. Many cloud services expect `x86_64` (`linux/amd64`). If you push the wrong one, the deployment fails with an error like `exec format error`. In session 13 we will build images for the right **platform** explicitly.
+- **Shipping to the cloud.** A container image built on an `arm64` Mac is, by default, an `arm64` image. Many cloud services expect `x86_64` (`linux/amd64`). If you push the wrong one, the deployment fails with an error like `exec format error`. The fix is to build the image for the right **platform** explicitly.
 
 Emulation can run code for the other architecture (Rosetta 2 on Macs, QEMU in Docker), but it is slower and sometimes fragile. It is useful in an emergency, but not something to rely on.
 
@@ -212,4 +212,4 @@ Her Mac is `arm64`, so by default Docker built an `arm64` image: the Python inte
 
 </details>
 
-[← Back to the session](index.md) [Next: Lab 1 →](lab.md)
+[← Back to the session](index.md) [Next: Lab →](lab.md)

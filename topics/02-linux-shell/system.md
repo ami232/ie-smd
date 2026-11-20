@@ -12,7 +12,7 @@ When you run a program on a Unix system, three things decide what happens before
 2. **What is installed?** The program can only use the tools and libraries that are on the system, in the versions that are there.
 3. **What is its environment?** A set of named values, the environment variables, tells it where to find things and how to behave.
 
-These are layers 2, 3 and 6 of the environment stack from [session 1](../01-dev-environments/environments.md#what-an-environment-is-made-of). This page covers each one.
+These are layers 2, 3 and 6 of the [environment stack](../01-dev-environments/environments.md#what-an-environment-is-made-of). This page covers each one.
 
 ## Users, groups and permissions
 
@@ -30,11 +30,11 @@ uid=1000(ana) gid=1000(ana) groups=1000(ana),4(adm),27(sudo),...
 
 You are the user `ana`, with number (*uid*) 1000, and you belong to several groups, including `sudo` (more on that below). There is also one special user, **root** (uid 0), the administrator, who can read, change and delete anything.
 
-Servers also have users that are not people. A database server runs as user `postgres`, a web server as `www-data`. If one of them is compromised, the attacker gets only that user's permissions, not the whole machine. You will see the same idea in session 11: well-built containers don't run as root.
+Servers also have users that are not people. A database server runs as user `postgres`, a web server as `www-data`. If one of them is compromised, the attacker gets only that user's permissions, not the whole machine. The same idea applies to containers: well-built containers don't run as root.
 
 ### Reading permissions
 
-`ls -l` shows who owns each file and what everyone may do with it. Here is a ledger folder like the one from Lab 2, with an extra `private` folder, and two system files:
+`ls -l` shows who owns each file and what everyone may do with it. Here is a ledger folder like the one from the [lab](lab.md), with an extra `private` folder, and two system files:
 
 ```text
 $ ls -l ~/smd/ledger
@@ -132,7 +132,7 @@ With `apt`, `sudo apt update` refreshes the *list* of available packages and the
 
 Homebrew installs into its own folder (`/opt/homebrew` on Apple Silicon) and doesn't need `sudo`.
 
-Package managers solve the same problem at the system level that the lockfiles of [session 4](../04-dependencies-tools/dependencies.md) solve for a project: known versions, installed in a repeatable way, from a trusted source. You can write down a list of packages and anyone can install exactly that list.
+Package managers solve the same problem at the system level that [lockfiles](../04-dependencies-tools/dependencies.md) solve for a project: known versions, installed in a repeatable way, from a trusted source. You can write down a list of packages and anyone can install exactly that list.
 
 > ⚠️ **Install from trusted sources**
 >
@@ -169,7 +169,7 @@ unset LEDGER_FILE                            # remove it
 
 A variable set with `export` disappears when you close the terminal. To make it permanent, add the `export` line to your shell's startup file: `~/.zshrc` for zsh, `~/.bashrc` for bash. The shell reads that file every time it starts.
 
-This is how Ana's script in [session 1](../01-dev-environments/environments.md#it-works-on-my-machine) got its `RISK_THRESHOLD`: an `export` line in her `~/.zshrc` that nobody else had. Environment variables are the standard way to configure software, especially in containers and in the cloud. Session 12 shows how to manage them so that this can't happen to you.
+This is how Ana's script in [It works on my machine](../01-dev-environments/environments.md#it-works-on-my-machine) got its `RISK_THRESHOLD`: an `export` line in her `~/.zshrc` that nobody else had. Environment variables are the standard way to configure software, especially in containers and in the cloud, and a project must declare the ones it needs so that this can't happen.
 
 ### PATH: how the shell finds commands
 
