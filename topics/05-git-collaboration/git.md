@@ -153,12 +153,85 @@ Code review is how teams keep quality up and spread knowledge: at least two peop
 
 GitHub offers three ways to merge a PR. **Create a merge commit** keeps every commit of the branch and adds a merge commit, so the history shows exactly what happened. *Squash and merge* combines all the commits of the branch into one. *Rebase and merge* copies the commits onto `main` without a merge commit. In this course we use **merge commits**, because the history is part of what we assess.
 
+## Working as a team on one repository
+
+Branches, merges and pull requests are the mechanics. A team also needs to agree on **how** to use them: which branches exist, how long they live, and how work gets into `main`. Without an agreement, six people working on one repository step on each other: someone pushes half-finished code to `main` and breaks it for everybody, a branch lives for two weeks and conflicts with everything when it is finally merged, and nobody knows which version works.
+
+> 📘 **Definition: branching strategy**
+>
+> A **branching strategy** (or *Git workflow*) is a team's agreement on which branches exist, what each one is for, how long it lives, and how changes move from one to another.
+
+Two strategies dominate in practice.
+
+### Gitflow
+
+[Gitflow](https://nvie.com/posts/a-successful-git-branching-model/) uses several **long-lived branches**:
+
+- `main` contains only released versions, each one tagged (`v1.0`, `v1.1`…);
+- `develop` is where finished features are integrated;
+- `feature/*` branches start from `develop` and go back to it;
+- `release/*` branches prepare a release: they start from `develop` and are merged into `main` and back into `develop`;
+- `hotfix/*` branches fix a released version: they start from `main` and are merged into `main` and `develop`.
+
+Gitflow fits software that is **released in versions on a schedule**, sometimes with several versions in use at once: a mobile app that goes through store review, a product installed on customers' servers, a library. It is heavy for anything else: every feature goes through two merges, and `develop` and `main` drift apart.
+
+### Trunk-based development
+
+In [trunk-based development](https://trunkbaseddevelopment.com/), there is **one long-lived branch**, `main` (the *trunk*), and it must always work. Every change is a **short-lived branch** that lives hours or a day or two, goes through a pull request with review and automated checks, and is merged into `main`. The version of it that most teams on GitHub use is called **GitHub flow**.
+
+```text
+ main   ──●──●──────●──●──────●──●──●──
+           \  /      \  /      \  /
+            ●●        ●●        ●●     short-lived branches, one per task
+```
+
+Trunk-based development fits **web applications that are deployed continuously**: every merge into `main` can go to production, because continuous integration checks every pull request. It requires discipline: changes must be small, and nobody may break `main`.
+
+| | Gitflow | Trunk-based (GitHub flow) |
+|---|---|---|
+| Long-lived branches | `main`, `develop` | `main` only |
+| Feature branches | can live for weeks | hours or a few days |
+| Releases | `release/*` branches, on a schedule | any merge into `main` can be deployed |
+| Conflicts | large, at the end | small, every day |
+| Fits | versioned releases, large teams, several versions in use | web applications, continuous deployment, small teams |
+
+### The workflow for a small team
+
+For a team of six or seven building one web application in a few weeks, **trunk-based development is the better choice**. The application is deployed from `main`, there is only one version in use, and the main risk is integrating late, which is exactly what short-lived branches prevent. Gitflow would add a `develop` branch, release branches and double merges, and solve problems the team doesn't have.
+
+In practice, a team agrees on five rules:
+
+1. **Nobody pushes to `main`.** Protect it on GitHub: *Settings → Branches → Add branch protection rule* (or *Rules → Rulesets*) for `main`, requiring a pull request with at least one approval and, once there is continuous integration, the checks to pass. GitHub then refuses a direct `git push` to `main`, for everybody.
+2. **One branch per task, created from an up-to-date `main`**, and named after the task: `feature/invoices-api`, `fix/dashboard-totals`, `docs/readme-conventions`.
+3. **Small pull requests, merged within a day or two.** A pull request that changes a few files is reviewed in minutes; one that changes half the project waits for days and conflicts with everybody's work.
+4. **Bring `main` into your branch often**, and resolve conflicts on your branch, before the pull request is merged. The button *Update branch* on the pull request does the same on GitHub when there is no conflict.
+5. **Split the code so that people rarely edit the same files**: one package, API router and page per module. Files that everybody needs (the application setup, the configuration, the CI workflow) have an owner, and changes to them go through that person.
+
+Each task follows the same loop:
+
+```bash
+git switch main
+git pull                                  # start from the latest main
+git switch -c feature/invoices-api        # one branch for this task
+# ...edit, git add, git commit, as many times as needed...
+git pull origin main                      # bring in what others merged meanwhile
+git push -u origin feature/invoices-api   # publish the branch
+# open a pull request on GitHub, linked to its issue ("Closes #12")
+# a teammate reviews it; when it is approved and the checks pass, merge it
+git switch main
+git pull                                  # main now has your work
+git branch -d feature/invoices-api        # the branch is done
+```
+
+Writing `Closes #12` in the description of a pull request links it to issue 12, and GitHub closes the issue when the pull request is merged, so the project board stays up to date on its own. If you want early feedback on unfinished work, open the pull request as a **draft**: teammates can read and comment on it, but it can't be merged until you mark it as ready.
+
 ## Common mistakes
 
 - **Committing without checking `git status` first.** You commit files you didn't mean to (`.venv`, a `.env` with a password) or forget the ones you did. Run `git status` before every commit, and `git diff --staged` to see exactly what you're about to record.
 - **Working on `main` for everything.** It works alone, but on a team every half-finished change breaks `main` for everybody. Create a branch per piece of work.
 - **Forgetting to pull.** If you start working without pulling, you build on an old version and run into conflicts that didn't need to happen. Pull before you start.
 - **Leaving conflict markers in a file.** After a conflict, search the file for `<<<<<<<` before committing. A file with markers is not valid Python, Markdown or anything else.
+- **Long-lived branches.** A branch that lives for two weeks collects conflicts with everything merged in the meantime. Merge small pieces often, and bring `main` into your branch every day.
 - **Rewriting shared history.** Commands such as `git push --force` replace the history on the remote. On a branch other people use, they delete their work. Don't use them until you know exactly what they do.
 
 > ✅ **Key takeaways**
@@ -168,6 +241,7 @@ GitHub offers three ways to merge a PR. **Create a merge commit** keeps every co
 > - `.gitignore` keeps generated files and secrets out of the repository. A secret that was committed must be revoked.
 > - `clone`, `push` and `pull` copy commits between your repository and a **remote** such as GitHub. `pull` is `fetch` plus `merge`.
 > - A **branch** is a movable name for a line of work. Merging combines branches; a **conflict** happens when both changed the same lines, and you resolve it by editing the file. A **pull request** proposes a merge and is where code review happens.
+> - A **branching strategy** is a team's agreement on how to use branches. **Gitflow** has long-lived `main` and `develop` branches and release branches, for software released in versions. **Trunk-based development** keeps one branch, `main`, always working, with short-lived branches merged through pull requests: the right choice for a small team building a web application.
 
 ## Exercises
 
@@ -204,6 +278,15 @@ Different lines: no conflict. Git combines both changes on its own and creates a
 <summary>✅ <b>Solution</b></summary>
 
 No. The first commit is still in the history, on GitHub and in every clone, and anyone can read the file from it (`git show <hash>:.env`). The team must **change the password** of the database at once (revoke the old one), then add `.env` to `.gitignore` so it isn't committed again. Rewriting the history to remove the file is possible, but it doesn't help with copies that already exist, so changing the password is the step that matters.
+
+</details>
+
+**5.** Your team of six builds a web application that is deployed to Azure every time `main` changes. A teammate proposes Gitflow, "because it's what professional teams use". What would you answer? What should the team do instead, and how does GitHub help enforce it?
+
+<details>
+<summary>✅ <b>Solution</b></summary>
+
+Gitflow is designed for software released in versions on a schedule, with several versions in use at once, which is not this case: there is one version, deployed continuously from `main`. With Gitflow, every feature would be merged twice (into `develop`, then through a release branch into `main`), and `develop` would drift away from what is deployed. Trunk-based development fits better: `main` is always working and deployable, every change is a short-lived branch merged through a reviewed pull request, and branches are merged within a day or two so conflicts stay small. GitHub enforces it with a branch protection rule (or ruleset) on `main` that requires a pull request with an approval and passing checks, so nobody can push to `main` directly.
 
 </details>
 

@@ -4,7 +4,7 @@ Until now, `ledger` lived only in a folder on your laptop, and its only history 
 
 ## The thread of the session
 
-1. **[Version control with Git](git.md).** Commits, the working tree and the staging area, `.gitignore`, remotes, branches, merges, conflicts and pull requests.
+1. **[Version control with Git](git.md).** Commits, the working tree and the staging area, `.gitignore`, remotes, branches, merges, conflicts, pull requests, and how a team works on one repository.
 2. **[Lab: your app's repository](lab.md).** You create your repository on GitHub, add the ledger, and go through the whole workflow: commit, push, pull, branch, conflict and pull request. You submit the URL of your repository on Blackboard. This lab is done without AI.
 
 ## Objectives
@@ -18,6 +18,7 @@ By the end of the session you should be able to:
 - [ ] Explain when a merge is a fast-forward and when it needs a merge commit.
 - [ ] Resolve a merge conflict by editing the file, and finish the merge.
 - [ ] Open a pull request with a useful description and merge it with a merge commit.
+- [ ] Compare Gitflow and trunk-based development, and apply the workflow of a team that shares one repository: a protected `main`, one short-lived branch per task and small pull requests.
 
 ## How to study this session
 
