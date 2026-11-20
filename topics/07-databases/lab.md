@@ -6,7 +6,7 @@
 
 In this lab `ledger` stops reading a CSV file on every run and keeps its transactions in a **SQLite database**, through **SQLAlchemy**. The CSV file becomes something you import once, and a new command records transactions that are still there the next time the program runs. The tables and the connection go in a new module, `db.py`, and `storage.py` and `cli.py` grow new functions. `models.py` and `reports.py` don't change at all: the reports keep working on `Transaction`s, wherever they come from. The code is on this page, except for a few places marked `# TODO`: the link between transactions and accounts, reading the rows back, two business rules, and a SQL query.
 
-At the end, you tag your repository and submit its URL on Blackboard, in the assignment **Checkpoint 2**.
+At the end, you mark the commit you want graded with the tag `cp2`, and submit the link to that commit on Blackboard, in the assignment **Checkpoint 2**.
 
 ## 1. Start a branch and record the behaviour
 
@@ -566,13 +566,19 @@ git log --oneline --decorate -3
 <details>
 <summary>✅ <b>What you should see</b></summary>
 
-The last commit of `main`, the merge of the pull request, shows `(HEAD -> main, tag: cp2, origin/main)`. On GitHub, the tag appears under **Tags**. If you change something after tagging, move the tag: `git tag -f cp2` and `git push -f origin cp2`.
+The last commit of `main`, the merge of the pull request, shows `(HEAD -> main, tag: cp2, origin/main)`. On GitHub, the tag appears under **Tags**. If you change something after tagging, move the tag to the new commit (`git tag -f cp2` and `git push -f origin cp2`), and submit the link to the new commit.
 
 </details>
 
 ## Checkpoint 2
 
-Submit the URL of your repository (`https://github.com/<your-username>/smd-app`) on Blackboard, in the assignment **Checkpoint 2**. What is checked is the commit tagged `cp2`:
+The tag `cp2` marks the commit you want graded. On Blackboard, in the assignment **Checkpoint 2**, submit the **link to that commit**. To get it, open `https://github.com/<your-username>/smd-app/tags`, click the commit id under `cp2` (seven characters, such as `a1b2c3d`), and copy the address from the browser. It looks like `https://github.com/<your-username>/smd-app/commit/a1b2c3d...`. You can also print it in the terminal, with your username:
+
+```bash
+echo "https://github.com/<your-username>/smd-app/commit/$(git rev-parse cp2)"
+```
+
+What is checked is that commit:
 
 - [ ] **Package**: the modules `models.py`, `storage.py`, `reports.py` and `cli.py`; `reports.py` with no `print`, no file or database access, and no import of `cli`, `storage` or `db`;
 - [ ] `[tool.ruff.lint]` rules in `pyproject.toml`, and `uv run ruff check` passing;

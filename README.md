@@ -62,7 +62,7 @@ We use **Microsoft Azure**. The syllabus describes the cloud part with Google Cl
 | Group work, with individual assessment | 30 % |
 | Final exam (multiple choice and written answers) | 20 % |
 
-**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit the link to your repository on Blackboard as a **checkpoint**:
+**Individual work.** The labs are done in class, in your own repository. Five times during the course, you submit your repository on Blackboard as a **checkpoint**. From checkpoint 2 on, you mark the commit you want graded with a tag (`cp2`, `cp3`…) and submit the link to that commit; the lab of each checkpoint explains how.
 
 | Checkpoint | What your repository shows |
 |---|---|
