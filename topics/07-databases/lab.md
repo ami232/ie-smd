@@ -28,7 +28,7 @@ uv run ledger months > ~/smd/before/months.txt
 ```
 
 <details>
-<summary>💡 <b>My ledger is not a package yet</b></summary>
+<summary>ℹ️ <b>My ledger is not a package yet</b></summary>
 
 Copy the files of the tag **`ledger-package`** of [github.com/ami232/ie-smd-ledger](https://github.com/ami232/ie-smd-ledger) into your repository (switch to the tag, **Code → Download ZIP**): `pyproject.toml`, `uv.lock` and the folder `src/`. Commit them on `main` with a message that says where they come from, push, and then start this step. The checkpoint also checks the package work (its pull request and the Ruff rules), so finish it if you can.
 

@@ -123,7 +123,7 @@ uv run ledger balance
 ```
 
 <details>
-<summary>💡 <b>My ledger is not finished</b></summary>
+<summary>ℹ️ <b>My ledger is not finished</b></summary>
 
 Use the reference version. On [github.com/ami232/ie-smd-ledger](https://github.com/ami232/ie-smd-ledger), switch to the tag **`ledger-script`** (button **main → Tags**), click **Code → Download ZIP**, unzip it, and copy the same five items from the unzipped folder instead of from `~/smd/ledger`. Don't copy its `README.md` or `.gitignore`: your repository has its own.
 

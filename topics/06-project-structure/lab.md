@@ -19,7 +19,7 @@ git switch -c refactor/package
 ```
 
 <details>
-<summary>💡 <b>My repository is not ready</b></summary>
+<summary>ℹ️ <b>My repository is not ready</b></summary>
 
 If you don't have the repository yet, create it as in [Create the repository on GitHub and clone it](../05-git-collaboration/lab.md#3-create-the-repository-on-github-and-clone-it), then copy into it the files of the reference version at the tag **`ledger-script`** of [github.com/ami232/ie-smd-ledger](https://github.com/ami232/ie-smd-ledger) (switch to the tag, **Code → Download ZIP**): `pyproject.toml`, `uv.lock`, `.python-version`, `src/` and `data/`. Commit them on `main`, push, and create the branch.
 
