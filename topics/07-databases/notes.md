@@ -68,7 +68,7 @@ con.execute("PRAGMA foreign_keys = ON")
 ```
 
 ```text
-<sqlite3.Cursor object at 0x7edd6e331e40>
+<sqlite3.Cursor object at 0x7dc4027e2140>
 ```
 
 ```python
@@ -81,7 +81,7 @@ con.execute("""
 ```
 
 ```text
-<sqlite3.Cursor object at 0x7edd6e331d40>
+<sqlite3.Cursor object at 0x7dc4027e2040>
 ```
 
 ```python
@@ -98,7 +98,7 @@ con.execute("""
 ```
 
 ```text
-<sqlite3.Cursor object at 0x7edd6e331e40>
+<sqlite3.Cursor object at 0x7dc4027e2140>
 ```
 
 ```python
@@ -118,7 +118,7 @@ con.executemany("INSERT INTO accounts (name) VALUES (?)", [("checking",), ("savi
 ```
 
 ```text
-<sqlite3.Cursor object at 0x7edd6e331d40>
+<sqlite3.Cursor object at 0x7dc4027e2040>
 ```
 
 ```python
@@ -137,7 +137,7 @@ con.executemany(
 ```
 
 ```text
-<sqlite3.Cursor object at 0x7edd6e331e40>
+<sqlite3.Cursor object at 0x7dc4027e2140>
 ```
 
 ```python

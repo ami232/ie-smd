@@ -30,7 +30,7 @@ You build `ledger` along this path in your own GitHub repository, lab by lab. In
 | 5 | [Version control and collaboration with Git](topics/05-git-collaboration/index.md) |
 | 6 | [Software design and project structure](topics/06-project-structure/index.md) |
 | 7 | [Databases and persistence](topics/07-databases/index.md) |
-| 8 | Backend APIs with FastAPI |
+| 8 | [Backend APIs with FastAPI](topics/08-fastapi/index.md) |
 | 9 | Testing, errors and reliability |
 | 10 | Frontend fundamentals and API consumption |
 | 11 | Containers, Docker and configuration |
