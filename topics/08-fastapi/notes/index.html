@@ -1,0 +1,2595 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/08-fastapi/notes/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Web APIs with FastAPI - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#web-apis-with-fastapi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web APIs with FastAPI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-dev-environments/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-python-uv/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python projects with uv
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Python projects with uv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects and environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger becomes a Python project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-dependencies-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dependencies and developer tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dependencies and developer tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and the lockfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: writing and checking the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-git-collaboration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Git and collaboration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Git and collaboration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-project-structure/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Software design and project structure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-project-structure/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-project-structure/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: from one file to a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-databases/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Databases and persistence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger in a database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Backend APIs with FastAPI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Backend APIs with FastAPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web APIs with FastAPI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web APIs with FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-an-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why an API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-requests-and-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP: requests and responses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP: requests and responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-an-api-made-of-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST: an API made of resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FastAPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-and-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path and query parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-request-body-pydantic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The request body: Pydantic models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-kinds-of-invalid-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two kinds of invalid request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-database-session-per-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One database session per request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-interactive-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The interactive documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-code-of-an-api-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the code of an API goes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-the-api-of-your-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing the API of your module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: a web API for the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-testing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Testing and continuous integration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    9. Testing and continuous integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-testing/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and continuous integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-testing/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: tests and CI for the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-an-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why an API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-requests-and-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP: requests and responses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP: requests and responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-an-api-made-of-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST: an API made of resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FastAPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-and-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path and query parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-request-body-pydantic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The request body: Pydantic models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-kinds-of-invalid-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two kinds of invalid request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-database-session-per-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One database session per request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-interactive-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The interactive documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-code-of-an-api-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the code of an API goes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-the-api-of-your-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing the API of your module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="web-apis-with-fastapi">Web APIs with FastAPI<a class="headerlink" href="#web-apis-with-fastapi" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p><code>ledger</code> as a package whose transactions are in a SQLite database through SQLAlchemy (see <a href="../../07-databases/lab/">Lab: the ledger in a database</a>). The ideas of <a href="../../06-project-structure/notes/">Software design and project structure</a>, especially <a href="../../06-project-structure/notes/#the-direction-of-dependencies">the direction of dependencies</a>: the interface calls storage and the calculations, never the other way round. What a session and a database transaction are (see <a href="../../07-databases/notes/#from-sql-to-python-the-orm">From SQL to Python: the ORM</a>).</p>
+</div>
+<h2 id="why-an-api">Why an API<a class="headerlink" href="#why-an-api" title="Permanent link">&para;</a></h2>
+<p><code>ledger</code> has one interface, the command line. It is perfect for you at your terminal, and useless for everyone else:</p>
+<ul>
+<li>A <strong>web page</strong> that shows your balances runs in the browser, on another computer. It can't run <code>uv run ledger balance</code> on yours.</li>
+<li>A <strong>mobile app</strong> needs the same data, with the same rules, without a copy of the code.</li>
+<li><strong>Another program</strong>, such as your bank sending the day's transactions, needs a way to add them without anyone typing.</li>
+</ul>
+<p>All of them need the same thing: to send a request over the network to a program that is always running, and get data back in a format a program can read. That program is a <strong>server</strong>, and the set of requests it accepts is its <strong>API</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: API, client and server</p>
+<p>An <strong>API</strong> (<em>application programming interface</em>) is the set of operations a program offers to other programs, with the exact form of each request and each answer. A <strong>web API</strong> offers them over the network, with HTTP.</p>
+<p>The program that offers the API is the <strong>server</strong>, and it runs all the time, waiting for requests. A program that sends requests to it is a <strong>client</strong>: a web page, an app, a script, or you with a tool such as <code>curl</code>.</p>
+</div>
+<p>An API is a second <strong>interface</strong> to the same application, next to the command line. Both read a request (arguments in the terminal, an HTTP request on the network), call storage and the calculations, and give back the result (printed text, or data in JSON). That is why, in <code>ledger</code>, the API goes in a module of its own, <code>api.py</code>, at the same level as <code>cli.py</code>:</p>
+<div class="highlight"><pre><span></span><code>                 cli.py ──┐
+  (a person)              ├──▶ storage.py ──▶ db.py ──▶ ledger.db
+                 api.py ──┤
+  (a program)             └──▶ reports.py ──▶ models.py
+</code></pre></div>
+<p>Neither <code>storage</code> nor <code>reports</code> knows that an API exists. This is the <a href="../../06-project-structure/notes/#the-direction-of-dependencies">direction of dependencies</a> paying off: adding a whole new interface doesn't change the calculations at all.</p>
+<h2 id="http-requests-and-responses">HTTP: requests and responses<a class="headerlink" href="#http-requests-and-responses" title="Permanent link">&para;</a></h2>
+<p>The web works with one protocol, <strong>HTTP</strong> (<em>Hypertext Transfer Protocol</em>). The browser uses it to load pages, and APIs use it to exchange data. HTTP is a conversation in turns: the client sends a <strong>request</strong>, and the server answers with one <strong>response</strong>. Both are plain text with a fixed structure.</p>
+<p>This is a real request to the <code>ledger</code> API, asking for one transaction, and its response:</p>
+<div class="highlight"><pre><span></span><code>GET /api/transactions/6 HTTP/1.1
+Host: 127.0.0.1:8000
+Accept: application/json
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
+content-type: application/json
+content-length: 118
+
+{"date":"2026-01-10","account":"checking","description":"Gym membership","category":"health","amount":"-39.90","id":6}
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: HTTP request and response</p>
+<p>An <strong>HTTP request</strong> has:</p>
+<ul>
+<li>a <strong>method</strong>, the kind of operation: <code>GET</code> (read), <code>POST</code> (create), <code>DELETE</code> (delete)…;</li>
+<li>a <strong>path</strong>, which says what the request is about: <code>/api/transactions/6</code>;</li>
+<li>optionally a <strong>query string</strong> after <code>?</code>, with extra parameters: <code>/api/transactions?category=health</code>;</li>
+<li><strong>headers</strong>, <code>Name: value</code> lines with information about the request, such as the format of the body (<code>Content-Type: application/json</code>);</li>
+<li>optionally a <strong>body</strong>, the data sent, for example the new transaction to record.</li>
+</ul>
+<p>An <strong>HTTP response</strong> has a <strong>status code</strong>, a three-digit number that says how it went (<code>200 OK</code>, <code>404 Not Found</code>…), headers, and usually a body with the data.</p>
+</div>
+<p>The path and the query string, together with the server's address, form the <strong>URL</strong>: <code>http://127.0.0.1:8000/api/transactions?category=health</code>. <code>127.0.0.1</code> (also called <code>localhost</code>) always means "this same computer", and <code>8000</code> is the <strong>port</strong>, the number that identifies one server program among all those running on the machine.</p>
+<h3 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h3>
+<p>The method tells the server what to do with what the path names. Five methods cover nearly every API:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Meaning</th>
+<th>Body in the request</th>
+<th>Safe</th>
+<th>Idempotent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>read</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>create something new</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td>replace something completely</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td>change some fields of something</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>delete</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>safe</strong> method doesn't change anything on the server: you can send a <code>GET</code> as many times as you like. An <strong>idempotent</strong> method has the same effect whether you send it once or several times: deleting transaction 57 twice leaves the database exactly as deleting it once. <code>POST</code> is neither: sending the same <code>POST</code> twice records two transactions, the same problem as importing the CSV file twice. These properties matter on real networks, where a client that gets no answer doesn't know whether its request arrived and may send it again.</p>
+<h3 id="status-codes">Status codes<a class="headerlink" href="#status-codes" title="Permanent link">&para;</a></h3>
+<p>The status code is the first thing a client reads. Its first digit gives the family:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>OK</td>
+<td>the request worked; the data is in the body</td>
+</tr>
+<tr>
+<td><code>201</code></td>
+<td>Created</td>
+<td>a <code>POST</code> created something; the body has it, with its new <code>id</code></td>
+</tr>
+<tr>
+<td><code>204</code></td>
+<td>No Content</td>
+<td>it worked and there is nothing to return, as after a <code>DELETE</code></td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Bad Request</td>
+<td>the request is understandable but breaks a rule: an account that doesn't exist</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Not Found</td>
+<td>what the path names doesn't exist: transaction 999</td>
+</tr>
+<tr>
+<td><code>405</code></td>
+<td>Method Not Allowed</td>
+<td>the path exists, but not with this method</td>
+</tr>
+<tr>
+<td><code>422</code></td>
+<td>Unprocessable Content</td>
+<td>the data has the wrong shape: a date that isn't a date, a missing field</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td>Internal Server Error</td>
+<td>the server failed: a bug, not the client's fault</td>
+</tr>
+</tbody>
+</table>
+<p>The rule to remember: <strong><code>2xx</code> it worked, <code>4xx</code> the client must change its request, <code>5xx</code> the server has a problem</strong>. A <code>4xx</code> comes with a message that tells the client what to fix. A <code>500</code> means your code raised an exception that nobody handled, so in a finished API every error that a client can cause gets its own <code>4xx</code>. A frequent mistake is to answer <code>200</code> with a body like <code>{"error": "not found"}</code>: the client's code checks the status code first, sees success, and carries on with wrong data.</p>
+<h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<p>The body of API requests and responses is almost always <strong>JSON</strong> (<em>JavaScript Object Notation</em>), a text format with the same building blocks as Python's data: objects <code>{"key": value}</code> (Python dictionaries), arrays <code>[...]</code> (lists), strings, numbers, <code>true</code>/<code>false</code> and <code>null</code> (<code>None</code>).</p>
+<p>JSON has one kind of number, and most clients, browsers included, read it as a binary floating-point number, with the errors you saw when <a href="../../04-dependencies-tools/lab/#3-money-is-not-a-float">money is a float</a>. That is why the <code>ledger</code> API sends amounts as <strong>strings</strong>: <code>"amount": "-39.90"</code>. The client that needs to calculate converts the string with an exact decimal type; the one that only shows it, shows it as it is. Many payment APIs do the same, or send integer cents.</p>
+<h2 id="rest-an-api-made-of-resources">REST: an API made of resources<a class="headerlink" href="#rest-an-api-made-of-resources" title="Permanent link">&para;</a></h2>
+<p>Nothing in HTTP forces a particular design of URLs. You could have <code>/getBalance</code>, <code>/doAddTransaction?acc=checking</code> and <code>/transactions/remove/57</code>, and each team would invent its own conventions. <strong>REST</strong> (<em>Representational State Transfer</em>) is the style most web APIs follow so that clients can guess how an API works.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: REST resource</p>
+<p>In a REST API, the URLs name <strong>resources</strong>, the things the application manages, with <strong>nouns in the plural</strong>: <code>/api/transactions</code> is the collection of all transactions, and <code>/api/transactions/57</code> is one of them, identified by its <code>id</code>. The <strong>method</strong> says what to do with the resource. The server keeps no memory of earlier requests from the client: each request carries everything needed to answer it (REST is <strong>stateless</strong>).</p>
+</div>
+<p>Whatever an application stores, it does four things with it: <strong>create</strong>, <strong>read</strong>, <strong>update</strong> and <strong>delete</strong>, known together as <strong>CRUD</strong>. CRUD is not a technology: it names the operations themselves. Each layer of the application has its own way to express them, and an HTTP method is the API's way:</p>
+<table>
+<thead>
+<tr>
+<th>CRUD</th>
+<th>SQL (in the database)</th>
+<th>HTTP method (in the API)</th>
+<th><code>ledger</code> command line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td><code>INSERT</code></td>
+<td><code>POST</code></td>
+<td><code>ledger add</code></td>
+</tr>
+<tr>
+<td>read</td>
+<td><code>SELECT</code></td>
+<td><code>GET</code></td>
+<td><code>ledger balance</code>, <code>spending</code>, <code>months</code></td>
+</tr>
+<tr>
+<td>update</td>
+<td><code>UPDATE</code></td>
+<td><code>PUT</code> (replace) or <code>PATCH</code> (change some fields)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>delete</td>
+<td><code>DELETE</code></td>
+<td><code>DELETE</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>When a client sends <code>POST /api/transactions</code>, it asks for a <em>create</em>; the endpoint calls storage, and SQLAlchemy sends an <code>INSERT</code> to the database. The same operation travels through the three layers, with a different name in each. For transactions, the requests for each operation are (the <code>ledger</code> API has no update: a wrong transaction is deleted and recorded again):</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>HTTP request</th>
+<th>Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list transactions, optionally filtered</td>
+<td><code>GET /api/transactions?category=health</code></td>
+<td><code>200</code> and a list</td>
+</tr>
+<tr>
+<td>read one transaction</td>
+<td><code>GET /api/transactions/57</code></td>
+<td><code>200</code> and the transaction, or <code>404</code></td>
+</tr>
+<tr>
+<td>create a transaction</td>
+<td><code>POST /api/transactions</code> with the transaction in the body</td>
+<td><code>201</code> and the transaction, with its <code>id</code></td>
+</tr>
+<tr>
+<td>replace a transaction</td>
+<td><code>PUT /api/transactions/57</code> with the whole transaction</td>
+<td><code>200</code> and the transaction</td>
+</tr>
+<tr>
+<td>change some fields</td>
+<td><code>PATCH /api/transactions/57</code> with those fields</td>
+<td><code>200</code> and the transaction</td>
+</tr>
+<tr>
+<td>delete a transaction</td>
+<td><code>DELETE /api/transactions/57</code></td>
+<td><code>204</code>, or <code>404</code></td>
+</tr>
+</tbody>
+</table>
+<p>The path is for <strong>which</strong> resource; the query string is for <strong>how</strong> to filter, sort or page a list; the body is for the <strong>data</strong> of what you create or change. Verbs don't go in the path (<code>/api/deleteTransaction/57</code> is not REST: the method already says "delete"). Calculated results that are not stored, such as the balances or the spending by category, are resources too: <code>GET /api/accounts</code> returns each account with its balance, and <code>GET /api/reports/spending</code> the spending report.</p>
+<h2 id="fastapi">FastAPI<a class="headerlink" href="#fastapi" title="Permanent link">&para;</a></h2>
+<p><strong>FastAPI</strong> is a Python framework for building web APIs. You write ordinary functions with type hints, and FastAPI uses the hints to read each request, check it, call your function and turn its result into JSON. A complete API with one endpoint:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/hello"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Hello"</span><span class="p">}</span>
+</code></pre></div>
+<p><code>app</code> is the application. The <strong>decorator</strong> <code>@app.get("/api/hello")</code>, the line with <code>@</code> above the function, registers the function as the answer to <code>GET /api/hello</code>; FastAPI calls this pair of method and path a <strong>path operation</strong>, and the function, its <strong>endpoint</strong>. The function returns a dictionary, and FastAPI sends <code>{"message":"Hello"}</code> with the status <code>200</code>.</p>
+<p>A server program runs the application: it listens on a port, receives each request, and passes it to FastAPI. The command <code>fastapi dev</code> starts <strong>Uvicorn</strong>, the usual server, in development mode: it restarts the API each time you save a file. While it runs, the API is at <code>http://127.0.0.1:8000</code>, and the terminal shows one line per request with its status code. <code>Ctrl+C</code> stops it.</p>
+<h3 id="path-and-query-parameters">Path and query parameters<a class="headerlink" href="#path-and-query-parameters" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/transactions/</span><span class="si">{transaction_id}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_transaction</span><span class="p">(</span><span class="n">transaction_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">SessionDep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransactionOut</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/transactions"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_transactions</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">:</span> <span class="n">SessionDep</span><span class="p">,</span> <span class="n">account</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TransactionOut</span><span class="p">]:</span>
+    <span class="o">...</span>
+</code></pre></div>
+<ul>
+<li>A name between braces in the path, <code>{transaction_id}</code>, is a <strong>path parameter</strong>: for <code>GET /api/transactions/6</code>, FastAPI calls the function with <code>transaction_id=6</code>. The type hint <code>int</code> converts the text <code>"6"</code> into the number <code>6</code>, and a request for <code>/api/transactions/abc</code> is rejected with <code>422</code> before your function runs.</li>
+<li>Any other parameter of a simple type (<code>str</code>, <code>int</code>, <code>date</code>…) is a <strong>query parameter</strong>, read from the query string: <code>GET /api/transactions?category=health</code> gives <code>category="health"</code>. With a default value (<code>= None</code>) it is optional; without one, it is required.</li>
+<li><code>session: SessionDep</code> is neither: it is a <strong>dependency</strong>, explained below.</li>
+</ul>
+<h3 id="the-request-body-pydantic-models">The request body: Pydantic models<a class="headerlink" href="#the-request-body-pydantic-models" title="Permanent link">&para;</a></h3>
+<p>To create a transaction, the client sends it as JSON in the body. You describe the shape of that JSON with a <strong>Pydantic model</strong>, a class whose fields have types and, optionally, constraints:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NewTransaction</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""What the client sends to record a transaction."""</span>
+
+    <span class="n">date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span>
+    <span class="n">account</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/transactions"</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_transaction</span><span class="p">(</span><span class="n">new</span><span class="p">:</span> <span class="n">NewTransaction</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">SessionDep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransactionOut</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>A parameter whose type is a Pydantic model is read from the <strong>body</strong>. Before calling the function, FastAPI checks the JSON against the model: every field present, <code>"2026-03-31"</code> converted into a <code>date</code>, <code>"-12.50"</code> into a <code>Decimal</code>, the texts not empty. If anything fails, the client gets <code>422</code> with the list of problems, and your function never runs:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date_from_datetime_parsing"</span><span class="p">,</span><span class="w"> </span><span class="nt">"loc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"body"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date"</span><span class="p">],</span><span class="w"> </span><span class="nt">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Input should be a valid date or datetime, invalid character in year"</span><span class="p">,</span><span class="w"> </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31/03/2026"</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decimal_parsing"</span><span class="p">,</span><span class="w"> </span><span class="nt">"loc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"body"</span><span class="p">,</span><span class="w"> </span><span class="s2">"amount"</span><span class="p">],</span><span class="w"> </span><span class="nt">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Input should be a valid decimal"</span><span class="p">,</span><span class="w"> </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twelve"</span><span class="p">}</span>
+<span class="p">]}</span>
+</code></pre></div>
+<p>The <strong>return type</strong> of the function works the same way in the other direction: FastAPI converts what the function returns into the shape of <code>TransactionOut</code>, and sends only its fields. The <code>Transaction</code> dataclass of <code>models.py</code> is converted automatically. If what the function returns doesn't fit (for example <code>None</code> where a transaction was expected), that is a bug in the server, and the client gets <code>500</code>.</p>
+<p>A Pydantic model looks like a dataclass, and it is used for a different job. The <code>Transaction</code> dataclass is how the program represents a transaction inside; <code>NewTransaction</code> and <code>TransactionOut</code> are the <strong>contract</strong> of the API with the outside, the JSON that comes in and goes out. They are kept separate on purpose: the contract can stay stable while the inside changes, and the client never chooses fields it shouldn't, such as the <code>id</code>, which only the database assigns.</p>
+<h3 id="two-kinds-of-invalid-request">Two kinds of invalid request<a class="headerlink" href="#two-kinds-of-invalid-request" title="Permanent link">&para;</a></h3>
+<p>Pydantic checks the <strong>shape</strong> of the data: types, required fields, lengths. It can't know whether the account <code>credit</code> exists, because that depends on what is in the database. That is a <strong>business rule</strong>, and <code>ledger</code> checks its business rules in <code>storage.add_transaction</code>, which raises a <code>ValueError</code>, for the command line and the API alike. The endpoint turns it into a <code>400</code> with <code>HTTPException</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/transactions"</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_transaction</span><span class="p">(</span><span class="n">new</span><span class="p">:</span> <span class="n">NewTransaction</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">SessionDep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransactionOut</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">storage</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span>
+            <span class="n">session</span><span class="p">,</span> <span class="n">new</span><span class="o">.</span><span class="n">account</span><span class="p">,</span> <span class="n">new</span><span class="o">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">new</span><span class="o">.</span><span class="n">category</span><span class="p">,</span> <span class="n">new</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">new</span><span class="o">.</span><span class="n">date</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+</code></pre></div>
+<p>Raising <code>HTTPException</code> stops the function and sends a response with that status code and <code>{"detail": "..."}</code> as its body. It is the API's version of what <code>cli.py</code> does with <code>SystemExit</code>: the same error from storage, turned into the right message for this interface. The same pattern gives the <code>404</code> when the transaction asked for doesn't exist.</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Example</th>
+<th>Who checks it</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the data has the wrong shape</td>
+<td><code>"date": "31/03/2026"</code>, no <code>amount</code></td>
+<td>Pydantic, automatically</td>
+<td><code>422</code></td>
+</tr>
+<tr>
+<td>the data breaks a business rule</td>
+<td>the account <code>credit</code> doesn't exist</td>
+<td><code>storage</code>, with a <code>ValueError</code></td>
+<td><code>400</code></td>
+</tr>
+<tr>
+<td>the resource doesn't exist</td>
+<td><code>GET /api/transactions/999</code></td>
+<td>the endpoint</td>
+<td><code>404</code></td>
+</tr>
+<tr>
+<td>the server has a bug</td>
+<td>an exception nobody handled</td>
+<td>nobody</td>
+<td><code>500</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="one-database-session-per-request">One database session per request<a class="headerlink" href="#one-database-session-per-request" title="Permanent link">&para;</a></h3>
+<p>Every endpoint that uses the database needs a session, and the session must be closed when the request is answered, also if it ends in an error. FastAPI does this with a <strong>dependency</strong>: a function that provides something to the endpoints that ask for it.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Depends</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_session</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Session</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""One database session per request, closed when the response is sent."""</span>
+    <span class="k">with</span> <span class="n">db</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+
+
+<span class="n">SessionDep</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Session</span><span class="p">,</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)]</span>
+</code></pre></div>
+<p>For each request to an endpoint with a parameter <code>session: SessionDep</code>, FastAPI calls <code>get_session</code>, which opens a session and <strong>yields</strong> it (<code>yield</code> hands it over and waits). The endpoint runs with that session. When the response has been sent, <code>get_session</code> continues after the <code>yield</code>, and the <code>with</code> block closes the session. Every request gets its own session, so two clients at the same time never share uncommitted changes. <code>SessionDep</code> is a name for the long type <code>Annotated[Session, Depends(get_session)]</code>, written once and used in every endpoint.</p>
+<h3 id="the-interactive-documentation">The interactive documentation<a class="headerlink" href="#the-interactive-documentation" title="Permanent link">&para;</a></h3>
+<p>From the paths, the parameters and the models, FastAPI writes a complete description of the API in a standard format, <strong>OpenAPI</strong>, at <code>/openapi.json</code>. At <code>/docs</code> it shows that description as a web page: every endpoint, its parameters, the shape of its body and its answers, with a <strong>Try it out</strong> button that sends real requests. It is always up to date, because it is generated from the code, and it is what a frontend developer reads to use your API.</p>
+<h2 id="where-the-code-of-an-api-goes">Where the code of an API goes<a class="headerlink" href="#where-the-code-of-an-api-goes" title="Permanent link">&para;</a></h2>
+<p>The endpoints of <code>ledger</code> are short: each one reads the request, calls one function of <code>storage</code> or <code>reports</code>, and returns the result or the right error. That is the job of an interface, and nothing more:</p>
+<ul>
+<li><strong>No SQL in the endpoints.</strong> Queries are storage's job. If the API and the command line need the same data, they call the same storage function.</li>
+<li><strong>No calculations in the endpoints.</strong> The balances come from <code>reports.balances</code>, the same function the command line uses. If the API calculated them its own way, sooner or later the two would disagree.</li>
+<li><strong>No business rules only in the API.</strong> A rule checked only in the endpoint (the account must exist) doesn't protect the data when it arrives through the command line. Rules go in storage, or deeper, and the interface translates their errors.</li>
+</ul>
+<p>With this split, the API module is easy to read and easy to replace, and everything below it can be tested without a server.</p>
+<h2 id="designing-the-api-of-your-module">Designing the API of your module<a class="headerlink" href="#designing-the-api-of-your-module" title="Permanent link">&para;</a></h2>
+<p>The tables of your module (see <a href="../../07-databases/notes/#designing-the-tables-of-your-module">Designing the tables of your module</a>) give its API almost directly:</p>
+<ol>
+<li><strong>One collection per entity that clients manage</strong>, under the prefix of your module: <code>/api/invoices</code>, <code>/api/invoices/{invoice_id}</code>.</li>
+<li><strong>The CRUD operations each client needs</strong>, and no more. A transaction in <code>ledger</code> can't be edited, only deleted and recorded again, so there is no <code>PUT</code>. Don't add endpoints "just in case": each one is code to test and to keep working.</li>
+<li><strong>Two models per entity</strong>: what the client sends to create it (without <code>id</code>), and what the API returns (with <code>id</code>).</li>
+<li><strong>The errors of each endpoint</strong>: which business rules can fail (<code>400</code>) and which ids may not exist (<code>404</code>).</li>
+<li><strong>Calculated results as resources of their own</strong>, with <code>GET</code>: <code>/api/invoices/overdue</code>, <code>/api/reports/revenue</code>.</li>
+</ol>
+<p>In a team product, all the modules form <strong>one API</strong>, so the conventions must be the same everywhere: the URL prefix of each module, the field names and date format in JSON, money as strings, and the same status codes for the same situations. Agree on them before writing endpoints, and write them in the repository's README.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Verbs in the URLs.</strong> <code>/api/addTransaction</code>, <code>/api/transactions/delete/57</code>. The method is the verb: <code>POST /api/transactions</code>, <code>DELETE /api/transactions/57</code>.</li>
+<li><strong><code>200</code> for everything.</strong> An error with status <code>200</code> looks like a success to the client. Use the status code that matches what happened.</li>
+<li><strong>Leaving the <code>500</code>s.</strong> An exception that the endpoint doesn't catch, such as a <code>ValueError</code> from storage, reaches the client as <code>500 Internal Server Error</code>, with no explanation. Every error the client can cause gets a <code>4xx</code> and a message.</li>
+<li><strong>Money as a JSON number.</strong> <code>-12.5</code> is read as a float by most clients. Send amounts as strings, or as integer cents.</li>
+<li><strong>SQL or calculations in the endpoints.</strong> The API and the command line drift apart. Endpoints call storage and reports.</li>
+<li><strong>Opening the database at import time, or sharing one session between requests.</strong> Use a dependency that opens a session per request and closes it.</li>
+<li><strong>Forgetting that the server is running.</strong> <code>fastapi dev</code> occupies its terminal until <code>Ctrl+C</code>. Use a second terminal for <code>curl</code> and the command line, and stop the server before starting it again: a second one fails with <code>Address already in use</code>.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Key takeaways</p>
+<ul>
+<li>A <strong>web API</strong> lets other programs use an application over the network with <strong>HTTP</strong>. A request has a <strong>method</strong>, a <strong>path</strong>, an optional <strong>query string</strong>, <strong>headers</strong> and an optional <strong>body</strong>; the response has a <strong>status code</strong>, headers and a body, usually <strong>JSON</strong>.</li>
+<li>The status code says how it went: <strong><code>2xx</code></strong> it worked (<code>200</code>, <code>201</code> created, <code>204</code> nothing to return), <strong><code>4xx</code></strong> the client must change its request (<code>400</code> business rule, <code>404</code> not found, <code>422</code> wrong shape), <strong><code>5xx</code></strong> the server failed.</li>
+<li>A <strong>REST</strong> API names <strong>resources</strong> with plural nouns (<code>/api/transactions/57</code>) and uses the method as the verb: <code>GET</code> reads, <code>POST</code> creates, <code>PUT</code>/<code>PATCH</code> change, <code>DELETE</code> deletes (<strong>CRUD</strong>).</li>
+<li>In <strong>FastAPI</strong>, a decorated function is an endpoint. Its type hints declare the <strong>path</strong> and <strong>query parameters</strong>, the <strong>body</strong> as a <strong>Pydantic model</strong> (checked automatically, <code>422</code> if the shape is wrong) and the response. <code>HTTPException</code> returns an error with its status code, and a <strong>dependency</strong> gives each request its own database session.</li>
+<li>The API is an <strong>interface</strong>, like the command line: it reads the request, calls storage and reports, and translates their results and errors. No SQL, calculations or business rules live only in the API.</li>
+</ul>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong>1.</strong> Give the method, the path and the status code of the successful response for each request to the <code>ledger</code> API:</p>
+<ol>
+<li>The spending report.</li>
+<li>All the transactions of the account <code>savings</code>.</li>
+<li>Record a coffee of 2.10 € paid from <code>checking</code>.</li>
+<li>Delete transaction 12.</li>
+<li>The same request as 4, sent a second time.</li>
+</ol>
+<details class="success">
+<summary>Solution</summary>
+<ol>
+<li><code>GET /api/reports/spending</code>, <code>200</code>.</li>
+<li><code>GET /api/transactions?account=savings</code>, <code>200</code>: the account is a filter on the collection, so it goes in the query string.</li>
+<li><code>POST /api/transactions</code> with the transaction in the body as JSON (<code>"amount": "-2.10"</code>), <code>201</code>, and the body of the response is the transaction with its new <code>id</code>.</li>
+<li><code>DELETE /api/transactions/12</code>, <code>204</code>, with no body.</li>
+<li><code>DELETE /api/transactions/12</code> again, <code>404</code>: transaction 12 no longer exists. The database is the same after one <code>DELETE</code> or two, which is what makes <code>DELETE</code> idempotent, even though the status code of the second one is different.</li>
+</ol>
+</details>
+<p><strong>2.</strong> A client sends <code>POST /api/transactions</code> with each of these bodies. Which status code does the <code>ledger</code> API answer, and which part of the code decides it?</p>
+<ol>
+<li><code>{"date": "2026-04-01", "account": "checking", "description": "Taxi", "category": "transport", "amount": "-18.40"}</code></li>
+<li>The same, without <code>"category"</code>.</li>
+<li>The same as 1, with <code>"account": "credit"</code>.</li>
+<li>The same as 1, with <code>"amount": "-18.405"</code>.</li>
+</ol>
+<details class="success">
+<summary>Solution</summary>
+<ol>
+<li><code>201</code>: the shape is right and the rules hold. The body of the response is the transaction with its <code>id</code>.</li>
+<li><code>422</code>, decided by Pydantic: <code>category</code> is a required field of <code>NewTransaction</code>, so the function <code>create_transaction</code> never runs.</li>
+<li><code>400</code>, decided by <code>storage.add_transaction</code>, which raises a <code>ValueError</code> because there is no account <code>credit</code>. The endpoint turns it into an <code>HTTPException</code>. Pydantic can't check it: whether an account exists depends on the database.</li>
+<li><code>400</code>, also decided by storage: <code>-18.405</code> is a valid <code>Decimal</code>, so the shape is right, but it has a fraction of a cent. (The rule could also be a Pydantic constraint on the model, <code>Field(decimal_places=2)</code>, and then it would be a <code>422</code>; keeping it in storage protects the command line too.)</li>
+</ol>
+</details>
+<p><strong>3.</strong> A colleague designs these endpoints for the invoices module of a freelancers' product. Rewrite them in REST style, with the method, the path and the status code of success.</p>
+<div class="highlight"><pre><span></span><code>GET  /api/getInvoices
+POST /api/createInvoice
+GET  /api/invoice?id=7
+POST /api/deleteInvoice?id=7
+GET  /api/invoicesOfClient?client=3
+POST /api/markInvoicePaid?id=7
+</code></pre></div>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code>GET    /api/invoices                 200  list
+POST   /api/invoices                 201  the new invoice, with its id
+GET    /api/invoices/7               200  one invoice, or 404
+DELETE /api/invoices/7               204, or 404
+GET    /api/invoices?client_id=3     200  the list, filtered
+PATCH  /api/invoices/7               200  body {"paid": true}
+</code></pre></div>
+<p>The verbs leave the paths, because the method says what to do. The <code>id</code> of one invoice goes in the path, because it names the resource; the client is a filter on the collection, so it goes in the query string. Marking an invoice as paid changes one field, so it is a <code>PATCH</code>. If paying an invoice also records a payment (an amount and a date), another option is to create that payment as a resource of its own: <code>POST /api/invoices/7/payments</code>, <code>201</code>.</p>
+</details>
+<p><strong>4.</strong> This endpoint is in a colleague's API. Find three problems and fix them.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/accounts/</span><span class="si">{name}</span><span class="s2">/balance"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">balance</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">"ledger.db"</span><span class="p">)</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SELECT amount FROM transactions WHERE account = '</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"error"</span><span class="p">:</span> <span class="s2">"account not found"</span><span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"balance"</span><span class="p">:</span> <span class="n">total</span><span class="p">}</span>
+</code></pre></div>
+<details class="success">
+<summary>Solution</summary>
+<ul>
+<li><strong>SQL built with an f-string</strong>: a name such as <code>x' OR '1'='1</code> changes the query (SQL injection). Besides, SQL in an endpoint doesn't belong to the interface: the query goes in storage, with parameters or the ORM.</li>
+<li><strong>Money as <code>float</code></strong>: the total gets binary errors, and goes to the client as a JSON number. The balance comes from <code>reports.balances</code>, as a <code>Decimal</code>, and is sent as a string.</li>
+<li><strong>Error with status <code>200</code></strong>: the client sees success. And a balance of zero doesn't mean that the account doesn't exist. The endpoint must answer <code>404</code> with <code>HTTPException</code> when the account doesn't exist.</li>
+</ul>
+<p>One possible version, with the functions of <code>ledger</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/accounts/</span><span class="si">{name}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_account</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">SessionDep</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AccountOut</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">storage</span><span class="o">.</span><span class="n">find_account</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"there is no account called </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">transactions</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">load_transactions</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">reports</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"0.00"</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">AccountOut</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="n">total</span><span class="p">)</span>
+</code></pre></div>
+<p>The path names the resource, the account; its balance is one of the fields returned.</p>
+</details>
+<p><a class="md-button" href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Back to the session</a> <a class="md-button md-button--primary" href="../lab/">Next: Lab <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Backend APIs with FastAPI">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Backend APIs with FastAPI
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab: a web API for the ledger">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab: a web API for the ledger
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

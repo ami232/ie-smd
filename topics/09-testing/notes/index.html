@@ -1,0 +1,2418 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material docente — estadística, machine learning y desarrollo de software">
+      
+      
+      
+        <link rel="canonical" href="https://alberpro.com/ie-smd/topics/09-testing/notes/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Testing and continuous integration - IE · Software Management & Development</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-and-continuous-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-header__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IE · Software Management & Development
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing and continuous integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="IE · Software Management &amp; Development" class="md-nav__button md-logo" aria-label="IE · Software Management & Development" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IE · Software Management & Development
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Management &amp; Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-dev-environments/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Development environments
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Development environments
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environments and reproducibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: know your machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-dev-environments/machine_card/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-linux-shell/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Linux and the shell
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Linux and the shell
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The shell and the system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up the course environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-linux-shell/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: a ledger in the shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-python-uv/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python projects with uv
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Python projects with uv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python projects and environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-python-uv/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger becomes a Python project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-dependencies-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dependencies and developer tools
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dependencies and developer tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies and the lockfile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-dependencies-tools/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: writing and checking the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-git-collaboration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Git and collaboration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Git and collaboration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version control with Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-git-collaboration/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: your app's repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-project-structure/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Software design and project structure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-project-structure/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software design and project structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-project-structure/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: from one file to a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-databases/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Databases and persistence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Databases and persistence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-databases/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: the ledger in a database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-fastapi/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Backend APIs with FastAPI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Backend APIs with FastAPI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-fastapi/notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web APIs with FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-fastapi/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: a web API for the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Testing and continuous integration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    9. Testing and continuous integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and continuous integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and continuous integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automated-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why automated tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests with pytest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests with pytest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arrange-act-assert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrange, act, assert
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixtures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-code-that-uses-a-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing code that uses a database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-an-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing an API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-a-failing-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading a failing test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinds-of-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinds of tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requiring-the-checks-on-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requiring the checks on main
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-the-tests-of-your-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing the tests of your module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: tests and CI for the ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-automated-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why automated tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-with-pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests with pytest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests with pytest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arrange-act-assert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrange, act, assert
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixtures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-code-that-uses-a-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing code that uses a database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing errors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-an-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing an API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-a-failing-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading a failing test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kinds-of-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinds of tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requiring-the-checks-on-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requiring the checks on main
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#designing-the-tests-of-your-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Designing the tests of your module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="testing-and-continuous-integration">Testing and continuous integration<a class="headerlink" href="#testing-and-continuous-integration" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">What you need first</p>
+<p><code>ledger</code> as a package with a database and a web API (see <a href="../../08-fastapi/lab/">Lab: a web API for the ledger</a>): the pure calculations of <code>reports</code>, the functions of <code>storage</code> with a SQLAlchemy session, and the endpoints of <code>api.py</code>. Pull requests and a protected <code>main</code> (see <a href="../../05-git-collaboration/notes/#the-workflow-for-a-small-team">The workflow for a small team</a>).</p>
+</div>
+<h2 id="why-automated-tests">Why automated tests<a class="headerlink" href="#why-automated-tests" title="Permanent link">&para;</a></h2>
+<p>Each time <code>ledger</code> changed, you checked it by hand. After splitting it into a package, you compared the reports with <code>diff</code>. After moving it to a database, you compared them again and looked inside the tables. After adding the API, you sent requests with <code>curl</code> and read the answers. Every check worked, and every one had the same weaknesses:</p>
+<ul>
+<li><strong>It takes time</strong>, so you run it once, after the change, and not again.</li>
+<li><strong>You only check what you remember.</strong> Nobody re-checks the 400 for an unknown account after changing how the balances are calculated, yet a change in one place can break another. A feature that worked and stops working is a <strong>regression</strong>.</li>
+<li><strong>It lives in your head.</strong> A teammate who changes your module doesn't know what you checked, or what the right answers were.</li>
+</ul>
+<p>An <strong>automated test</strong> writes the check down as code: it runs a piece of the program with known data and compares the result with the expected one. A computer runs hundreds of them in a second, every time, exactly the same way.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: automated test</p>
+<p>An <strong>automated test</strong> is a small program that runs a piece of the application with fixed inputs and checks that the result is the expected one. It <strong>passes</strong> if every check holds and <strong>fails</strong> otherwise. A set of tests is a <strong>test suite</strong>.</p>
+</div>
+<p>Tests give a team three things. <strong>Confidence to change code</strong>: if the suite passes after a change, the behaviours it covers still work, which is what makes refactoring safe. <strong>Early errors</strong>: a failing test points to the function and the line, minutes after the mistake, not weeks later in a user's complaint. And <strong>documentation that can't go out of date</strong>: a test such as <code>test_a_transfer_is_not_spending</code> states a business rule, and it fails the day the code stops following it.</p>
+<h2 id="tests-with-pytest">Tests with pytest<a class="headerlink" href="#tests-with-pytest" title="Permanent link">&para;</a></h2>
+<p><strong>pytest</strong> is the standard tool for testing in Python. A test is a function whose name starts with <code>test_</code>, in a file whose name starts with <code>test_</code>, usually in a folder <code>tests/</code>. Inside it, <code>assert</code> checks a condition:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ledger</span><span class="w"> </span><span class="kn">import</span> <span class="n">reports</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ledger.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transaction</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_balances</span><span class="p">():</span>
+    <span class="n">transactions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Salary"</span><span class="p">,</span> <span class="s2">"salary"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"2000.00"</span><span class="p">)),</span>
+        <span class="n">Transaction</span><span class="p">(</span><span class="n">date</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"Carrefour"</span><span class="p">,</span> <span class="s2">"groceries"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-65.15"</span><span class="p">)),</span>
+    <span class="p">]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">reports</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="p">{</span><span class="s2">"checking"</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"1934.85"</span><span class="p">)}</span>
+</code></pre></div>
+<p><code>uv run pytest</code> finds every test in the project, runs it, and prints one character per test: <code>.</code> if it passed, <code>F</code> if it failed. At the end, a summary:</p>
+<div class="highlight"><pre><span></span><code>tests/test_reports.py .....                                              [100%]
+
+============================== 5 passed in 0.01s ===============================
+</code></pre></div>
+<p><code>assert</code> is plain Python: <code>assert condition</code> does nothing if the condition is true, and raises <code>AssertionError</code> if it is false. pytest catches that error, marks the test as failed, and shows the values on both sides of the comparison, so you see what the code returned and what the test expected.</p>
+<h3 id="arrange-act-assert">Arrange, act, assert<a class="headerlink" href="#arrange-act-assert" title="Permanent link">&para;</a></h3>
+<p>Almost every test has three parts, in this order, separated by an empty line:</p>
+<ol>
+<li><strong>Arrange</strong>: prepare the data, here the list of transactions.</li>
+<li><strong>Act</strong>: call the code being tested, once.</li>
+<li><strong>Assert</strong>: check the result.</li>
+</ol>
+<p>The structure makes a test easy to read, and it keeps each test about <strong>one behaviour</strong>. A test that calls three functions and checks ten things fails for many reasons, and its name can't say which.</p>
+<h3 id="what-to-test">What to test<a class="headerlink" href="#what-to-test" title="Permanent link">&para;</a></h3>
+<p>The easiest code to test is a <strong>pure function</strong>: the same inputs always give the same output, with no files, database or screen involved. That is why <code>ledger</code> keeps its calculations in <code>reports.py</code>, without <code>print</code> or storage (see <a href="../../06-project-structure/notes/">Software design and project structure</a>): its tests need nothing but some <code>Transaction</code>s.</p>
+<p>For each function, test three kinds of case:</p>
+<ul>
+<li><strong>The usual case</strong>: a small, realistic input whose result you have calculated by hand.</li>
+<li><strong>The edge cases</strong>: an empty list, a single transaction, a transfer, a month with no movements. Bugs gather at the edges.</li>
+<li><strong>The errors</strong>: what must be refused (an unknown account, a fraction of a cent), and how.</li>
+</ul>
+<p>Calculate the expected results <strong>by hand</strong>, never by running the code and copying what it prints: a test that copies the output of a bug confirms the bug. With small inputs, the calculation by hand is quick: salary 2000.00, groceries −65.15, so the balance is 1934.85.</p>
+<p>Name each test after the behaviour it checks, as a sentence: <code>test_a_transfer_is_not_spending</code>, <code>test_an_unknown_account_is_refused</code>. When it fails, the name alone tells you which rule is broken.</p>
+<h2 id="fixtures">Fixtures<a class="headerlink" href="#fixtures" title="Permanent link">&para;</a></h2>
+<p>Several tests often need the same data. Copying the list of transactions into each test makes them long, and a change to the data has to be made everywhere. A <strong>fixture</strong> prepares it once:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">transactions</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Transaction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Two months of a small ledger, with a transfer between the two accounts."""</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">make</span><span class="p">(</span><span class="s2">"2026-01-01"</span><span class="p">,</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"salary"</span><span class="p">,</span> <span class="s2">"2000.00"</span><span class="p">),</span>
+        <span class="n">make</span><span class="p">(</span><span class="s2">"2026-01-02"</span><span class="p">,</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"groceries"</span><span class="p">,</span> <span class="s2">"-65.15"</span><span class="p">),</span>
+        <span class="n">make</span><span class="p">(</span><span class="s2">"2026-01-15"</span><span class="p">,</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="s2">"transfer"</span><span class="p">,</span> <span class="s2">"-300.00"</span><span class="p">),</span>
+        <span class="n">make</span><span class="p">(</span><span class="s2">"2026-01-15"</span><span class="p">,</span> <span class="s2">"savings"</span><span class="p">,</span> <span class="s2">"transfer"</span><span class="p">,</span> <span class="s2">"300.00"</span><span class="p">),</span>
+        <span class="o">...</span>
+    <span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_balances</span><span class="p">(</span><span class="n">transactions</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">reports</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+    <span class="o">...</span>
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: fixture</p>
+<p>A <strong>fixture</strong> is a function decorated with <code>@pytest.fixture</code> that prepares something a test needs. A test asks for it by having a <strong>parameter with the same name</strong>: pytest calls the fixture before the test and passes the result in. Each test gets a <strong>new</strong> result, so no test can change the data of another.</p>
+</div>
+<p>pytest also has <strong>built-in fixtures</strong>. <code>tmp_path</code> gives each test a new, empty temporary folder, which is perfect to test <code>import_csv</code> with a small CSV file written by the test itself. Fixtures used by several test files go in a file called <code>conftest.py</code> in the <code>tests/</code> folder: pytest loads it on its own, without any import.</p>
+<p>A fixture can also <strong>clean up</strong> after the test. Instead of <code>return</code>, it uses <code>yield</code>: the code before <code>yield</code> runs before the test, and the code after it runs after the test, even if the test failed. It is the same idea as the dependency <code>get_session</code> of the API.</p>
+<h2 id="testing-code-that-uses-a-database">Testing code that uses a database<a class="headerlink" href="#testing-code-that-uses-a-database" title="Permanent link">&para;</a></h2>
+<p>Storage reads and writes a database. Tests can't use <code>ledger.db</code>: they would depend on what is in it, and they would change it. Each test needs a database of its own, empty at the start, that disappears at the end.</p>
+<p>SQLite can keep a whole database <strong>in memory</strong>, with the URL <code>sqlite://</code> (no file name). Creating one takes a millisecond, so every test can have a new one. This fixture, in <code>tests/conftest.py</code>, creates the tables of <code>db.py</code> in an empty database in memory and gives the test a session on it:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">session</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""An empty database in memory, new for each test."""</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+        <span class="s2">"sqlite://"</span><span class="p">,</span>
+        <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s2">"check_same_thread"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+</code></pre></div>
+<p>A database in memory exists only inside one connection, so <code>StaticPool</code> makes the engine use always the same connection, and <code>check_same_thread=False</code> lets the API use it from the threads where FastAPI runs the endpoints. The tables are the ones declared in <code>db.py</code>, the same that the application uses.</p>
+<p>A test of storage then writes and reads through the real functions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_add_and_load_a_transaction</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">storage</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">"checking"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-12.50"</span><span class="p">),</span> <span class="s2">"food"</span><span class="p">,</span> <span class="s2">"Lunch"</span><span class="p">,</span> <span class="n">DAY</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="n">loaded</span><span class="p">]</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">load_transactions</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">loaded</span><span class="o">.</span><span class="n">account</span> <span class="o">==</span> <span class="s2">"checking"</span>
+    <span class="k">assert</span> <span class="n">loaded</span><span class="o">.</span><span class="n">amount</span> <span class="o">==</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-12.50"</span><span class="p">)</span>
+</code></pre></div>
+<p>Here <code>db</code> is another fixture that takes <code>session</code> and adds an account <code>checking</code> to it: fixtures can use other fixtures. The test checks that a transaction survives the trip to the database and back: the <code>Money</code> type stores it as cents, and storage returns it as a <code>Decimal</code> with the same value.</p>
+<h2 id="testing-errors">Testing errors<a class="headerlink" href="#testing-errors" title="Permanent link">&para;</a></h2>
+<p>A business rule says that a transaction for an account that doesn't exist must be refused with a <code>ValueError</code>. Checking it means checking that the exception <strong>is raised</strong>. <code>pytest.raises</code> does it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_an_unknown_account_is_refused</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"no account called 'credit'"</span><span class="p">):</span>
+        <span class="n">storage</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">"credit"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-5"</span><span class="p">),</span> <span class="s2">"food"</span><span class="p">,</span> <span class="s2">"Coffee"</span><span class="p">,</span> <span class="n">DAY</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">storage</span><span class="o">.</span><span class="n">load_transactions</span><span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="o">==</span> <span class="p">[]</span>
+</code></pre></div>
+<p>The test passes only if the code inside the <code>with</code> block raises a <code>ValueError</code> whose message contains the text of <code>match</code>. If it raises nothing, or another exception, the test fails. The last line checks the second half of the rule: nothing was saved.</p>
+<h2 id="testing-an-api">Testing an API<a class="headerlink" href="#testing-an-api" title="Permanent link">&para;</a></h2>
+<p>An API is tested through HTTP requests, as a client would use it, but without starting a server. FastAPI's <strong><code>TestClient</code></strong> sends the requests directly to the application, and returns the responses:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.testclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestClient</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ledger</span><span class="w"> </span><span class="kn">import</span> <span class="n">api</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_a_missing_transaction_is_404</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/api/transactions/999"</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
+</code></pre></div>
+<p><code>response.status_code</code> is the status code, and <code>response.json()</code> the body converted into Python: a list or a dictionary, with the amounts as strings, as the client receives them. <code>client.post(url, json={...})</code> sends a body.</p>
+<p>The API must use the database in memory of the test, not <code>ledger.db</code>. FastAPI lets a test replace a dependency with another one: <code>api.app.dependency_overrides[api.get_session] = lambda: session</code> makes every endpoint receive the session of the test. The fixture <code>client</code> does this, adds two accounts and two transactions, and removes the replacement at the end:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">add_all</span><span class="p">([</span><span class="n">Account</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"checking"</span><span class="p">),</span> <span class="n">Account</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"savings"</span><span class="p">)])</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="o">...</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="p">[</span><span class="n">api</span><span class="o">.</span><span class="n">get_session</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">session</span>
+    <span class="k">yield</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
+<p>An API test checks the <strong>contract</strong> with the client: the status code for each situation (201, 400, 404, 422) and the exact JSON. These are the things a frontend depends on, and that a change inside the API must not break.</p>
+<h2 id="reading-a-failing-test">Reading a failing test<a class="headerlink" href="#reading-a-failing-test" title="Permanent link">&para;</a></h2>
+<p>A failing test is information, not a disaster. Suppose someone simplifies <code>is_spending</code> and forgets the transfers:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_spending</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">Transaction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</code></pre></div>
+<p>Two tests fail, and pytest explains each one:</p>
+<div class="highlight"><pre><span></span><code>&gt;       assert result == {"groceries": Decimal("105.15"), "restaurants": Decimal("25.50")}
+E       AssertionError: assert {'transfer': ...imal('25.50')} == {'groceries':...imal('25.50')}
+E
+E         Omitting 2 identical items, use -vv to show
+E         Left contains 1 more item:
+E         {'transfer': Decimal('300.00')}
+</code></pre></div>
+<p>Read it from the bottom: the result (the left side) has one item more than expected, <code>transfer</code>, with 300.00. The transfer was counted as spending. The line marked <code>&gt;</code> is the assertion that failed, and the file and line number follow. The other failing test, <code>test_a_transfer_is_not_spending</code>, names the broken rule directly.</p>
+<p>When a test fails, there are two possibilities: the code is wrong, or the test is. Decide which by going back to the rule, not by changing the expected value until the test passes.</p>
+<h2 id="kinds-of-tests">Kinds of tests<a class="headerlink" href="#kinds-of-tests" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>What it checks</th>
+<th>In <code>ledger</code></th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unit test</strong></td>
+<td>one function, alone</td>
+<td><code>reports.balances</code> with a list of transactions</td>
+<td>milliseconds</td>
+</tr>
+<tr>
+<td><strong>Integration test</strong></td>
+<td>several parts together</td>
+<td>storage with a real (in memory) database; the API with storage and reports behind it</td>
+<td>milliseconds to seconds</td>
+</tr>
+<tr>
+<td><strong>End-to-end test</strong></td>
+<td>the whole system, as a user</td>
+<td>a browser that opens the web page, against a running server and database</td>
+<td>seconds to minutes</td>
+</tr>
+</tbody>
+</table>
+<p>A healthy suite has many unit tests, fewer integration tests and a few end-to-end tests: the fast ones run constantly and point to the exact function, and the slow ones prove that the parts fit together. In <code>ledger</code>, the API tests are integration tests: each one goes through the endpoint, storage and SQLAlchemy down to the database.</p>
+<p>Tests show that the cases you thought of work. They can't show that there are no bugs: an untested case can still fail. That is why each bug found in use should become a new test first, then be fixed: the test proves the fix, and the bug can't come back unnoticed.</p>
+<h2 id="continuous-integration">Continuous integration<a class="headerlink" href="#continuous-integration" title="Permanent link">&para;</a></h2>
+<p>Tests only protect <code>main</code> if they run. On a team, someone always forgets to run them before pushing, or runs them on a computer where an extra package hides a missing dependency. The answer is to have them run <strong>automatically</strong>, on a clean machine, for every change.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Definition: continuous integration (CI)</p>
+<p><strong>Continuous integration</strong> is the practice of merging small changes into <code>main</code> often, with a server that checks every change automatically: it installs the project from scratch on a clean machine, runs the linters and the test suite, and reports the result on the pull request. A change whose checks fail is not merged.</p>
+</div>
+<p>GitHub's CI service is <strong>GitHub Actions</strong>. A <strong>workflow</strong> is a YAML file in <code>.github/workflows/</code> of the repository, which says when to run and what to do:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">checks</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v7</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v10.3.3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install the project and its dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --locked</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ruff rules</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff check</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ruff format</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff format --check</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span>
+</code></pre></div>
+<ul>
+<li><strong><code>on</code></strong> lists the events that start the workflow: every pull request, and every push to <code>main</code> (which is what a merge produces).</li>
+<li><strong><code>jobs</code></strong> are independent sets of steps, each on a new virtual machine. This workflow has one job, <code>checks</code>, on the latest Ubuntu.</li>
+<li><strong><code>steps</code></strong> run in order, and the job stops at the first one that fails. A step either <strong><code>uses</code></strong> an action, a ready-made step published by someone else (<code>actions/checkout</code> copies the repository onto the machine, <code>astral-sh/setup-uv</code> installs uv), or <strong><code>run</code></strong>s a command in the shell.</li>
+<li><code>uv sync --locked</code> installs the exact versions of <code>uv.lock</code>, and fails if <code>uv.lock</code> doesn't match <code>pyproject.toml</code>. Python itself is installed by uv, in the version of <code>.python-version</code>.</li>
+</ul>
+<p>Each step is a command you already run on your computer. The difference is that CI runs them on a machine where nothing is installed beforehand: if a dependency is missing from <code>pyproject.toml</code>, or a test passes only because of a file you have locally, CI finds it.</p>
+<p>On the pull request, GitHub shows the result of the job as a <strong>check</strong>: a yellow dot while it runs, a green tick if every step passed, a red cross if one failed, with a link to the log of each step. A commit pushed to the branch starts the workflow again, so the check always shows the state of the latest commit.</p>
+<h2 id="requiring-the-checks-on-main">Requiring the checks on <code>main</code><a class="headerlink" href="#requiring-the-checks-on-main" title="Permanent link">&para;</a></h2>
+<p>A red check is only a warning: GitHub still lets anyone merge the pull request. To make it a rule, protect <code>main</code> with a <strong>ruleset</strong> (<em>Settings → Rulesets</em>) that requires a pull request before merging and requires the status check <code>checks</code> (the name of the job) to pass. With it, GitHub blocks the merge button until the check is green, for everyone, including the owner of the repository.</p>
+<p>On a team, the same ruleset also requires an approval from a teammate (see <a href="../../05-git-collaboration/notes/#the-workflow-for-a-small-team">The workflow for a small team</a>). Together, the two rules mean that every change in <code>main</code> has been read by a second person and has passed the checks on a clean machine.</p>
+<h2 id="designing-the-tests-of-your-module">Designing the tests of your module<a class="headerlink" href="#designing-the-tests-of-your-module" title="Permanent link">&para;</a></h2>
+<p>For the module you own in the group project:</p>
+<ol>
+<li><strong>Unit tests of every calculation</strong> of the module, with small inputs calculated by hand, including the edge cases.</li>
+<li><strong>A test for every business rule</strong>, the accepted case and the refused one with <code>pytest.raises</code>.</li>
+<li><strong>API tests of every endpoint</strong>: the success status code and JSON, and each <code>4xx</code> the endpoint can return.</li>
+<li><strong>The shared fixtures in <code>tests/conftest.py</code></strong>, agreed by the team, so that all the modules test against the same database in memory.</li>
+</ol>
+<p>A new endpoint or rule comes with its tests in the same pull request, and CI runs them all, the module's and everybody else's.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Expected values copied from the output.</strong> Then the test checks that the code does what it does, bugs included. Calculate them by hand.</li>
+<li><strong>Tests that depend on each other</strong>, or on the order in which they run. Each test must prepare everything it needs; fixtures give each one fresh data.</li>
+<li><strong>Tests on the real database.</strong> They fail or pass depending on what <code>ledger.db</code> contains, and they change it. Use a database in memory.</li>
+<li><strong>Testing only the usual case.</strong> The edges and the errors are where bugs live.</li>
+<li><strong>Changing the test to make it pass.</strong> First decide whether the code or the test is wrong.</li>
+<li><strong>A red check ignored "because it works on my computer".</strong> CI runs on a clean machine: what fails there will fail for your teammates and in production.</li>
+<li><strong>A workflow that never runs.</strong> It must be in <code>.github/workflows/</code>, with the extension <code>.yml</code>, and on the branch being pushed. Check the <strong>Actions</strong> tab after pushing.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Key takeaways</p>
+<ul>
+<li>An <strong>automated test</strong> runs a piece of code with fixed inputs and checks the result. A suite of them catches <strong>regressions</strong> in seconds, makes changes safe, and documents the rules.</li>
+<li>With <strong>pytest</strong>, a test is a function <code>test_...</code> with <code>assert</code>, organised as <strong>arrange, act, assert</strong>, about one behaviour. Test the usual case, the edge cases and the errors, with expected values calculated by hand.</li>
+<li><strong>Fixtures</strong> prepare what tests need, fresh for each test; shared ones go in <code>conftest.py</code>. Code that uses a database is tested on a <strong>database in memory</strong> (<code>sqlite://</code>), and errors with <strong><code>pytest.raises</code></strong>.</li>
+<li>An API is tested through HTTP with FastAPI's <strong><code>TestClient</code></strong>, replacing the session dependency with the test's one, and checking status codes and JSON.</li>
+<li><strong>Continuous integration</strong> runs the linters and the tests on a clean machine for every pull request. With <strong>GitHub Actions</strong>, it is a workflow in <code>.github/workflows/</code>; a <strong>ruleset</strong> on <code>main</code> that requires its check turns a red result into a blocked merge.</li>
+</ul>
+</div>
+<h2 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h2>
+<p><strong>1.</strong> Write the expected result of <code>reports.net_by_month</code> for these transactions, and the test that checks it.</p>
+<table>
+<thead>
+<tr>
+<th>date</th>
+<th>account</th>
+<th>category</th>
+<th>amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-01</td>
+<td>checking</td>
+<td>salary</td>
+<td>2000.00</td>
+</tr>
+<tr>
+<td>2026-01-02</td>
+<td>checking</td>
+<td>groceries</td>
+<td>−65.15</td>
+</tr>
+<tr>
+<td>2026-01-15</td>
+<td>checking</td>
+<td>transfer</td>
+<td>−300.00</td>
+</tr>
+<tr>
+<td>2026-01-15</td>
+<td>savings</td>
+<td>transfer</td>
+<td>300.00</td>
+</tr>
+<tr>
+<td>2026-02-03</td>
+<td>checking</td>
+<td>groceries</td>
+<td>−40.00</td>
+</tr>
+<tr>
+<td>2026-02-10</td>
+<td>checking</td>
+<td>restaurants</td>
+<td>−25.50</td>
+</tr>
+</tbody>
+</table>
+<details class="success">
+<summary>Solution</summary>
+<p><code>net_by_month</code> adds every amount of each month, transfers included: in January, 2000.00 − 65.15 − 300.00 + 300.00 = 1934.85; in February, −40.00 − 25.50 = −65.50. The transfer adds nothing, because its two rows cancel out.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_net_by_month</span><span class="p">(</span><span class="n">transactions</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">reports</span><span class="o">.</span><span class="n">net_by_month</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="p">{</span><span class="s2">"2026-01"</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"1934.85"</span><span class="p">),</span> <span class="s2">"2026-02"</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-65.50"</span><span class="p">)}</span>
+</code></pre></div>
+</details>
+<p><strong>2.</strong> A colleague writes this test. Find three problems.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_storage</span><span class="p">():</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span>
+    <span class="n">storage</span><span class="o">.</span><span class="n">import_csv</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data/transactions.csv"</span><span class="p">))</span>
+    <span class="n">balances</span> <span class="o">=</span> <span class="n">reports</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">load_transactions</span><span class="p">(</span><span class="n">session</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">balances</span><span class="p">[</span><span class="s2">"checking"</span><span class="p">]</span> <span class="o">==</span> <span class="n">storage</span><span class="o">.</span><span class="n">load_transactions</span><span class="p">(</span><span class="n">session</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">amount</span>
+    <span class="n">storage</span><span class="o">.</span><span class="n">add_transaction</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">"credit"</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"5"</span><span class="p">),</span> <span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+</code></pre></div>
+<details class="success">
+<summary>Solution</summary>
+<ul>
+<li><strong>It uses the real database</strong>, <code>ledger.db</code>, through <code>db.get_session()</code>. The test adds 56 transactions to it each time it runs, and its result depends on what was there before. It should use the <code>session</code> fixture, a database in memory.</li>
+<li><strong>The expected value is not an expected value</strong>: it compares the balance with the amount of the first transaction, which has nothing to do with it, and is calculated by the code itself. The expected balance should be a number calculated by hand, from a small CSV written by the test (with <code>tmp_path</code>).</li>
+<li><strong>It tests several things, and the last line is not a check</strong>: <code>add_transaction</code> with the unknown account <code>credit</code> raises a <code>ValueError</code>, so the test fails with an error instead of checking the rule. That rule needs its own test, with <code>pytest.raises</code>. Splitting it into one test per behaviour also gives each one a name that says what it checks.</li>
+</ul>
+</details>
+<p><strong>3.</strong> Your pull request has a red cross. The log of the job shows that the step <strong>Install the project and its dependencies</strong> failed, and the tests never ran. On your computer, <code>uv run pytest</code> passes. What is the most likely cause, and how do you fix it?</p>
+<details class="success">
+<summary>Solution</summary>
+<p><code>uv sync --locked</code> fails when <code>uv.lock</code> doesn't match <code>pyproject.toml</code>: most likely you added or changed a dependency in <code>pyproject.toml</code> (by hand, or with <code>uv add</code>) and didn't commit the updated <code>uv.lock</code>. On your computer the package is installed, so the tests pass. Commit <code>uv.lock</code> (run <code>uv lock</code> first if it is out of date) and push: the workflow runs again on the new commit.</p>
+</details>
+<p><strong>4.</strong> A team protects <code>main</code> with a ruleset that requires a pull request with one approval, but not the status check. What can still happen? And if it requires the check but not the pull request?</p>
+<details class="success">
+<summary>Solution</summary>
+<p>Without the check: a teammate can approve a pull request whose tests fail, and it can be merged with a red cross, so <code>main</code> can be broken. Without the pull request: anyone can push commits directly to <code>main</code>; CI runs after the push, so a red result only reports the problem once it is already in <code>main</code>, and no one has reviewed the change. The two rules protect against different things, and a team needs both.</p>
+</details>
+<p><a class="md-button" href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg></span> Back to the session</a> <a class="md-button md-button--primary" href="../lab/">Next: Lab <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Testing and continuous integration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Testing and continuous integration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab: tests and CI for the ledger">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab: tests and CI for the ledger
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.sections", "navigation.top", "navigation.footer", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
